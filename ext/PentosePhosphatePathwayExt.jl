@@ -3,8 +3,10 @@
 ##########################################################################################
 #
 # Activated only when PentosePhosphatePathway (and the solver stack it pulls in) is loaded.
-# Defines the real `regenerate_grid`, overwriting the core stub: it solves the integrated
-# glycolysis+PPP ODE model over the demand grids and rewrites the cached CSVs the viewer reads.
+# Provides the real recompute implementation (`_regenerate_grid_impl`) and registers it into the
+# core module's `_REGEN_HOOK` Ref via __init__ (NOT by overriding the parent's regenerate_grid
+# method, which would break precompilation): it solves the integrated glycolysis+PPP ODE model
+# over the demand grids and rewrites the cached CSVs the viewer reads.
 #
 # Sweep logic is ported verbatim from the origin PPP_flux_simulator_core.jl; the only change is
 # qualifying the pure diagnostics pentose_cycle_index/classify_mode to the package namespace
