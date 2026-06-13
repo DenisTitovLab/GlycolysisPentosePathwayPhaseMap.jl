@@ -1,0 +1,3 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+GlycolysisPentosePathwayPhaseMap = "375dfa41-524f-41be-aa55-8aa929d49439"
