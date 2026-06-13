@@ -68,8 +68,21 @@ Non-converged operating points are masked in the heatmaps (and counted), never s
 
 ## Biological context
 
-The map recapitulates the phenomenology reported by Feng et al., *"Nonoxidative pentose phosphate
-pathway regulates CD8⁺ T cell immunity by maintaining NADPH homeostasis,"* **PNAS** 2026,
-123(8):e2526325123: as demand shifts, the model spontaneously switches the PPP between linear,
-forward-cycle, and reverse operation, and the non-oxidative branch carries the load of maintaining
-NADPH homeostasis and ribose supply.
+The integrated glycolysis + PPP model is a kinetic (ODE) model of central carbon metabolism, so it
+can be used to **predict how a cell re-routes glucose carbon as demand changes** — in particular the
+two demands that set the oxidative/non-oxidative balance of the PPP:
+
+- **Oxidative stress** raises the draw on NADPH: glutathione- and thioredoxin-based antioxidant
+  systems regenerate their reduced cofactors by consuming NADPH, so a burst of reactive oxygen
+  species reads out, metabolically, as a step up in **NADPH demand**.
+- **Ribose / proliferative demand** raises the draw on ribose-5-phosphate for nucleotide (PRPP)
+  synthesis, which the model carries as **R5P demand**.
+
+Sweeping these two demands at a fixed ATP/glycolytic background and solving the model to steady
+state traces out the response surface shown in the phase map: as oxidative stress and ribose demand
+move, the model predicts whether the PPP runs **linearly** (oxidize, then export ribose), closes
+into a **forward pentose cycle** (recycle carbon back into glycolysis), or **reverses** its
+non-oxidative branch to make ribose without oxidation. Because the kinetic model is a full
+dynamical system, the same machinery can also be integrated for time-resolved trajectories — e.g.
+the transient flux redistribution following an acute oxidative insult — not just the steady states
+summarized here.
