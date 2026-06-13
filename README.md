@@ -4,13 +4,12 @@
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://DenisTitovLab.github.io/GlycolysisPentosePathwayPhaseMap.jl/dev/)
 [![Build Status](https://github.com/DenisTitovLab/GlycolysisPentosePathwayPhaseMap.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/DenisTitovLab/GlycolysisPentosePathwayPhaseMap.jl/actions/workflows/CI.yml?query=branch%3Amain)
 
-A visualization package for the red-blood-cell glycolysis + pentose-phosphate-pathway (PPP)
+A visualization package for the mammalian glycolysis + pentose-phosphate-pathway (PPP)
 *demand phase map*. It shows how perturbing metabolic demand — for NADPH, ribose-5-phosphate
 (R5P), and ATP — reorganizes the **direction and scale** of PPP flux, switching the pathway
 between linear, full pentose-cycle, and reverse (non-oxidative ribose-producing) operation. The
 package ships precomputed grids of steady-state fluxes and metabolite pools, so its tools work
-**instantly, with no kinetic model and no ODE solve**. It recapitulates the non-oxidative-PPP /
-NADPH-homeostasis phenomenology of Feng et al., *PNAS* 2026, 123(8):e2526325123.
+**instantly, with no kinetic model and no ODE solve**.
 
 ## Installation
 
