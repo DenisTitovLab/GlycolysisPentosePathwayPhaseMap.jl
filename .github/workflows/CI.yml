@@ -66,6 +66,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y xorg-dev mesa-utils xvfb libgl1 freeglut3-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libxext-dev xsettingsd x11-xserver-utils
+      - name: Start virtual display (Xvfb) for GLMakie precompile
+        # GLMakie's precompile runs glfwInit, which needs an X display. julia-docdeploy can't take
+        # an xvfb-run prefix, so start a persistent Xvfb and export DISPLAY for all later steps.
+        run: |
+          Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+          echo "DISPLAY=:99" >> "$GITHUB_ENV"
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-docdeploy@v1
         env:
