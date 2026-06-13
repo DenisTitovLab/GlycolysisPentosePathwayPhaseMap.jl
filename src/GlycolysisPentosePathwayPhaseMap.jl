@@ -16,17 +16,17 @@ include("metab_panel.jl")
 include("phasemap.jl")
 include("explorer.jl")
 
+# The recompute implementation is injected by PentosePhosphatePathwayExt at load time via this
+# hook Ref — NOT by defining a method on `regenerate_grid` in the extension. An extension
+# overwriting a parent-owned method is forbidden during precompilation; setting a Ref is not.
+const _REGEN_HOOK = Ref{Any}(nothing)
+
 """
     regenerate_grid(; kwargs...)
 
 Recompute the shipped grid CSVs by solving the kinetic ODE model. Only available when the
 recompute extension is active — load it first with `using PentosePhosphatePathway`.
 """
-# The recompute implementation is injected by PentosePhosphatePathwayExt at load time via this
-# hook Ref — NOT by defining a method on `regenerate_grid` in the extension. An extension
-# overwriting a parent-owned method is forbidden during precompilation; setting a Ref is not.
-const _REGEN_HOOK = Ref{Any}(nothing)
-
 function regenerate_grid(; kwargs...)
     hook = _REGEN_HOOK[]
     hook === nothing && error(
