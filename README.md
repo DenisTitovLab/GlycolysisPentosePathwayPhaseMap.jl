@@ -11,6 +11,13 @@ between linear, full pentose-cycle, and reverse (non-oxidative ribose-producing)
 package ships precomputed grids of steady-state fluxes and metabolite pools, so its tools work
 **instantly, with no kinetic model and no ODE solve**.
 
+![The explore() interactive demand phase map: pentose-cycle-index heatmap, glycolysis + PPP flux
+network, and steady-state metabolite panel for the selected cell.](docs/src/assets/explorer.png)
+
+The `explore()` window: click any cell on the pentose-cycle-index heatmap (left) to redraw the
+glycolysis + PPP flux network (right) and the steady-state metabolite pools (bottom); the slider
+re-slices the cached 3-D grid by ATP demand.
+
 ## Installation
 
 ```julia
