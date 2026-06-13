@@ -53,7 +53,7 @@ enzyme names.
 Below the network sits a full-width **metabolite box-plot panel** covering 16 metabolites
 (`Glucose, G6P, F6P, F16BP, DHAP, GAP, ATP, NADP, NADPH, PGLn, PGA, Ru5P, R5P, X5P, S7P, E4P`).
 For the currently selected cell, each metabolite's steady-state pool (µM, log y-axis) is drawn as
-a **purple diamond** over a **static literature box-and-whisker** from measured RBC concentrations.
+a **purple diamond** over a **static literature box-and-whisker** measured from mammalian cell concentrations.
 The diamonds redraw on every click and slider move; the boxes are static. Diamonds sitting off
 their boxes flag known model discrepancies.
 
