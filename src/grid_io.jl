@@ -45,7 +45,7 @@ row_to_fluxes(row) =
     (; V_HK1 = row.V_HK1_uM_min, V_GPI = row.V_GPI_uM_min,
        V_PFKP = row.V_PFKP_uM_min, V_ALDO = row.V_ALDO_uM_min,
        V_TPI = row.V_TPI_uM_min, V_GAPDH = row.V_GAPDH_uM_min,
-       V_G6PD = row.V_G6PD_uM_min, V_PGL = row.V_PGL_uM_min,
+       V_G6PD = row.V_G6PD_uM_min, V_PGLS = row.V_PGLS_uM_min,
        V_PGD = row.V_PGD_uM_min, V_RPI = row.V_RPI_uM_min,
        V_RPE = row.V_RPE_uM_min, V_TKT_Rxn1 = row.V_TKT_Rxn1_uM_min,
        V_TKT_Rxn2 = row.V_TKT_Rxn2_uM_min, V_TA = row.V_TA_uM_min,

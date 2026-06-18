@@ -26,7 +26,7 @@ const GPPM = GlycolysisPentosePathwayPhaseMap
 # Pools / fluxes cached per cell (mirrors the viewer's expected CSV columns).
 const _DEMAND_POOLS = (:R5P, :S7P, :NADPH, :NADP, :Ru5P, :X5P, :E4P, :F6P, :GAP, :G6P,
                        :Glucose, :F16BP, :DHAP, :PGLn, :PGA, :ATP)
-const _DEMAND_FLUXK = (:V_G6PD, :V_PGL, :V_PGD, :V_RPI, :V_RPE, :V_TKT_Rxn1, :V_TKT_Rxn2,
+const _DEMAND_FLUXK = (:V_G6PD, :V_PGLS, :V_PGD, :V_RPI, :V_RPE, :V_TKT_Rxn1, :V_TKT_Rxn2,
                        :V_TA, :V_R5Pase, :V_NADPHox,
                        :V_HK1, :V_GPI, :V_PFKP, :V_ALDO, :V_TPI, :V_GAPDH)
 

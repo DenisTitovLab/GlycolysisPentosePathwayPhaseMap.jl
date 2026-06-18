@@ -76,7 +76,7 @@ const _PPP_REACTIONS = (
         legs = ((:GAP, :LOWER, nothing),)),
     (key = :V_G6PD,  label = "G6PD",  region = :ox, square = (1.60, 4.40),
         legs = ((:G6P, :PGLn, nothing),)),
-    (key = :V_PGL,   label = "PGL",   region = :ox, square = (3.05, 4.40),
+    (key = :V_PGLS,   label = "PGLS",   region = :ox, square = (3.05, 4.40),
         legs = ((:PGLn, :PGA, nothing),)),
     (key = :V_PGD,   label = "PGD",   region = :ox, square = (4.40, 4.40),
         legs = ((:PGA, :Ru5P, nothing),)),
