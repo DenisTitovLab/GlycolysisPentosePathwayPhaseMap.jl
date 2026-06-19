@@ -190,13 +190,12 @@ function draw_ppp_flux_map!(ax, fluxes_obs::Observable; title = "", maxflux = no
     for (xlo, xhi, ylo, yhi, col) in _PPP_GROUPS
         poly!(ax, Point2f[(xlo, ylo), (xhi, ylo), (xhi, yhi), (xlo, yhi)]; color = col)
     end
-    # Two independent width scales so the PPP branch stays legible even when glycolytic flux
-    # dwarfs it: glycolysis normalizes to its OWN max (max width 14px), the PPP (oxidative +
-    # non-oxidative) to its OWN max but at HALF the range (max width 7px). So the widest PPP arrow
-    # is half the widest glycolytic one — a visual cue that the PPP carries less flux while still
-    # showing within-PPP contrast. `maxflux`, if given, overrides the glycolysis reference.
-    # dynamic per-leg draw specs: ONE lift; gmax/pmax computed once per update. Two independent
-    # width scales so the PPP branch stays legible (glycolysis max 14px; PPP max 7px = half).
+    # Dynamic per-leg draw specs: ONE lift, so gmax/pmax are computed once per update. Two
+    # independent width scales keep the PPP branch legible even when glycolytic flux dwarfs it:
+    # glycolysis normalizes to its OWN max (max width 14px), the PPP (oxidative + non-oxidative)
+    # to its OWN max but at HALF the range (max width 7px). So the widest PPP arrow is half the
+    # widest glycolytic one — a visual cue that the PPP carries less flux while still showing
+    # within-PPP contrast. `maxflux`, if given, overrides the glycolysis reference.
     legdata = lift(fluxes_obs) do f
         _gm(pred) = begin
             m = maximum((abs(getfield(f, r.key)) for r in _PPP_REACTIONS if pred(r.region));
