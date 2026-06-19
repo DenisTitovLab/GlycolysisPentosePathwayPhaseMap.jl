@@ -14,4 +14,13 @@ CairoMakie.activate!()
     rev = merge(base, (; V_TKT_Rxn1 = -2e-7, V_TA = -2e-7, V_RPE = -4e-7))
     fig2 = Figure(size = (500, 460)); ax2 = Axis(fig2[1, 1])
     @test_nowarn G.draw_ppp_flux_map!(ax2, rev; title = "rev")
+
+    # Observable path: plots are built once and updated in place (no rebuild on push)
+    obs = Observable(base)
+    fig3 = Figure(size = (500, 460)); ax3 = Axis(fig3[1, 1])
+    @test_nowarn G.draw_ppp_flux_map!(ax3, obs; title = "obs")
+    plots_before = copy(ax3.scene.plots)
+    @test_nowarn (obs[] = rev)
+    @test length(ax3.scene.plots) == length(plots_before)
+    @test all(a === b for (a, b) in zip(ax3.scene.plots, plots_before))
 end

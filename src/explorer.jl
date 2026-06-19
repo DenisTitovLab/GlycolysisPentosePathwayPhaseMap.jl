@@ -5,6 +5,21 @@
 # (which applies log10 itself). Returns (i_r5p, i_nadph).
 logclick_to_cell(xs, ys, pos) = nearest_cell(xs, ys, 10.0^pos[1], 10.0^pos[2])
 
+# O(1) row lookup keyed (atpase_frac, i_nadph, i_r5p), built once. Exact == on the CSV-parsed
+# Float64 atpase_frac is safe: the slider values come from the same parsed column.
+_build_row_index(df) = Dict((r.atpase_frac, r.i_nadph, r.i_r5p) => r for r in eachrow(df))
+
+# Per-ATP-level cycle-index matrices [i_r5p, i_nadph], built once. Masked/non-converged cells
+# stay NaN (renderers mask on the :Terminated retcode). Replaces a full df rescan per slider tick.
+function _build_zdict(df, nx, ny)
+    zd = Dict(atp => fill(NaN, nx, ny) for atp in unique(df.atpase_frac))
+    for r in eachrow(df)
+        r.retcode == :Terminated || continue
+        zd[r.atpase_frac][r.i_r5p, r.i_nadph] = r.cycle_index
+    end
+    return zd
+end
+
 """
     build_explorer(df) -> (fig, selected, atp_level)
 
@@ -21,15 +36,8 @@ function build_explorer(df)
     xs = sort(unique(df.r5p_phi)); ys = sort(unique(df.nadph_phi))
     nx = maximum(df.i_r5p); ny = maximum(df.i_nadph)
 
-    # cycle-index Z matrix [r5p, nadph] for one ATP level; masked/non-converged cells stay NaN
-    zmatrix(atp) = begin
-        Z = fill(NaN, nx, ny)
-        for r in eachrow(df)
-            (r.atpase_frac == atp && r.retcode == :Terminated) || continue
-            Z[r.i_r5p, r.i_nadph] = r.cycle_index
-        end
-        Z
-    end
+    row_index = _build_row_index(df)
+    zdict = _build_zdict(df, nx, ny)
 
     fig = Figure(size = (1500, 1200))
     ax_heat = Axis(fig[1, 1]; xscale = log10, yscale = log10,
@@ -45,7 +53,7 @@ function build_explorer(df)
                      format = x -> string(round(x * 100, sigdigits = 2), "%")))
     atp_level = sg.sliders[1].value
 
-    Z_obs = lift(zmatrix, atp_level)
+    Z_obs = lift(atp -> zdict[atp], atp_level)
     # log-space cell edges (not the length-n centers) so cells render equal-sized on the log axis
     hm = heatmap!(ax_heat, log_cell_edges(xs), log_cell_edges(ys), Z_obs; colormap = :RdBu,
                   colorrange = (-1, 1), nan_color = :gray80)
@@ -78,22 +86,23 @@ function build_explorer(df)
     scatter!(ax_heat, marker_pos; marker = :rect, markersize = 18,
              color = :transparent, strokecolor = :black, strokewidth = 3)
 
-    # redraw network + footer on EITHER an ATP-level change or a cell click
+    # build the network ONCE against Observables; reselect just pushes new values (no rebuild)
+    fluxes_obs = Observable(row_to_fluxes(row_index[(atp_level[], selected[][1], selected[][2])]))
+    title_obs = Observable("")
+    draw_ppp_flux_map!(ax_net, fluxes_obs; title = title_obs)
+
+    # redraw-free update of network + footer + metab on EITHER an ATP-level change or a cell click
     onany(atp_level, selected) do atp, (in_, ir)
-        row = first(filter(r -> r.atpase_frac == atp && r.i_nadph == in_ && r.i_r5p == ir,
-                           eachrow(df)))
-        fluxes = row_to_fluxes(row)
-        mx = maximum((abs(getfield(fluxes, k)) for k in _PPP_FLUX_KEYS); init = 0.0) do v
+        row = row_index[(atp, in_, ir)]
+        atp_pct = round(atp * 100, sigdigits = 2)
+        title_obs[] =
+            "ATP $(atp_pct)%  |  NADPH demand $(round(row.nadph_phi * 100, sigdigits = 2))% / " *
+            "R5P demand $(round(row.r5p_phi * 100, sigdigits = 2))% of supply"
+        fluxes_obs[] = row_to_fluxes(row)
+        mx = maximum((abs(getfield(fluxes_obs[], k)) for k in _PPP_FLUX_KEYS); init = 0.0) do v
             isnan(v) ? 0.0 : v
         end
         mx = (mx == 0 || isnan(mx)) ? 1.0 : mx
-        empty!(ax_net)
-        atp_pct = round(atp * 100, sigdigits = 2)
-        ttl = "ATP $(atp_pct)%  |  NADPH demand $(round(row.nadph_phi * 100, sigdigits = 2))% / " *
-              "R5P demand $(round(row.r5p_phi * 100, sigdigits = 2))% of supply"
-        # no maxflux override: draw_ppp_flux_map! self-normalizes glycolysis and PPP on separate
-        # width scales (PPP max width = ½ glycolysis), so the PPP branch stays legible per cell.
-        draw_ppp_flux_map!(ax_net, fluxes; title = ttl)
         footer[] = row.retcode == :Terminated ?
             "ATP $(atp_pct)%  |  cell (nadph=$in_, r5p=$ir)  |  mode=$(row.mode)  |  " *
             "cycle index=$(round(row.cycle_index, sigdigits = 3))  |  " *
