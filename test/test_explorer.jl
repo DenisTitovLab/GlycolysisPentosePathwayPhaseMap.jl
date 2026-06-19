@@ -25,3 +25,29 @@ end
         @test !haskey(ax_metab.interactions, itr)
     end
 end
+
+@testset "explorer lookup indices" begin
+    df = G.load_grid(G.default_atp_grid())
+    nx = maximum(df.i_r5p); ny = maximum(df.i_nadph)
+
+    # row index returns the same row the old per-interaction filter did
+    idx = G._build_row_index(df)
+    r = first(filter(x -> x.retcode == :Terminated, eachrow(df)))
+    got = idx[(r.atpase_frac, r.i_nadph, r.i_r5p)]
+    @test got.cycle_index == r.cycle_index
+    @test got.r5p_phi == r.r5p_phi && got.nadph_phi == r.nadph_phi
+
+    # zdict matches the old per-level zmatrix construction for EVERY ATP level
+    zd = G._build_zdict(df, nx, ny)
+    @test Set(keys(zd)) == Set(unique(df.atpase_frac))
+    for atp in unique(df.atpase_frac)
+        expected = fill(NaN, nx, ny)
+        for rr in eachrow(df)
+            (rr.atpase_frac == atp && rr.retcode == :Terminated) || continue
+            expected[rr.i_r5p, rr.i_nadph] = rr.cycle_index
+        end
+        Z = zd[atp]
+        @test size(Z) == (nx, ny)
+        @test all((isnan.(Z) .& isnan.(expected)) .| (Z .== expected))
+    end
+end

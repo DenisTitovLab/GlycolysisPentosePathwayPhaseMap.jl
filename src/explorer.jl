@@ -5,6 +5,21 @@
 # (which applies log10 itself). Returns (i_r5p, i_nadph).
 logclick_to_cell(xs, ys, pos) = nearest_cell(xs, ys, 10.0^pos[1], 10.0^pos[2])
 
+# O(1) row lookup keyed (atpase_frac, i_nadph, i_r5p), built once. Exact == on the CSV-parsed
+# Float64 atpase_frac is safe: the slider values come from the same parsed column.
+_build_row_index(df) = Dict((r.atpase_frac, r.i_nadph, r.i_r5p) => r for r in eachrow(df))
+
+# Per-ATP-level cycle-index matrices [i_r5p, i_nadph], built once. Masked/non-converged cells
+# stay NaN (renderers mask on the :Terminated retcode). Replaces a full df rescan per slider tick.
+function _build_zdict(df, nx, ny)
+    zd = Dict(atp => fill(NaN, nx, ny) for atp in unique(df.atpase_frac))
+    for r in eachrow(df)
+        r.retcode == :Terminated || continue
+        zd[r.atpase_frac][r.i_r5p, r.i_nadph] = r.cycle_index
+    end
+    return zd
+end
+
 """
     build_explorer(df) -> (fig, selected, atp_level)
 
