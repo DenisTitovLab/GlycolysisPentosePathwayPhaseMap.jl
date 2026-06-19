@@ -17,8 +17,12 @@ end
     @test atp_level[] == atp_levels[argmin(abs.(log10.(atp_levels) .- log10(0.10)))]
     out = joinpath(tempdir(), "explorer_smoke.png"); @test_nowarn save(out, fig); @test isfile(out)
     conv = first(filter(r -> r.retcode == :Terminated, eachrow(df)))
+    ax_net = only(filter(x -> x isa Axis && occursin("ATP", x.title[]), fig.content))
+    net_plots_before = copy(ax_net.scene.plots)
     @test_nowarn (selected[] = (conv.i_nadph, conv.i_r5p))
     @test_nowarn (atp_level[] = atp_levels[1])
+    @test length(ax_net.scene.plots) == length(net_plots_before)
+    @test all(a === b for (a, b) in zip(ax_net.scene.plots, net_plots_before))
     @test_nowarn save(out, fig)
     ax_metab = only(filter(x -> x isa Axis && x.ylabel[] == "[metabolite], µM", fig.content))
     for itr in (:rectanglezoom, :dragpan, :scrollzoom)
