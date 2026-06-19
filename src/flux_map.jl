@@ -97,41 +97,6 @@ const _PPP_REACTIONS = (
 const _PPP_FLUX_KEYS = Tuple(unique(r.key for r in _PPP_REACTIONS))
 const _LEG_GAP = 0.14   # data-unit gap between an arrow end and its node dot
 
-# Draw one flux leg as a polyline shaft (`lines!`) plus an arrowhead at the head end. The shaft
-# is `lines!` — not a full-length `arrows2d!` — so it stays BEHIND the enzyme squares, which are
-# `poly!`'d afterwards (GLMakie renders `arrows2d!` shafts above `poly!` regardless of insertion
-# order, so a full-shaft arrow pokes through its square: the oxPPP/glycolysis z-order bug). The
-# arrowhead is a pixel-sized rotated triangle MARKER (`scatter!`): its size is `head` px directly,
-# with no short-shaft `arrows2d!` shrink, so it actually tracks the shaft width the caller passes.
-function _draw_flux_leg!(ax, seg, lw, head, col)
-    lines!(ax, [p[1] for p in seg], [p[2] for p in seg]; color = col, linewidth = lw)
-    he = seg[end]; ref = seg[max(1, lastindex(seg) - 1)]
-    ang = atan(he[2] - ref[2], he[1] - ref[1])     # travel direction (utriangle points +y at 0)
-    scatter!(ax, [he[1]], [he[2]]; marker = :utriangle, markersize = head,
-             rotation = ang - pi/2, color = col)
-    ax
-end
-
-# Draw a curved flux leg from node centre A (tail) to node centre B (head) bowing through M
-# (the enzyme square centre). A cubic Bézier with endpoint control handles along the
-# centre→M lines makes the tail leave A, and the head arrive at B, pointing straight at the
-# node centres (no tangential skew), while still passing through M at its midpoint so paired
-# bi-bi legs meet behind the square. `gA`/`gB` trim a gap off each end (data units) so the
-# shaft starts/stops shy of the node dots; `lw`/`tip` are pixel sizes; `col` is the colour.
-function _draw_curved_flux!(ax, A, B, M, gA, gB, lw, tip, col)
-    s = 4 / 3                                   # handle length so the curve hits M at t=0.5
-    P1 = (A[1] + s * (M[1] - A[1]), A[2] + s * (M[2] - A[2]))
-    P2 = (B[1] + s * (M[1] - B[1]), B[2] + s * (M[2] - B[2]))
-    bez(t) = (u = 1 - t; (u^3*A[1] + 3u^2*t*P1[1] + 3u*t^2*P2[1] + t^3*B[1],
-                          u^3*A[2] + 3u^2*t*P1[2] + 3u*t^2*P2[2] + t^3*B[2]))
-    pts = [bez(t) for t in range(0, 1; length = 64)]
-    i0 = findfirst(p -> hypot(p[1] - A[1], p[2] - A[2]) >= gA, pts)
-    i1 = findlast(p  -> hypot(p[1] - B[1], p[2] - B[2]) >= gB, pts)
-    i0 === nothing && (i0 = 1)
-    (i1 === nothing || i1 <= i0) && (i1 = length(pts))
-    _draw_flux_leg!(ax, pts[i0:i1], lw, tip, col)
-end
-
 # Draw an enzyme square (opaque, in front of its legs) with the label centred inside.
 function _draw_enzyme_square!(ax, pos, label, region)
     s = _PPP_SQUARE_STYLE[region]
@@ -143,17 +108,85 @@ function _draw_enzyme_square!(ax, pos, label, region)
     ax
 end
 
-"""
-    draw_ppp_flux_map!(ax, fluxes; title = "", maxflux = nothing)
+# Trimmed cubic Bézier polyline from node centre A (tail) to B (head) bowing through M (the
+# enzyme square centre), with `gA`/`gB` data-unit gaps trimmed off each end so the shaft starts/
+# stops shy of the node dots. Returns the point list (tuples). The handle length s = 4/3 makes
+# the curve pass through M at t = 0.5 so paired bi-bi legs meet behind the square.
+function _curved_pts(A, B, M, gA, gB)
+    s = 4 / 3
+    P1 = (A[1] + s * (M[1] - A[1]), A[2] + s * (M[2] - A[2]))
+    P2 = (B[1] + s * (M[1] - B[1]), B[2] + s * (M[2] - B[2]))
+    bez(t) = (u = 1 - t; (u^3*A[1] + 3u^2*t*P1[1] + 3u*t^2*P2[1] + t^3*B[1],
+                          u^3*A[2] + 3u^2*t*P1[2] + 3u*t^2*P2[2] + t^3*B[2]))
+    pts = [bez(t) for t in range(0, 1; length = 64)]
+    i0 = findfirst(p -> hypot(p[1] - A[1], p[2] - A[2]) >= gA, pts)
+    i1 = findlast(p  -> hypot(p[1] - B[1], p[2] - B[2]) >= gB, pts)
+    i0 === nothing && (i0 = 1)
+    (i1 === nothing || i1 <= i0) && (i1 = length(pts))
+    return pts[i0:i1]
+end
 
-Draw the glycolysis+PPP wiring. Each reaction's single signed flux colours (forward = tomato,
-reverse = steel blue) and width-scales (∝ |flux| / `maxflux`) all of its legs together and
-flips their arrowheads together on sign change. TKT/TA are two-leg bi-bi hubs whose curves meet
-behind the enzyme square; the square is drawn in front. GAP/F6P appear twice (shared-pool halo).
+# Pure geometry for ONE flux leg. Returns the shaft polyline (as Point2f), colour (reverse =
+# steel blue, forward = tomato), width/tip pixel sizes, and the arrowhead position + rotation.
+# A negative flux flips tail<->head so the arrowhead points the reverse way. LOWER is a text-only
+# label (no dot), so its end takes no gap.
+function _leg_drawspec(from, to, ctrl, v, lw, tip)
+    col = v < 0 ? :steelblue : :tomato
+    nf, nt = from, to
+    A = _PPP_NODES[from]; B = _PPP_NODES[to]
+    if v < 0
+        (A, B) = (B, A); (nf, nt) = (nt, nf)
+    end
+    gA = nf === :LOWER ? 0.0 : _LEG_GAP
+    gB = nt === :LOWER ? 0.0 : _LEG_GAP
+    if ctrl === nothing
+        L = hypot(B[1] - A[1], B[2] - A[2])
+        if L > gA + gB
+            ux, uy = (B[1] - A[1]) / L, (B[2] - A[2]) / L
+            A = (A[1] + ux * gA, A[2] + uy * gA)
+            B = (B[1] - ux * gB, B[2] - uy * gB)
+        end
+        pts = [A, B]
+    else
+        pts = _curved_pts(A, B, ctrl, gA, gB)
+    end
+    he = pts[end]; ref = pts[max(1, lastindex(pts) - 1)]
+    headrot = atan(he[2] - ref[2], he[1] - ref[1]) - pi/2   # utriangle points +y at rotation 0
+    shaft = Point2f[Point2f(p[1], p[2]) for p in pts]
+    return (shaft = shaft, col = col, lw = lw, tip = tip,
+            head = Point2f(he[1], he[2]), headrot = headrot)
+end
+
+# Fixed flat list of legs (built once at load): the leg COUNT never changes, so the explorer can
+# build exactly one shaft + one arrowhead plot per entry and only update their data on reselect.
+const _PPP_LEGS = [(key = r.key, region = r.region, from = leg[1], to = leg[2], ctrl = leg[3])
+                   for r in _PPP_REACTIONS for leg in r.legs]
+
 """
-function draw_ppp_flux_map!(ax, fluxes; title = "", maxflux = nothing)
-    hidedecorations!(ax); hidespines!(ax); ax.title = title
+    draw_ppp_flux_map!(ax, fluxes_obs::Observable; title = "", maxflux = nothing)
+    draw_ppp_flux_map!(ax, fluxes::NamedTuple; title = "", maxflux = nothing)
+
+Draw the glycolysis+PPP wiring. The static structure (region tints, enzyme squares, shared-pool
+halos, node dots, labels) is drawn once. The reaction legs are driven by `fluxes_obs`: a single
+`lift` recomputes per-leg geometry (colour = sign, width proportional to |flux|, arrowhead
+direction = sign) and each leg's shaft (`lines!`) + arrowhead (`scatter!`) updates IN PLACE — no
+plot is added or removed on reselect. Glycolysis and PPP self-normalize on separate width scales
+(PPP max width = half glycolysis) unless `maxflux` overrides the glycolysis reference. `title` may
+be a String or an `Observable{String}`. The `NamedTuple` method wraps the value in a constant
+`Observable`, so the static CairoMakie path evaluates each `lift` exactly once.
+"""
+function draw_ppp_flux_map!(ax, fluxes_obs::Observable; title = "", maxflux = nothing)
+    hidedecorations!(ax); hidespines!(ax)
+    if title isa Observable
+        on(title; update = true) do t
+            ax.title = t
+        end
+    else
+        ax.title = title
+    end
     xlims!(ax, 0.0, 7.1); ylims!(ax, 0.1, 5.7)
+
+    # static background region tints
     for (xlo, xhi, ylo, yhi, col) in _PPP_GROUPS
         poly!(ax, Point2f[(xlo, ylo), (xhi, ylo), (xhi, yhi), (xlo, yhi)]; color = col)
     end
@@ -162,55 +195,46 @@ function draw_ppp_flux_map!(ax, fluxes; title = "", maxflux = nothing)
     # non-oxidative) to its OWN max but at HALF the range (max width 7px). So the widest PPP arrow
     # is half the widest glycolytic one — a visual cue that the PPP carries less flux while still
     # showing within-PPP contrast. `maxflux`, if given, overrides the glycolysis reference.
-    _grpmax(rs) = begin
-        m = maximum((abs(getfield(fluxes, r.key)) for r in rs); init = 0.0) do v
-            isnan(v) ? 0.0 : v
-        end
-        (m == 0 || isnan(m)) ? 1.0 : m
-    end
-    gmax = maxflux === nothing ? _grpmax(r for r in _PPP_REACTIONS if r.region === :glyc) : maxflux
-    gmax = (gmax == 0 || isnan(gmax)) ? 1.0 : gmax
-    pmax = _grpmax(r for r in _PPP_REACTIONS if r.region !== :glyc)
-    # 1) reaction legs (behind squares)
-    for r in _PPP_REACTIONS
-        v = getfield(fluxes, r.key)
-        av = isnan(v) ? 0.0 : abs(v)
-        # per-scale width: glycolysis max 14px (own scale), PPP max 7px (= ½, own scale). The
-        # arrowhead grows WITH the shaft over a visible floor (see _draw_flux_leg!).
-        lw = r.region === :glyc ? 1.0 + 13.0 * av / gmax : 1.0 + 6.0 * av / pmax
-        tip = 8.0 + 2.2 * lw
-        col = v < 0 ? :steelblue : :tomato
-        for (from, to, ctrl) in r.legs
-            nf, nt = from, to
-            A = _PPP_NODES[from]; B = _PPP_NODES[to]
-            v < 0 && ((A, B) = (B, A); (nf, nt) = (nt, nf))   # flip arrowhead for reverse
-            # gap each end off the node dots; LOWER is a text-only label (no circle), so its
-            # arrow runs the full length to reach "lower glyc."
-            gA = nf === :LOWER ? 0.0 : _LEG_GAP
-            gB = nt === :LOWER ? 0.0 : _LEG_GAP
-            if ctrl === nothing
-                # straight: inset along the chord so head/tail aim at the node centres, then
-                # draw shaft-as-`lines!` + short head (via _draw_flux_leg!) so it stays behind
-                # the enzyme square — same as the curved legs.
-                L = hypot(B[1] - A[1], B[2] - A[2])
-                if L > gA + gB
-                    ux, uy = (B[1] - A[1]) / L, (B[2] - A[2]) / L
-                    A = (A[1] + ux * gA, A[2] + uy * gA)
-                    B = (B[1] - ux * gB, B[2] - uy * gB)
-                end
-                _draw_flux_leg!(ax, [A, B], lw, tip, col)
-            else
-                _draw_curved_flux!(ax, A, B, ctrl, gA, gB, lw, tip, col)
+    # dynamic per-leg draw specs: ONE lift; gmax/pmax computed once per update. Two independent
+    # width scales so the PPP branch stays legible (glycolysis max 14px; PPP max 7px = half).
+    legdata = lift(fluxes_obs) do f
+        _gm(pred) = begin
+            m = maximum((abs(getfield(f, r.key)) for r in _PPP_REACTIONS if pred(r.region));
+                        init = 0.0) do v
+                isnan(v) ? 0.0 : v
             end
+            (m == 0 || isnan(m)) ? 1.0 : m
+        end
+        gmax = maxflux === nothing ? _gm(==(:glyc)) : maxflux
+        gmax = (gmax == 0 || isnan(gmax)) ? 1.0 : gmax
+        pmax = _gm(!=(:glyc))
+        map(_PPP_LEGS) do L
+            v = getfield(f, L.key)
+            av = isnan(v) ? 0.0 : abs(v)
+            lw = L.region === :glyc ? 1.0 + 13.0 * av / gmax : 1.0 + 6.0 * av / pmax
+            tip = 8.0 + 2.2 * lw
+            _leg_drawspec(L.from, L.to, L.ctrl, v, lw, tip)
         end
     end
-    # 2) enzyme squares on top (plus any `extra` label, e.g. a reaction's separated arm)
+
+    # one shaft (lines!) + one arrowhead (scatter!) per leg, built ONCE, lifted by index. Drawn
+    # AFTER the region tints and BEFORE the squares so legs stay behind the enzyme squares.
+    for j in eachindex(_PPP_LEGS)
+        col = lift(d -> d[j].col, legdata)
+        lines!(ax, lift(d -> d[j].shaft, legdata); color = col,
+               linewidth = lift(d -> d[j].lw, legdata))
+        scatter!(ax, lift(d -> d[j].head, legdata); marker = :utriangle,
+                 markersize = lift(d -> d[j].tip, legdata),
+                 rotation = lift(d -> d[j].headrot, legdata), color = col)
+    end
+
+    # static enzyme squares on top (+ any `extra` label, e.g. a reaction's separated arm)
     for r in _PPP_REACTIONS
         _draw_enzyme_square!(ax, r.square, r.label, r.region)
         ex = get(r, :extra, nothing)
         ex === nothing || _draw_enzyme_square!(ax, ex[1], ex[2], r.region)
     end
-    # 3) shared-pool halos, then nodes (LOWER is text-only), then labels
+    # static shared-pool halos, then nodes (LOWER is text-only), then labels
     for name in _PPP_SHARED
         (x, y) = _PPP_NODES[name]
         scatter!(ax, [x], [y]; markersize = 26, color = (:gold, 0.25))
@@ -226,5 +250,8 @@ function draw_ppp_flux_map!(ax, fluxes; title = "", maxflux = nothing)
               align = off[3], fontsize = 15,
               font = (name in _PPP_SHARED ? :bold : :regular))
     end
-    ax
+    return ax
 end
+
+draw_ppp_flux_map!(ax, fluxes::NamedTuple; title = "", maxflux = nothing) =
+    draw_ppp_flux_map!(ax, Observable(fluxes); title = title, maxflux = maxflux)
