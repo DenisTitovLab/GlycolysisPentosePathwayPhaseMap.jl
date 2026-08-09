@@ -4,3 +4,6 @@
 /Manifest*.toml
 /docs/Manifest*.toml
 /docs/build/
+
+# Local Claude Code guidance; not shipped in the public package
+/CLAUDE.md
