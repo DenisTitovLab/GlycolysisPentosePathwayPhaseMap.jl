@@ -28,8 +28,9 @@ commits behind the shipped data; docs and the local CLAUDE.md describe the new r
 
 - `../PentosePhosphatePathway.jl` is on `main` at `fcccae8` and stays there (switched from
   `test/measured-keq`, which is pushed and untouched).
-- Grids are regenerated in a scratch Julia environment that `Pkg.develop`s this package and
-  `../PentosePhosphatePathway.jl`, so the solve uses exactly the checked-out commit.
+- Grids are regenerated from the PPP_Experiments environment, whose `[sources]` already
+  `develop` this package and `../PentosePhosphatePathway.jl` by path, so the solve uses exactly
+  the checked-out commit.
 - New tracked file `data/provenance.toml` with two tables, each owned by one writer that
   read-modify-writes only its own table (`TOML` stdlib; added to `[deps]`):
   - `[grids]` — written by `regenerate_grid`: `ppp_commit` (via `git -C pkgdir(PPP) rev-parse HEAD`
@@ -76,7 +77,7 @@ Conversion logic lives only in PPP_Experiments (`scripts/helper_files/metab_data
   NADPH resampled from the free NADPH rows and R from `draw_free_nadph_nadp_ratio` (the
   `docs/free_vs_total_measurements.md` §4 sampler), seeded (`nadp_seed`, default 20261013) so the
   file is reproducible. These rows carry `derived = true` and reference
-  `"derived: free NADPH / R (free_vs_total_measurements.md §4)"`.
+  `"derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4)"` (ASCII: no `§`).
 - Output `literature_pools.csv` (ASCII, long format), written to a path argument defaulting to
   `../GlycolysisPentosePathwayPhaseMap.jl/data/literature_pools.csv`; columns
   `metabolite, value_uM, reference, cell_type, derived`. Only the 16 panel metabolites are
