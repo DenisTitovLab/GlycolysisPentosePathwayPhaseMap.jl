@@ -23,7 +23,8 @@ The left panel is a heatmap of the **pentose-cycle index** over the NADPH × R5P
 
 - **blue** cells = forward pentose cycle (index ≈ 1),
 - **red** cells = reverse PPP (index < 0, non-oxidative R5P production),
-- **gray** cells = non-converged operating points (masked, never silently dropped).
+- **gray** cells = operating points with no meaningful index: non-converged, oxidative flux ≈ 0,
+  or the R5P sink running backward after ATP has collapsed (masked, never silently dropped).
 
 A black contour marks the sign-flip boundary between the cycle and reverse regions.
 
@@ -36,9 +37,10 @@ redraws from that operating point's cached fluxes. The footer reports the absolu
 ### The ATP-demand slider
 
 Below the panels is an **ATP-demand slider** that varies ATP demand across log-spaced levels
-(roughly 1 %–20 % of maximal ATP supply). Moving it re-slices the cached 3-D grid: the heatmap,
-its sign-flip contour, and the flux network all update instantly — again, with no ODE re-solve.
-The explorer opens at the level nearest 10 % of ATP supply.
+(1 %–25 % of maximal ATP supply, i.e. 0.02–0.5 × HK1 capacity). Moving it re-slices the cached
+3-D grid: the heatmap, its sign-flip contour, and the flux network all update instantly — again,
+with no ODE re-solve. The explorer opens at the 25 % level (ATP demand 0.5 × HK1 capacity) on the
+cell nearest **physiological demand**: PentosePhosphatePathway.jl's default NADPH and R5P sinks.
 
 ### The flux network
 
@@ -72,5 +74,6 @@ phasemap(save="phasemap.png")    # returns the Figure and writes a PNG
 ```
 
 The figure is a cycle-index heatmap over the NADPH × R5P demand plane (with the sign-flip
-contour) plus two representative glycolysis + PPP flux schematics — one for a cycle operating
-point and one for a reverse operating point.
+contour) plus two representative glycolysis + PPP flux schematics — the cell nearest
+physiological NADPH and R5P demand, and the most strongly reverse cell. The 2-D grid is solved at
+an ATP demand of 25 % of maximal supply (0.5 × HK1 capacity).

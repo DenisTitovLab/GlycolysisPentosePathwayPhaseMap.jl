@@ -123,3 +123,24 @@ Conversion logic lives only in PPP_Experiments (`scripts/helper_files/metab_data
 
 - PhaseMap: branch `feat/ppp-main-resync` → PR to `main`.
 - PPP_Experiments: branch `feat/phasemap-literature-export`; stage only this work's files.
+
+## Addendum (2026-10-14): decisions taken after the final review
+
+The whole-branch review found that the regenerated grids drew ATP-collapsed cells (the R5P·ATP
+sink running backward, so the index exceeded 1) as the strongest pentose cycle, and that the
+default `phasemap()` cycle panel was one of them. Investigating that surfaced two bugs older than
+this change. Decided by James on 2026-10-14; these override §3 where they conflict:
+
+- **Index > 1 is undefined.** `pentose_cycle_index` returns NaN when `V_R5Pase < 0`, so those
+  cells classify `:undetermined` and render gray.
+- **Default operating point = physiological demand.** PPP.jl's default sink settings (NADPH
+  φ = 0.059, R5P φ = 0.1068, on the grids' ceilings) at an ATPase demand of 0.5·HK1_cap
+  (`atpase_frac = 0.25`). `phasemap()` shows that cell plus the strongest reverse cell;
+  `explore()` opens on it at the 0.25 ATP level.
+- **Axes.** 2-D grid at `atpase_frac = 0.25` (was 0.10); ATP grid 11 log levels 0.01–0.25 (was
+  0.01–0.20).
+- **Cold start.** Every cell is solved from `copy(PPP.glycolysis_ppp_init_conc)`. The warm-started
+  sweep carried an absorbing ATP-collapsed state down whole columns: at 0.5·HK1_cap the
+  physiological cell came out collapsed, but solved cold it is healthy (ATP 6.84 mM).
+- **Flux units.** Cached fluxes are `×1e6` (µM/min from the model's M/min). The extension's
+  `×1e6×60` made every `*_uM_min` column 60× too large.

@@ -53,7 +53,8 @@ glycolysis rather than exported as ribose:
 - **≈ 1** — full pentose cycle: oxidative carbon is recycled (the pathway runs to make NADPH),
 - **≈ 0** — linear PPP: oxidative carbon leaves as R5P,
 - **< 0** — reverse PPP: R5P is produced non-oxidatively, faster than oxidative supply,
-- **NaN** — undefined when `V_ox ≈ 0`.
+- **NaN** — undefined when `V_ox ≈ 0`, or when the R5P sink runs backward (`V_R5Pase < 0`, which
+  happens only once ATP has collapsed): the index would exceed 1, which no recycled fraction can.
 
 ## Mode classification
 
@@ -62,7 +63,8 @@ Each cell is classified into one of four modes from its fluxes:
 - **`:cycle`** — forward pentose cycle (index ≈ 1),
 - **`:linear`** — linear oxidative-then-export operation (index ≈ 0),
 - **`:reverse`** — reverse / non-oxidative R5P production (index < 0),
-- **`:undetermined`** — oxidative flux too small to classify (index undefined).
+- **`:undetermined`** — index undefined: oxidative flux too small, or the R5P sink reversed
+  (ATP-collapsed cells).
 
 Non-converged operating points are masked in the heatmaps (and counted), never silently dropped.
 

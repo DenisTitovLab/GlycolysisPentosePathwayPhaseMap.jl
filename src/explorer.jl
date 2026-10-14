@@ -45,8 +45,10 @@ function build_explorer(df)
                    ylabel = "NADPH demand (fraction of NADPH supply, 6·RPI_cap)",
                    title = "Pentose-cycle index — click a cell")
 
-    # ATP-demand slider (log-spaced levels straight from the data); default = nearest 10%.
-    default_atp = atp_levels[argmin(abs.(log10.(atp_levels) .- log10(0.10)))]
+    # ATP-demand slider (log-spaced levels straight from the data); default = the level nearest
+    # the physiological operating point's ATPase demand.
+    default_atp = atp_levels[argmin(abs.(log10.(atp_levels) .-
+                                         log10(_PHYSIOLOGICAL_DEMAND.atpase_frac)))]
     sg = SliderGrid(fig[3, 1:3],
                     (label = "ATP demand (% of max supply)", range = atp_levels,
                      startvalue = default_atp,
@@ -79,7 +81,7 @@ function build_explorer(df)
         deregister_interaction!(ax_metab, interaction)
     end
 
-    selected = Observable((cld(ny, 2), cld(nx, 2)))  # start near the middle of the demand grid
+    selected = Observable(physiological_cell(df))   # open on the physiological-demand cell
     marker_pos = lift(selected) do (in_, ir)
         Point2f(xs[ir], ys[in_])
     end

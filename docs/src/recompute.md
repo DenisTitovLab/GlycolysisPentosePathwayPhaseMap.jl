@@ -35,6 +35,9 @@ dependencies of the visualization package.
    regenerate_grid()   # writes data/*.csv and the [grids] table of data/provenance.toml
    ```
 
+Every cell is solved from PentosePhosphatePathway.jl's initial state, so its steady state does
+not depend on the order the sweep visits cells. Fluxes are cached in µM/min and pools in µM.
+
 `[grids]` records the PentosePhosphatePathway.jl commit (with branch and a dirty flag when it is a
 git checkout; otherwise its version), the CellMetabolism version, the grid axes, and how many
 cells did not reach steady state (those render gray).

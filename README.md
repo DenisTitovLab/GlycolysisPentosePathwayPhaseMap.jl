@@ -48,7 +48,7 @@ make." The ceilings are anchored on ribose-5-phosphate isomerase (RPI), the carb
 Each operating point is summarized by the **pentose-cycle index** `(V_ox − V_R5Pase) / V_ox`:
 ≈ 1 is a full forward pentose cycle, ≈ 0 is linear PPP, and < 0 is reverse (non-oxidative R5P
 production). The explorer's heatmap colors cells by this index (blue = cycle, red = reverse,
-gray = non-converged) and redraws the glycolysis + PPP flux network for any cell you click; an
+gray = non-converged or undetermined) and redraws the glycolysis + PPP flux network for any cell you click; an
 ATP-demand slider re-slices the cached 3-D grid live.
 
 ## Recompute
