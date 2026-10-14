@@ -236,7 +236,7 @@ EOF
 - Consumes: `GPPM.git_state`, `GPPM.update_provenance!`, `GPPM.read_provenance` (Task 1); `PPP.glycolysis_ppp_init_conc`.
 - Produces: `regenerate_grid(; atp_out, demand_out, provenance_out = joinpath(dirname(atp_out), "provenance.toml"), n_nadph, n_r5p, atp_fracs, atpase_frac, phi_lo, phi_hi) -> (; atp_out, demand_out, provenance_out)`; `[grids]` keys: `ppp_commit`, `ppp_branch`, `ppp_dirty` (git checkouts only), `cellmetabolism_version`, `generated`, `n_nadph`, `n_r5p`, `atp_fracs`, `atpase_frac`, `phi_lo`, `phi_hi`, `atp_grid_rows`, `demand_grid_rows`, `atp_grid_nonconverged`, `demand_grid_nonconverged`.
 
-- [ ] **Step 1: Gate on the PPP.jl checkout**
+- [x] **Step 1: Gate on the PPP.jl checkout**
 
 Run:
 ```bash
@@ -246,7 +246,7 @@ git -C /home/james/projects/PentosePhosphatePathway.jl branch --show-current
 ```
 Expected: `fcccae8a196ce9cfba23fae91ca77c4be4540807`, empty output, `main`. If not, STOP and report.
 
-- [ ] **Step 2: Write the failing manual test**
+- [x] **Step 2: Write the failing manual test**
 
 Create `test/manual/test_extension.jl`:
 ```julia
@@ -291,12 +291,12 @@ ext = Base.get_extension(G, :PentosePhosphatePathwayExt)
 end
 ```
 
-- [ ] **Step 3: Run it to verify it fails**
+- [x] **Step 3: Run it to verify it fails**
 
 Run: `cd /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl && julia --project=/home/james/projects/PPP_Experiments test/manual/test_extension.jl`
 Expected: FAIL on `keys(s.init0) == keys(PPP.glycolysis_ppp_init_conc)` or `collect(...) ==` (hand-merge skips the overrides), and an error on `out.provenance_out` (field missing). (First run precompiles for several minutes; that is not a hang.)
 
-- [ ] **Step 4: Implement**
+- [x] **Step 4: Implement**
 
 In `ext/PentosePhosphatePathwayExt.jl`, `_demand_setup`, replace
 ```julia
@@ -367,12 +367,12 @@ first with `using PentosePhosphatePathway`.
 """
 ```
 
-- [ ] **Step 5: Run it to verify it passes**
+- [x] **Step 5: Run it to verify it passes**
 
 Run: `cd /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl && julia --project=/home/james/projects/PPP_Experiments test/manual/test_extension.jl`
 Expected: all tests PASS. Also run the core suite: `julia --project=. -e 'using Pkg; Pkg.test()'` → PASS (the core never loads the extension).
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 cd /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl && git branch --show-current   # feat/ppp-main-resync

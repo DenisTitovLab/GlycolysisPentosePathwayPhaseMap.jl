@@ -41,7 +41,10 @@ end
 # Shared per-sweep state: base params/init, the NADPH/R5P supply ceilings, the demand-φ axes.
 function _demand_setup(atpase_frac, n_nadph, n_r5p, phi_lo, phi_hi)
     params0 = PPP.merge_LArrays(PPP.PPP_params, CellMetabolism.glycolysis_params)
-    init0   = PPP.merge_LArrays(PPP.PPP_init_conc, CellMetabolism.glycolysis_init_conc)
+    # PPP.jl's canonical combined init: PPP_init_conc, then PPP_glycolysis_init_overrides
+    # (FIX-15/16/22), then CellMetabolism's. A hand-merge skips the overrides. Copied: the
+    # export is a package-level array that the warm-start sweep must never write into.
+    init0   = copy(PPP.glycolysis_ppp_init_conc)
     RPI_cap = params0.RPI_Vmax * params0.RPI_Conc
     S_NADPH = 6 * RPI_cap                  # 2·V_ox,max, V_ox,max = 3·RPI_cap (Ru5P-disposal limit)
     S_R5P   = 1.5 * RPI_cap                # RPI fwd + TKT_Rxn1-reverse bypass; 2/3 of R5P via RPI
@@ -131,6 +134,7 @@ end
 # be a precompile-breaking method overwrite. Docstring lives on the exported parent function.
 function _regenerate_grid_impl(; atp_out = GPPM.default_atp_grid(),
                                  demand_out = GPPM.default_demand_grid(),
+                                 provenance_out = joinpath(dirname(atp_out), "provenance.toml"),
                                  n_nadph = 12, n_r5p = 12,
                                  atp_fracs = 10 .^ range(log10(0.01), log10(0.20), length = 11),
                                  atpase_frac = 0.10, phi_lo = 1e-3, phi_hi = 1.0)
@@ -139,8 +143,34 @@ function _regenerate_grid_impl(; atp_out = GPPM.default_atp_grid(),
     CSV.write(atp_out, atp)
     demand = run_demand_grid(; n_nadph, n_r5p, atpase_frac, phi_lo, phi_hi)
     CSV.write(demand_out, demand)
-    @info "Regenerated grids" atp_out demand_out atp_rows=nrow(atp) demand_rows=nrow(demand)
-    return (; atp_out, demand_out)
+    GPPM.update_provenance!(provenance_out, "grids",
+        _grid_provenance(atp, demand; n_nadph, n_r5p, atp_fracs, atpase_frac, phi_lo, phi_hi))
+    @info "Regenerated grids" atp_out demand_out provenance_out atp_rows=nrow(atp) demand_rows=nrow(demand)
+    return (; atp_out, demand_out, provenance_out)
+end
+
+# The [grids] provenance table: which model build produced the grids, with what axes, and how
+# many cells failed to reach steady state. A git checkout of PPP.jl records commit/branch/dirty;
+# a registry install records its version instead.
+function _grid_provenance(atp, demand; n_nadph, n_r5p, atp_fracs, atpase_frac, phi_lo, phi_hi)
+    gs = GPPM.git_state(pkgdir(PPP))
+    prov = Dict{String,Any}(
+        "ppp_commit"               => gs === nothing ? "v" * string(pkgversion(PPP)) : gs.commit,
+        "cellmetabolism_version"   => string(pkgversion(CellMetabolism)),
+        "generated"                => Libc.strftime("%Y-%m-%d", time()),
+        "n_nadph" => n_nadph, "n_r5p" => n_r5p,
+        "atp_fracs" => collect(Float64, atp_fracs), "atpase_frac" => Float64(atpase_frac),
+        "phi_lo" => Float64(phi_lo), "phi_hi" => Float64(phi_hi),
+        "atp_grid_rows"            => nrow(atp),
+        "demand_grid_rows"         => nrow(demand),
+        "atp_grid_nonconverged"    => count(!=(:Terminated), atp.retcode),
+        "demand_grid_nonconverged" => count(!=(:Terminated), demand.retcode),
+    )
+    if gs !== nothing
+        prov["ppp_branch"] = gs.branch
+        prov["ppp_dirty"]  = gs.dirty
+    end
+    return prov
 end
 
 __init__() = (GPPM._REGEN_HOOK[] = _regenerate_grid_impl)

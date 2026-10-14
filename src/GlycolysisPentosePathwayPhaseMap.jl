@@ -26,8 +26,10 @@ const _REGEN_HOOK = Ref{Any}(nothing)
 """
     regenerate_grid(; kwargs...)
 
-Recompute the shipped grid CSVs by solving the kinetic ODE model. Only available when the
-recompute extension is active — load it first with `using PentosePhosphatePathway`.
+Recompute the shipped grid CSVs by solving the kinetic ODE model, and record the model build
+that produced them in the `[grids]` table of `data/provenance.toml` (next to `atp_out` unless
+`provenance_out` is given). Only available when the recompute extension is active — load it
+first with `using PentosePhosphatePathway`.
 """
 function regenerate_grid(; kwargs...)
     hook = _REGEN_HOOK[]
