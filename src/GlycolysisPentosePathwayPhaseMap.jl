@@ -2,6 +2,7 @@ module GlycolysisPentosePathwayPhaseMap
 
 using Makie, CSV, DataFrames
 import GLMakie, CairoMakie   # backends activated per-entry; NOT `using` (avoids dual re-export clash)
+import TOML
 
 export explore, phasemap, regenerate_grid
 
@@ -10,6 +11,7 @@ default_atp_grid()    = joinpath(DATA_DIR, "atp_demand_grid.csv")
 default_demand_grid() = joinpath(DATA_DIR, "demand_grid.csv")
 metab_lit_path()      = joinpath(DATA_DIR, "Metabolite_Concentrations.csv")
 
+include("provenance.jl")
 include("grid_io.jl")
 include("flux_map.jl")
 include("metab_panel.jl")

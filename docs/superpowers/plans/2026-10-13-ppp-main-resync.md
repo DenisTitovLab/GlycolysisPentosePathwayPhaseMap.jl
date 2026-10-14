@@ -77,7 +77,7 @@ PPP_Experiments (`/home/james/projects/PPP_Experiments`):
   - `update_provenance!(path::AbstractString, section::AbstractString, table::AbstractDict) -> Dict{String,Any}` — replaces only `section`, creates the file if absent, writes sorted keys.
   - `git_state(dir::AbstractString; paths = String[]) -> Union{Nothing, NamedTuple{(:commit, :branch, :dirty), Tuple{String,String,Bool}}}` — `nothing` unless `dir` is the top level of a git work tree; `dirty` restricted to `paths` when non-empty.
 
-- [ ] **Step 1: Add the TOML dependency**
+- [x] **Step 1: Add the TOML dependency**
 
 In `Project.toml`, add under `[deps]` (keep alphabetical order):
 ```toml
@@ -94,7 +94,7 @@ julia --project=/home/james/projects/PPP_Experiments -e 'using Pkg; Pkg.resolve(
 ```
 Expected: both finish without error (Manifests are gitignored in both repos).
 
-- [ ] **Step 2: Write the failing test**
+- [x] **Step 2: Write the failing test**
 
 Create `test/test_provenance.jl`:
 ```julia
@@ -135,12 +135,12 @@ end
 ```
 Add `include("test_provenance.jl")` to `test/runtests.jl` as the first include inside the testset.
 
-- [ ] **Step 3: Run test to verify it fails**
+- [x] **Step 3: Run test to verify it fails**
 
 Run: `cd /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl && julia --project=. -e 'using GlycolysisPentosePathwayPhaseMap, Test; include("test/test_provenance.jl")'`
 Expected: FAIL/ERROR with `UndefVarError: update_provenance! not defined`.
 
-- [ ] **Step 4: Implement**
+- [x] **Step 4: Implement**
 
 Create `src/provenance.jl`:
 ```julia
@@ -197,12 +197,12 @@ import TOML
 ```
 and add `include("provenance.jl")` immediately before `include("grid_io.jl")`.
 
-- [ ] **Step 5: Run test to verify it passes**
+- [x] **Step 5: Run test to verify it passes**
 
 Run: `cd /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl && julia --project=. -e 'using GlycolysisPentosePathwayPhaseMap, Test; include("test/test_provenance.jl")'`
 Expected: both testsets PASS.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 cd /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl && git branch --show-current   # must print feat/ppp-main-resync
