@@ -5,8 +5,8 @@
 
 Layout A: a cycle-index heatmap over the NADPH × R5P demand grid (left, full height) plus a
 glycolysis+PPP flux-map schematic for each `reps` operating point stacked on the right. `df`
-is the `run_demand_grid` output; `reps` is a vector of (label, i_nadph, i_r5p) tuples (two:
-cycle + reverse). Non-converged cells show as NaN (the colormap's nan color); all panels
+is the `run_demand_grid` output; `reps` is a vector of (label, i_nadph, i_r5p) tuples (two by
+default: physiological demand + strongest reverse). Non-converged cells show as NaN (the colormap's nan color); all panels
 share one flux-width scale.
 """
 function render_phase_map!(fig, df; reps)
@@ -56,22 +56,31 @@ function render_phase_map!(fig, df; reps)
     return fig
 end
 
+# Default phasemap panels: the physiological-demand cell (labelled with its mode) and the
+# converged cell with the most negative cycle index (the strongest reverse operation).
+function _default_reps(df)
+    in_, ir = physiological_cell(df)
+    phys = only(eachrow(df[(df.i_nadph .== in_) .& (df.i_r5p .== ir), :]))
+    conv = filter(r -> r.retcode == :Terminated && !isnan(r.cycle_index), eachrow(df))
+    rev = conv[argmin([r.cycle_index for r in conv])]
+    return [("physiological demand ($(phys.mode))", in_, ir),
+            ("reverse (strongest)", rev.i_nadph, rev.i_r5p)]
+end
+
 """
     phasemap(; grid = default_demand_grid(), save = nothing,
                reps = nothing, size = (1500, 850)) -> Figure
 
-Render the static Layout-A phase map (cycle-index heatmap + a representative cycle and reverse
-flux schematic) from a 2-D demand grid CSV (defaults to the one shipped in `data/`). Renders with
-CairoMakie; writes a PNG when `save` is a path. `reps` defaults to the cycle corner (hi NADPH /
-lo R5P) and the reverse corner (lo NADPH / hi R5P).
+Render the static Layout-A phase map (cycle-index heatmap + two representative flux schematics)
+from a 2-D demand grid CSV (defaults to the one shipped in `data/`). Renders with CairoMakie;
+writes a PNG when `save` is a path. `reps` defaults to the cell nearest physiological demand
+(PPP.jl's default NADPH and R5P sinks) and the most strongly reverse converged cell.
 """
 function phasemap(; grid = default_demand_grid(), save = nothing, reps = nothing,
                     size = (1500, 850))
     CairoMakie.activate!()
     df = load_grid(grid)
-    n_nadph = maximum(df.i_nadph); n_r5p = maximum(df.i_r5p)
-    reps === nothing && (reps = [("cycle (hi NADPH / lo R5P)", n_nadph, 1),
-                                 ("reverse (lo NADPH / hi R5P)", 1, n_r5p)])
+    reps === nothing && (reps = _default_reps(df))
     fig = Figure(; size = size)
     render_phase_map!(fig, df; reps = reps)
     save === nothing || Makie.save(save, fig)

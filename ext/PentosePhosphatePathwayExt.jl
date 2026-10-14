@@ -8,9 +8,11 @@
 # method, which would break precompilation): it solves the integrated glycolysis+PPP ODE model
 # over the demand grids and rewrites the cached CSVs the viewer reads.
 #
-# Sweep logic is ported verbatim from the origin PPP_flux_simulator_core.jl; the only change is
-# qualifying the pure diagnostics pentose_cycle_index/classify_mode to the package namespace
-# (they live in the core module's grid_io.jl, not here).
+# Sweep logic was ported from the origin PPP_flux_simulator_core.jl, with two corrections: every
+# cell is solved cold from PPP.jl's canonical initial state (a warm-started sweep carried an
+# ATP-collapsed state down whole columns), and fluxes are cached as µM/min from the model's M/min
+# (×1e6; the port's extra ×60 assumed per-second rates). The pure diagnostics
+# pentose_cycle_index/classify_mode live in the core module's grid_io.jl.
 
 module PentosePhosphatePathwayExt
 
@@ -41,7 +43,10 @@ end
 # Shared per-sweep state: base params/init, the NADPH/R5P supply ceilings, the demand-φ axes.
 function _demand_setup(atpase_frac, n_nadph, n_r5p, phi_lo, phi_hi)
     params0 = PPP.merge_LArrays(PPP.PPP_params, CellMetabolism.glycolysis_params)
-    init0   = PPP.merge_LArrays(PPP.PPP_init_conc, CellMetabolism.glycolysis_init_conc)
+    # PPP.jl's canonical combined init: PPP_init_conc, then PPP_glycolysis_init_overrides
+    # (FIX-15/16/22), then CellMetabolism's. A hand-merge skips the overrides. Copied: the
+    # export is a package-level array that the sweep must never write into.
+    init0   = copy(PPP.glycolysis_ppp_init_conc)
     RPI_cap = params0.RPI_Vmax * params0.RPI_Conc
     S_NADPH = 6 * RPI_cap                  # 2·V_ox,max, V_ox,max = 3·RPI_cap (Ru5P-disposal limit)
     S_R5P   = 1.5 * RPI_cap                # RPI fwd + TKT_Rxn1-reverse bypass; 2/3 of R5P via RPI
@@ -51,18 +56,19 @@ function _demand_setup(atpase_frac, n_nadph, n_r5p, phi_lo, phi_hi)
     return (; params0, init0, S_NADPH, S_R5P, nadph_phis, r5p_phis)
 end
 
-# Solve one R5P-demand column: a warm-started sweep down the NADPH-demand axis.
+# Solve one R5P-demand column down the NADPH-demand axis. Every cell starts cold from init0, so
+# its steady state never depends on sweep order (the model has an absorbing ATP-collapsed state
+# that a warm start would carry from one cell into the next).
 function _demand_column(setup, ir, rphi)
     (; params0, init0, S_NADPH, S_R5P, nadph_phis) = setup
     rows = NamedTuple[]
-    u_warm = copy(init0)
     for (in_, nphi) in enumerate(nadph_phis)
         p = copy(params0)
         p.NADPHox_Vmax = nphi * S_NADPH
         p.R5Pase_Vmax  = rphi * S_R5P
 
         sol = try
-            steady_state(p; u0 = u_warm)
+            steady_state(p; u0 = copy(init0))
         catch
             nothing
         end
@@ -70,7 +76,6 @@ function _demand_column(setup, ir, rphi)
         u = converged ? sol.u[end] : (sol === nothing ? nothing : sol.u[end])
 
         if u !== nothing
-            converged && (u_warm = copy(u))
             f  = PPP.calc_all_fluxes(u, p)
             ci = GPPM.pentose_cycle_index(f)
             md = GPPM.classify_mode(f)
@@ -81,7 +86,7 @@ function _demand_column(setup, ir, rphi)
                    retcode = sol === nothing ? :SolverError : Symbol(sol.retcode),
                    cycle_index = ci, mode = md),
                 NamedTuple{Tuple(Symbol.(string.(_DEMAND_FLUXK), "_uM_min"))}(
-                    Tuple(getfield(f, k) * 1e6 * 60 for k in _DEMAND_FLUXK)),
+                    Tuple(getfield(f, k) * 1e6 for k in _DEMAND_FLUXK)),
                 NamedTuple{Tuple(Symbol.(string.(_DEMAND_POOLS), "_uM"))}(
                     Tuple(getproperty(u, k) * 1e6 for k in _DEMAND_POOLS)),
             )
@@ -99,7 +104,8 @@ function _demand_column(setup, ir, rphi)
 end
 
 # 2-D NADPH × R5P demand grid at a fixed ATP background.
-function run_demand_grid(; n_nadph = 12, n_r5p = 12, atpase_frac = 0.10,
+function run_demand_grid(; n_nadph = 12, n_r5p = 12,
+                           atpase_frac = GPPM._PHYSIOLOGICAL_DEMAND.atpase_frac,
                            phi_lo = 1e-3, phi_hi = 1.0)
     setup = _demand_setup(atpase_frac, n_nadph, n_r5p, phi_lo, phi_hi)
     rows = NamedTuple[]
@@ -109,10 +115,14 @@ function run_demand_grid(; n_nadph = 12, n_r5p = 12, atpase_frac = 0.10,
     return DataFrame(rows)
 end
 
+# ATP-demand levels of the 3-D grid: 11 log-spaced fractions of the 2·HK1_cap ATP ceiling from
+# 0.01 up to the physiological operating point's 0.25 (= 0.5·HK1_cap).
+_default_atp_fracs() =
+    10 .^ range(log10(0.01), log10(GPPM._PHYSIOLOGICAL_DEMAND.atpase_frac), length = 11)
+
 # 3-D ATP × NADPH × R5P grid: the demand grid repeated across log-spaced ATP-demand levels,
 # each block tagged with its `atpase_frac`. Serial (run-once, offline) — minutes for a full grid.
-function run_atp_grid(; n_nadph = 12, n_r5p = 12,
-                        atp_fracs = 10 .^ range(log10(0.01), log10(0.20), length = 11),
+function run_atp_grid(; n_nadph = 12, n_r5p = 12, atp_fracs = _default_atp_fracs(),
                         phi_lo = 1e-3, phi_hi = 1.0)
     frames = DataFrame[]
     for f in atp_fracs
@@ -131,16 +141,44 @@ end
 # be a precompile-breaking method overwrite. Docstring lives on the exported parent function.
 function _regenerate_grid_impl(; atp_out = GPPM.default_atp_grid(),
                                  demand_out = GPPM.default_demand_grid(),
+                                 provenance_out = joinpath(dirname(atp_out), "provenance.toml"),
                                  n_nadph = 12, n_r5p = 12,
-                                 atp_fracs = 10 .^ range(log10(0.01), log10(0.20), length = 11),
-                                 atpase_frac = 0.10, phi_lo = 1e-3, phi_hi = 1.0)
+                                 atp_fracs = _default_atp_fracs(),
+                                 atpase_frac = GPPM._PHYSIOLOGICAL_DEMAND.atpase_frac,
+                                 phi_lo = 1e-3, phi_hi = 1.0)
     mkpath(dirname(atp_out)); mkpath(dirname(demand_out))
     atp = run_atp_grid(; n_nadph, n_r5p, atp_fracs, phi_lo, phi_hi)
     CSV.write(atp_out, atp)
     demand = run_demand_grid(; n_nadph, n_r5p, atpase_frac, phi_lo, phi_hi)
     CSV.write(demand_out, demand)
-    @info "Regenerated grids" atp_out demand_out atp_rows=nrow(atp) demand_rows=nrow(demand)
-    return (; atp_out, demand_out)
+    GPPM.update_provenance!(provenance_out, "grids",
+        _grid_provenance(atp, demand; n_nadph, n_r5p, atp_fracs, atpase_frac, phi_lo, phi_hi))
+    @info "Regenerated grids" atp_out demand_out provenance_out atp_rows=nrow(atp) demand_rows=nrow(demand)
+    return (; atp_out, demand_out, provenance_out)
+end
+
+# The [grids] provenance table: which model build produced the grids, with what axes, and how
+# many cells failed to reach steady state. A git checkout of PPP.jl records commit/branch/dirty;
+# a registry install records its version instead.
+function _grid_provenance(atp, demand; n_nadph, n_r5p, atp_fracs, atpase_frac, phi_lo, phi_hi)
+    gs = GPPM.git_state(pkgdir(PPP))
+    prov = Dict{String,Any}(
+        "ppp_commit"               => gs === nothing ? "v" * string(pkgversion(PPP)) : gs.commit,
+        "cellmetabolism_version"   => string(pkgversion(CellMetabolism)),
+        "generated"                => Libc.strftime("%Y-%m-%d", time()),
+        "n_nadph" => n_nadph, "n_r5p" => n_r5p,
+        "atp_fracs" => collect(Float64, atp_fracs), "atpase_frac" => Float64(atpase_frac),
+        "phi_lo" => Float64(phi_lo), "phi_hi" => Float64(phi_hi),
+        "atp_grid_rows"            => nrow(atp),
+        "demand_grid_rows"         => nrow(demand),
+        "atp_grid_nonconverged"    => count(!=(:Terminated), atp.retcode),
+        "demand_grid_nonconverged" => count(!=(:Terminated), demand.retcode),
+    )
+    if gs !== nothing
+        prov["ppp_branch"] = gs.branch
+        prov["ppp_dirty"]  = gs.dirty
+    end
+    return prov
 end
 
 __init__() = (GPPM._REGEN_HOOK[] = _regenerate_grid_impl)

@@ -7,17 +7,27 @@
 const _PANEL_METAB_ORDER = (:Glucose, :G6P, :F6P, :F16BP, :DHAP, :GAP, :ATP, :NADP, :NADPH,
                             :PGLn, :PGA, :Ru5P, :R5P, :X5P, :S7P, :E4P)
 
+# Default operating point: PPP.jl's default sink settings (src/model_parameters.jl:
+# NADPHox_Vmax = 0.059·(6·RPI_cap), R5Pase_Vmax = 0.1068·(1.5·RPI_cap)) as fractions φ of the
+# same supply ceilings the grids use, at an ATPase demand of 0.5·HK1_cap (= 0.25 of the
+# 2·HK1_cap ATP ceiling; PPP.jl's own default is 0.2·HK1_cap). The 2-D grid is solved at this
+# ATP level, and phasemap()/explore() open on the grid cell nearest it. The manual extension
+# test pins the two φ against PPP.jl.
+const _PHYSIOLOGICAL_DEMAND = (nadph_phi = 0.059, r5p_phi = 0.1068, atpase_frac = 0.25)
+
 """
     pentose_cycle_index(fluxes; tol = 1e-12) -> Float64
 
 Fraction of oxidative-PPP-generated pentose carbon recycled rather than exported as
 R5P:  (V_ox - V_R5Pase) / V_ox  with  V_ox = fluxes.V_G6PD.
 ≈1 full pentose cycle (max NADPH/glucose); ≈0 linear; <0 net non-oxidative R5P
-production (non-ox runs reverse). Returns NaN when V_ox ≤ tol (ill-defined).
+production (non-ox runs reverse). Returns NaN when V_ox ≤ tol (ill-defined) or when the
+R5P sink runs backward (V_R5Pase < 0, which only happens once ATP has collapsed): the index
+would exceed 1, which no recycled fraction can.
 """
 function pentose_cycle_index(fluxes; tol = 1e-12)
     V_ox = fluxes.V_G6PD
-    V_ox <= tol && return NaN
+    (V_ox <= tol || fluxes.V_R5Pase < 0) && return NaN
     return (V_ox - fluxes.V_R5Pase) / V_ox
 end
 
@@ -25,7 +35,7 @@ end
     classify_mode(fluxes; cycle_thresh = 0.5) -> Symbol
 
 :cycle (index ≥ cycle_thresh), :reverse (index ≤ 0), :linear (in between), or
-:undetermined (index is NaN, i.e. oxPPP flux ≈ 0).
+:undetermined (index is NaN: oxPPP flux ≈ 0, or the R5P sink running backward).
 """
 function classify_mode(fluxes; cycle_thresh = 0.5)
     ci = pentose_cycle_index(fluxes)
@@ -70,6 +80,18 @@ measured in log10 space (the heatmap axes are log10-scaled).
 """
 nearest_cell(xs, ys, xc, yc) =
     (argmin(abs.(log10.(xs) .- log10(xc))), argmin(abs.(log10.(ys) .- log10(yc))))
+
+"""
+    physiological_cell(df) -> (i_nadph, i_r5p)
+
+The grid cell nearest (in log space) to the physiological demand `_PHYSIOLOGICAL_DEMAND`:
+PPP.jl's default NADPH and R5P sink settings. Keyed like the explorer's `selected`.
+"""
+function physiological_cell(df)
+    xs = sort(unique(df.r5p_phi)); ys = sort(unique(df.nadph_phi))
+    ir, in_ = nearest_cell(xs, ys, _PHYSIOLOGICAL_DEMAND.r5p_phi, _PHYSIOLOGICAL_DEMAND.nadph_phi)
+    return (in_, ir)
+end
 
 """
     log_cell_edges(centers) -> Vector  (length = length(centers) + 1)

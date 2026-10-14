@@ -2,14 +2,16 @@ module GlycolysisPentosePathwayPhaseMap
 
 using Makie, CSV, DataFrames
 import GLMakie, CairoMakie   # backends activated per-entry; NOT `using` (avoids dual re-export clash)
+import TOML
 
 export explore, phasemap, regenerate_grid
 
 const DATA_DIR = joinpath(@__DIR__, "..", "data")
 default_atp_grid()    = joinpath(DATA_DIR, "atp_demand_grid.csv")
 default_demand_grid() = joinpath(DATA_DIR, "demand_grid.csv")
-metab_lit_path()      = joinpath(DATA_DIR, "Metabolite_Concentrations.csv")
+metab_lit_path()      = joinpath(DATA_DIR, "literature_pools.csv")
 
+include("provenance.jl")
 include("grid_io.jl")
 include("flux_map.jl")
 include("metab_panel.jl")
@@ -24,8 +26,10 @@ const _REGEN_HOOK = Ref{Any}(nothing)
 """
     regenerate_grid(; kwargs...)
 
-Recompute the shipped grid CSVs by solving the kinetic ODE model. Only available when the
-recompute extension is active — load it first with `using PentosePhosphatePathway`.
+Recompute the shipped grid CSVs by solving the kinetic ODE model, and record the model build
+that produced them in the `[grids]` table of `data/provenance.toml` (next to `atp_out` unless
+`provenance_out` is given). Only available when the recompute extension is active — load it
+first with `using PentosePhosphatePathway`.
 """
 function regenerate_grid(; kwargs...)
     hook = _REGEN_HOOK[]

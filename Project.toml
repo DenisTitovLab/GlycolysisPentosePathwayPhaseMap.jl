@@ -1,6 +1,6 @@
 name = "GlycolysisPentosePathwayPhaseMap"
 uuid = "375dfa41-524f-41be-aa55-8aa929d49439"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["James Mbata"]
 
 [deps]
@@ -9,6 +9,7 @@ CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
 Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
 
 [weakdeps]
 CellMetabolism = "d7c5e2dd-9163-4219-82bc-37cddd708ca9"
@@ -35,6 +36,7 @@ LabelledArrays = "1"
 Makie = "0.24"
 OrdinaryDiffEq = "6, 7"
 PentosePhosphatePathway = "0.2"
+TOML = "1"
 julia = "1.10"
 
 [extras]

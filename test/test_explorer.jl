@@ -11,10 +11,11 @@ end
 @testset "build_explorer offscreen" begin
     df = G.load_grid(G.default_atp_grid())
     fig, selected, atp_level = G.build_explorer(df)
-    @test selected[] == (cld(maximum(df.i_nadph), 2), cld(maximum(df.i_r5p), 2))
+    @test selected[] == G.physiological_cell(df)
     atp_levels = sort(unique(df.atpase_frac))
     @test length(atp_levels) == 11
-    @test atp_level[] == atp_levels[argmin(abs.(log10.(atp_levels) .- log10(0.10)))]
+    @test atp_level[] == atp_levels[argmin(abs.(log10.(atp_levels) .-
+                                                log10(G._PHYSIOLOGICAL_DEMAND.atpase_frac)))]
     out = joinpath(tempdir(), "explorer_smoke.png"); @test_nowarn save(out, fig); @test isfile(out)
     conv = first(filter(r -> r.retcode == :Terminated, eachrow(df)))
     ax_net = only(filter(x -> x isa Axis && occursin("ATP", x.title[]), fig.content))
@@ -24,7 +25,7 @@ end
     @test length(ax_net.scene.plots) == length(net_plots_before)
     @test all(a === b for (a, b) in zip(ax_net.scene.plots, net_plots_before))
     @test_nowarn save(out, fig)
-    ax_metab = only(filter(x -> x isa Axis && x.ylabel[] == "[metabolite], µM", fig.content))
+    ax_metab = only(filter(x -> x isa Axis && x.ylabel[] == G._METAB_YLABEL, fig.content))
     for itr in (:rectanglezoom, :dragpan, :scrollzoom)
         @test !haskey(ax_metab.interactions, itr)
     end

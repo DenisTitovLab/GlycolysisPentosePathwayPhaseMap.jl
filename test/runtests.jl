@@ -1,5 +1,6 @@
 using Test
 @testset "GlycolysisPentosePathwayPhaseMap" begin
+    include("test_provenance.jl")
     include("test_grid_io.jl")
     include("test_flux_map.jl")
     include("test_metab_panel.jl")
