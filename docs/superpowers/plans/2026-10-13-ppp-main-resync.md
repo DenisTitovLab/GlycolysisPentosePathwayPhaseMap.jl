@@ -838,11 +838,11 @@ EOF
 - Consumes: `regenerate_grid` (Task 2), `G.read_provenance`, `G.load_grid`, `G._PPP_FLUX_KEYS`, `G._PANEL_METAB_ORDER`.
 - Produces: shipped grids + `[grids]` table that Task 6's docs and screenshot read.
 
-- [ ] **Step 1: Gate on the PPP.jl checkout**
+- [x] **Step 1: Gate on the PPP.jl checkout**
 
 Run the three commands from Task 2 Step 1. Expected: `fcccae8a196ce9cfba23fae91ca77c4be4540807`, empty, `main`. Otherwise STOP.
 
-- [ ] **Step 2: Write the failing shipped-data tests**
+- [x] **Step 2: Write the failing shipped-data tests**
 
 Append to `test/test_grid_io.jl` (and add `CSV` to its `using` line: `using Test, CSV, DataFrames, GlycolysisPentosePathwayPhaseMap`):
 ```julia
@@ -871,12 +871,12 @@ end
 end
 ```
 
-- [ ] **Step 3: Run to verify failure**
+- [x] **Step 3: Run to verify failure**
 
 Run: `cd /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl && julia --project=. -e 'using GlycolysisPentosePathwayPhaseMap, Test; include("test/test_grid_io.jl")'`
 Expected: the provenance testset ERRORs with `KeyError: key "grids" not found`.
 
-- [ ] **Step 4: Regenerate (background)**
+- [x] **Step 4: Regenerate (background)**
 
 Run with `run_in_background: true` and wait for the completion notification:
 ```bash
@@ -888,12 +888,12 @@ grep -A20 '^\[grids\]' data/provenance.toml
 ```
 Expected: `ppp_commit = "fcccae8a196ce9cfba23fae91ca77c4be4540807"`, `ppp_branch = "main"`, `ppp_dirty = false`, and the `[literature]` table still present.
 
-- [ ] **Step 5: Run the full suite**
+- [x] **Step 5: Run the full suite**
 
 Run: `julia --project=. -e 'using Pkg; Pkg.test()'`
 Expected: PASS. (The explorer test needs ≥1 converged cell and 11 ATP levels; both hold if the run completed.)
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git branch --show-current   # feat/ppp-main-resync

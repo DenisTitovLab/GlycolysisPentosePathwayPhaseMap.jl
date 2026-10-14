@@ -1,4 +1,4 @@
-using Test, DataFrames, GlycolysisPentosePathwayPhaseMap
+using Test, CSV, DataFrames, GlycolysisPentosePathwayPhaseMap
 const G = GlycolysisPentosePathwayPhaseMap
 
 @testset "pentose_cycle_index / classify_mode" begin
@@ -31,4 +31,28 @@ end
     @test G.row_to_pools(row) == Float64.(1:length(order))
     cols_nan = Dict(Symbol(string(s), "_uM") => NaN for s in order)
     @test all(isnan, G.row_to_pools(first(eachrow(DataFrame(cols_nan)))))
+end
+
+@testset "shipped grids carry the viewer's columns" begin
+    for path in (G.default_atp_grid(), G.default_demand_grid())
+        cols = names(CSV.read(path, DataFrame; limit = 1))
+        for k in G._PPP_FLUX_KEYS
+            @test "$(k)_uM_min" in cols
+        end
+        for s in G._PANEL_METAB_ORDER
+            @test "$(s)_uM" in cols
+        end
+        @test "retcode" in cols && "cycle_index" in cols && "mode" in cols
+    end
+end
+
+@testset "shipped provenance matches shipped data" begin
+    p = G.read_provenance()
+    @test p["grids"]["ppp_commit"] == "fcccae8a196ce9cfba23fae91ca77c4be4540807"
+    @test p["grids"]["ppp_dirty"] == false
+    @test p["grids"]["atp_grid_rows"] == nrow(G.load_grid(G.default_atp_grid()))
+    @test p["grids"]["demand_grid_rows"] == nrow(G.load_grid(G.default_demand_grid()))
+    @test p["grids"]["atp_grid_nonconverged"] ==
+          count(!=(:Terminated), G.load_grid(G.default_atp_grid()).retcode)
+    @test !isempty(p["literature"]["ppp_experiments_commit"])
 end
