@@ -1,32 +1,26 @@
 # metab_panel.jl — literature box-plot panel + dynamic model diamonds
 
-# Free-aldehyde corrections, mirrored from PentosePhosphatePathway.jl/src/model_parameters.jl
-# (GAP_correction = 1 + 1/0.0297 ≈ 34.7; DHAP_correction = 1 + 1/2.24 ≈ 1.45). Only the free
-# aldehyde is kinetically active, so literature totals are divided by these to match the model's
-# pool basis (as helper_files/import_data.jl does). Mirrored, not imported, to keep the explorer
-# PPP-free; these are fixed thermodynamic constants with negligible drift risk.
-const _GAP_CORRECTION  = 1 + 1 / 0.0297
-const _DHAP_CORRECTION = 1 + 1 / 2.24
+# The literature table is exported by PPP_Experiments (scripts/phasemap_export/) already on the
+# model's pool basis: µM of cytosolic water, free NADP(H) (NADP derived as free NADPH / R),
+# GAP/DHAP as the free aldehyde. This package does no basis conversion.
+
+"Metabolite-panel y-axis label; states the basis both the boxes and the diamonds are on."
+const _METAB_YLABEL = "[metabolite], µM (cytosolic water; NADP(H) free)"
 
 """
     load_metab_lit(csv_path; order = _PANEL_METAB_ORDER) -> Dict{Symbol, Vector{Float64}}
 
-Read the literature metabolite-concentration table and return, per panel metabolite, the vector
-of measured values **in µM** (missing entries dropped). GAP and DHAP are divided by the
-free-aldehyde corrections so they sit on the model's pool basis. A metabolite whose column is
-absent or all-missing yields an empty vector. Stays in µM (no µM→M conversion) to match the
-cached `<sym>_uM` pool columns the panel's model diamonds come from.
+Read the long-format literature table (`metabolite, value_uM, reference, cell_type, derived`)
+and return, per panel metabolite, its values in µM. Values are used as shipped: the table is
+already on the model's pool basis. A panel metabolite with no rows maps to an empty vector;
+rows for metabolites outside `order` are ignored.
 """
 function load_metab_lit(csv_path; order = _PANEL_METAB_ORDER)
-    df = CSV.read(csv_path, DataFrame)
-    cols = names(df)
-    lit = Dict{Symbol, Vector{Float64}}()
-    for sym in order
-        col = string(sym)
-        vals = col in cols ? Float64.(collect(skipmissing(df[!, col]))) : Float64[]
-        sym === :GAP  && (vals ./= _GAP_CORRECTION)
-        sym === :DHAP && (vals ./= _DHAP_CORRECTION)
-        lit[sym] = vals
+    df = CSV.read(csv_path, DataFrame; types = Dict(:metabolite => String, :value_uM => Float64))
+    lit = Dict{Symbol, Vector{Float64}}(sym => Float64[] for sym in order)
+    for r in eachrow(df)
+        sym = Symbol(r.metabolite)
+        haskey(lit, sym) && push!(lit[sym], r.value_uM)
     end
     return lit
 end
@@ -46,7 +40,7 @@ function draw_metab_panel!(ax, lit, metab_obs; order = _PANEL_METAB_ORDER)
     # validation never sees the default auto-limits (which include 0.0, invalid for log10)
     ylims!(ax, 1e-3, 1e5)
     ax.yscale = log10
-    ax.ylabel = "[metabolite], µM"
+    ax.ylabel = _METAB_YLABEL
     ax.title  = "Steady-state metabolites — selected cell vs literature"
     ax.xticks = (1:length(order), labels)
     ax.xticklabelrotation = pi / 3

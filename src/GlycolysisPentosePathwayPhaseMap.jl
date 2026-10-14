@@ -9,7 +9,7 @@ export explore, phasemap, regenerate_grid
 const DATA_DIR = joinpath(@__DIR__, "..", "data")
 default_atp_grid()    = joinpath(DATA_DIR, "atp_demand_grid.csv")
 default_demand_grid() = joinpath(DATA_DIR, "demand_grid.csv")
-metab_lit_path()      = joinpath(DATA_DIR, "Metabolite_Concentrations.csv")
+metab_lit_path()      = joinpath(DATA_DIR, "literature_pools.csv")
 
 include("provenance.jl")
 include("grid_io.jl")

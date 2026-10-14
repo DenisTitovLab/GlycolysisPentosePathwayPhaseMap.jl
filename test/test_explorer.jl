@@ -24,7 +24,7 @@ end
     @test length(ax_net.scene.plots) == length(net_plots_before)
     @test all(a === b for (a, b) in zip(ax_net.scene.plots, net_plots_before))
     @test_nowarn save(out, fig)
-    ax_metab = only(filter(x -> x isa Axis && x.ylabel[] == "[metabolite], µM", fig.content))
+    ax_metab = only(filter(x -> x isa Axis && x.ylabel[] == G._METAB_YLABEL, fig.content))
     for itr in (:rectanglezoom, :dragpan, :scrollzoom)
         @test !haskey(ax_metab.interactions, itr)
     end

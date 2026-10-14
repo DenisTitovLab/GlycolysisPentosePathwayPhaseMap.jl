@@ -410,7 +410,7 @@ EOF
 - Consumes (from `scripts/helper_files/metab_data.jl`, included by the caller): `metab_columns(df)`, `FREE_POOL_METABS`, `nadph_nadp_ratio_inputs(free_df)`, `draw_free_nadph_nadp_ratio(rng, inputs)`. Inputs are in **M**: `metab_df` after `import_data.jl` (÷1e6, basis-converted, GAP/DHAP-corrected); `free_df` after `prepare_free_pool` (concentration rows have `Unit == "M"`).
 - Produces: `literature_pools_table(metab_df, free_df, panel; nadp_draws = 1000, nadp_seed = 20261013) -> DataFrame` with columns `metabolite::String, value_uM::Float64, reference::String, cell_type::String, derived::Bool`; constants `NADP_DERIVED_REFERENCE`, `NADP_DERIVED_CELL_TYPE`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `scripts/phasemap_export/test_literature_export.jl`:
 ```julia
@@ -491,12 +491,12 @@ end
 end
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `cd /home/james/projects/PPP_Experiments && julia --project scripts/phasemap_export/test_literature_export.jl`
 Expected: ERROR `could not open file .../literature_export.jl`.
 
-- [ ] **Step 3: Implement**
+- [x] **Step 3: Implement**
 
 Create `scripts/phasemap_export/literature_export.jl`:
 ```julia
@@ -577,12 +577,12 @@ function literature_pools_table(metab_df, free_df, panel; nadp_draws::Int = 1000
 end
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `cd /home/james/projects/PPP_Experiments && julia --project scripts/phasemap_export/test_literature_export.jl`
 Expected: both testsets PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 cd /home/james/projects/PPP_Experiments && git branch --show-current   # must print feat/phasemap-literature-export
@@ -619,7 +619,7 @@ EOF
 - Consumes: `literature_pools_table` (Task 3); `GPPM.update_provenance!`, `GPPM.git_state`, `GPPM._PANEL_METAB_ORDER` (PhaseMap core); `import_data.jl` globals `metab_conc_data`, `free_pool_data`.
 - Produces: `load_metab_lit(csv_path; order = _PANEL_METAB_ORDER) -> Dict{Symbol, Vector{Float64}}` reading the long format; `_METAB_YLABEL::String`; `[literature]` keys `ppp_experiments_commit`, `ppp_experiments_branch`, `ppp_experiments_dirty`, `source_files`, `nadp_seed`, `nadp_draws`, `generated`, `rows`.
 
-- [ ] **Step 1: Write the failing PhaseMap tests**
+- [x] **Step 1: Write the failing PhaseMap tests**
 
 Replace the `"load_metab_lit"` testset in `test/test_metab_panel.jl` with (and change the first line to `using Test, CSV, CairoMakie, DataFrames, GlycolysisPentosePathwayPhaseMap`):
 ```julia
@@ -665,12 +665,12 @@ with
     ax_metab = only(filter(x -> x isa Axis && x.ylabel[] == G._METAB_YLABEL, fig.content))
 ```
 
-- [ ] **Step 2: Run to verify failure**
+- [x] **Step 2: Run to verify failure**
 
 Run: `cd /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl && julia --project=. -e 'using GlycolysisPentosePathwayPhaseMap, Test; include("test/test_metab_panel.jl")'`
 Expected: FAIL (`basename(path) == "literature_pools.csv"`, `_METAB_YLABEL` undefined).
 
-- [ ] **Step 3: Implement the PhaseMap loader**
+- [x] **Step 3: Implement the PhaseMap loader**
 
 In `src/GlycolysisPentosePathwayPhaseMap.jl`:
 ```julia
@@ -705,7 +705,7 @@ end
 ```
 In `draw_metab_panel!`, replace `ax.ylabel = "[metabolite], µM"` with `ax.ylabel = _METAB_YLABEL`.
 
-- [ ] **Step 4: Write the export driver (PPP_Experiments)**
+- [x] **Step 4: Write the export driver (PPP_Experiments)**
 
 Create `scripts/phasemap_export/export_literature_pools.jl`:
 ```julia
@@ -757,7 +757,7 @@ println("wrote $(nrow(tbl)) rows -> $csv_out")
 println(combine(groupby(tbl, :metabolite), nrow => :n))
 ```
 
-- [ ] **Step 5: Commit the driver first, then run it (provenance must name a committed source)**
+- [x] **Step 5: Commit the driver first, then run it (provenance must name a committed source)**
 
 ```bash
 cd /home/james/projects/PPP_Experiments && git branch --show-current   # feat/phasemap-literature-export
@@ -792,7 +792,7 @@ julia --project scripts/phasemap_export/export_literature_pools.jl
 Expected: `wrote N rows -> .../GlycolysisPentosePathwayPhaseMap.jl/data/literature_pools.csv` and a per-metabolite count table with 15 metabolites (PGLn absent), NADP = 1000, NADPH = 2. If it throws `ArgumentError` on a value or on non-ASCII text, STOP and report the offending rows (a data issue in `data/Metabolite_Concentrations.csv`, not something to patch in the exporter).
 Then check: `grep -A9 '^\[literature\]' /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl/data/provenance.toml` shows `ppp_experiments_dirty = false` and the commit just made.
 
-- [ ] **Step 6: Delete the old table and run the PhaseMap suite**
+- [x] **Step 6: Delete the old table and run the PhaseMap suite**
 
 ```bash
 cd /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl && git rm -q data/Metabolite_Concentrations.csv
@@ -800,7 +800,7 @@ julia --project=. -e 'using Pkg; Pkg.test()'
 ```
 Expected: all testsets PASS (including the shipped-table tests from Step 1).
 
-- [ ] **Step 7: Commit (PhaseMap)**
+- [x] **Step 7: Commit (PhaseMap)**
 
 ```bash
 cd /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl && git branch --show-current   # feat/ppp-main-resync

@@ -1,0 +1,9 @@
+[literature]
+generated = "2026-10-13"
+nadp_draws = 1000
+nadp_seed = 20261013
+ppp_experiments_branch = "feat/phasemap-literature-export"
+ppp_experiments_commit = "bf4561f30d9aeef8ab32ef2c2a8433e6c9d870d2"
+ppp_experiments_dirty = false
+rows = 1134
+source_files = ["data/Metabolite_Concentrations.csv", "data/Free_Pool_Concentrations.csv", "scripts/helper_files/import_data.jl", "scripts/helper_files/metab_data.jl", "scripts/phasemap_export/literature_export.jl", "scripts/phasemap_export/export_literature_pools.jl"]
