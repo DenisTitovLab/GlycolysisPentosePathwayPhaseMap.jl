@@ -4,7 +4,7 @@ CurrentModule = GlycolysisPentosePathwayPhaseMap
 
 # GlycolysisPentosePathwayPhaseMap.jl
 
-`GlycolysisPentosePathwayPhaseMap.jl` is a visualization package for the red-blood-cell
+`GlycolysisPentosePathwayPhaseMap.jl` is a visualization package for the general mammalian
 glycolysis + pentose-phosphate-pathway (PPP) *demand phase map*. It shows how perturbing
 metabolic demand — for NADPH, for ribose-5-phosphate (R5P), and for ATP — reorganizes the
 **direction and scale** of flux through the PPP, switching the pathway between linear, full

@@ -926,7 +926,7 @@ EOF
 **Interfaces:**
 - Consumes: regenerated grids (Task 5), `literature_pools.csv` (Task 4).
 
-- [ ] **Step 1: Check result claims against the new grids**
+- [x] **Step 1: Check result claims against the new grids**
 
 Run:
 ```bash
@@ -942,11 +942,11 @@ grep -n -i "blue\|red\|gray\|reverse\|linear\|cycle corner\|sign-flip\|contour" 
 ```
 For each grep hit that states what the grids *show* (e.g. "red cells = reverse PPP", "a black contour marks the sign-flip boundary", `phasemap` `reps` defaulting to a cycle and a reverse corner): if the mode counts show that region is absent (count 0) in the 2-D grid, edit that sentence to describe what the grid now shows; otherwise leave it. Definitions (what the index means, what a mode is) are not result claims and stay. Also run `julia --project=. -e 'using GlycolysisPentosePathwayPhaseMap; phasemap(save=tempname()*".png")'` — Expected: no error (it needs one cycle and one reverse representative cell; if it errors because a mode is absent, STOP and report rather than changing `phasemap`'s defaults).
 
-- [ ] **Step 2: Update `docs/src/index.md`**
+- [x] **Step 2: Update `docs/src/index.md`**
 
 Replace "is a visualization package for the red-blood-cell\nglycolysis + pentose-phosphate-pathway (PPP)" with "is a visualization package for the general mammalian\nglycolysis + pentose-phosphate-pathway (PPP)" (keep the line wrap ≤ 100 chars).
 
-- [ ] **Step 3: Update the tutorial's metabolite-panel paragraph**
+- [x] **Step 3: Update the tutorial's metabolite-panel paragraph**
 
 In `docs/src/tutorial.md`, replace the paragraph starting "Below the network sits a full-width **metabolite box-plot panel**" through "flag known model discrepancies." with:
 ```markdown
@@ -963,7 +963,7 @@ has no measurements, so it has no box. The diamonds redraw on every click and sl
 boxes are static. Diamonds sitting off their boxes flag known model discrepancies.
 ```
 
-- [ ] **Step 4: Rewrite `docs/src/recompute.md`**
+- [x] **Step 4: Rewrite `docs/src/recompute.md`**
 
 Replace the whole file with:
 ````markdown
@@ -1032,7 +1032,7 @@ This rewrites `data/literature_pools.csv` and the `[literature]` table (PPP_Expe
 source files, and the seed and draw count of the derived free-NADP⁺ values).
 ````
 
-- [ ] **Step 5: Re-render the screenshot and bump the version**
+- [x] **Step 5: Re-render the screenshot and bump the version**
 
 ```bash
 cd /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl && julia --project=. scripts/render_readme_screenshot.jl
@@ -1040,7 +1040,7 @@ cd /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl && julia --project=.
 Expected: `wrote …/docs/src/assets/explorer.png`. Open it with the Read tool and confirm the panel shows boxes, diamonds, and the new y-label.
 In `Project.toml` change `version = "0.1.0"` to `version = "0.2.0"`.
 
-- [ ] **Step 6: Build the docs**
+- [x] **Step 6: Build the docs**
 
 ```bash
 julia --project=docs -e 'using Pkg; Pkg.develop(path="."); Pkg.instantiate()'
@@ -1048,7 +1048,7 @@ julia --project=docs docs/make.jl
 ```
 Expected: `makedocs` finishes without errors (`deploydocs` skips outside CI). `docs/build/` is gitignored.
 
-- [ ] **Step 7: Rewrite the local CLAUDE.md (not committed)**
+- [x] **Step 7: Rewrite the local CLAUDE.md (not committed)**
 
 Overwrite `/home/james/projects/GlycolysisPentosePathwayPhaseMap.jl/CLAUDE.md` with:
 ````markdown
@@ -1136,7 +1136,7 @@ activates GLMakie, `phasemap` CairoMakie.
 ````
 Then confirm: `wc -l CLAUDE.md` → < 100, and `git status --porcelain CLAUDE.md` → empty (ignored).
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git branch --show-current   # feat/ppp-main-resync
