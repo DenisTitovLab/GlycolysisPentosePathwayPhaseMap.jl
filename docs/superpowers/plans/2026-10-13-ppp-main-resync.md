@@ -1166,7 +1166,7 @@ EOF
 
 ### Task 7: Final verification and hand-off
 
-- [ ] **Step 1: Full verification**
+- [x] **Step 1: Full verification**
 
 ```bash
 cd /home/james/projects/GlycolysisPentosePathwayPhaseMap.jl && julia --project=. -e 'using Pkg; Pkg.test()'
@@ -1176,6 +1176,6 @@ git -C /home/james/projects/PentosePhosphatePathway.jl branch --show-current   #
 ```
 Expected: all PASS; PPP.jl on `main`. Note: the manual extension test writes only to a temp dir.
 
-- [ ] **Step 2: Integrate**
+- [x] **Step 2: Integrate**
 
 Use superpowers:finishing-a-development-branch for both branches. PhaseMap `feat/ppp-main-resync` → push and open a PR to `main` (already approved). Push with the sandbox disabled if `.git/config.lock` blocks `push -u`. For PPP_Experiments `feat/phasemap-literature-export`, ask James whether to open a PR or merge locally.
