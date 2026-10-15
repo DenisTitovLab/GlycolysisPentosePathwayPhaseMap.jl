@@ -37,6 +37,9 @@ dependencies of the visualization package.
 
 `regenerate_grid(; f26bp_uM = 5.0)` sets the F26BP value (µM of cytosolic water); the default is the phase map's physiological 5 µM, not PentosePhosphatePathway.jl's default of 0.
 
+Grids written before 0.3.0 lack the cofactor pool columns. `explore()` rejects them with an error
+asking you to regenerate, while `phasemap()` still renders them.
+
 Every cell is solved from PentosePhosphatePathway.jl's initial state, so its steady state does
 not depend on the order the sweep visits cells. Fluxes are cached in µM/min and pools in µM.
 
@@ -57,11 +60,16 @@ to `using PentosePhosphatePathway` first.
 `literature_pools.csv` is exported from the
 [PPP_Experiments](https://github.com/JamesMbata/PPP_Experiments) data repository, where the
 measurements and their basis conversion live (each row's reported basis → µM of cytosolic water
-by species distribution class; free-pool cofactors (ADP, AMP, NAD⁺, NADH, NADP⁺, NADPH: free-pool measurements and same-cell-line matched pairs only); GAP/DHAP free-form corrections). From a
+by species distribution class; free-pool cofactors (ADP, AMP, NAD⁺, NADH, NADP⁺, NADPH: free-pool
+measurements and same-cell-line matched pairs only); GAP/DHAP free-form corrections). From a
 PPP_Experiments checkout next to this package:
 
 ```sh
 julia --project scripts/phasemap_export/export_literature_pools.jl
 ```
 
-This rewrites `data/literature_pools.csv` and the `[literature]` table (PPP_Experiments commit and source files). Each row's `method` column (`metabolomics`, `sensor` or `equilibrium`) sets its marker in the panel. The export refuses to run if this package's panel grouping (`_FREE_EQ_TOTAL_PANEL`, `_FREE_POOL_PANEL`) differs from PPP_Experiments' `metab_data.jl`.
+This rewrites `data/literature_pools.csv` and the `[literature]` table (PPP_Experiments commit and
+source files). Each row's `method` column (`metabolomics`, `sensor` or `equilibrium`) sets its
+marker in the panel. The export refuses to run unless `_FREE_POOL_PANEL` equals PPP_Experiments'
+`FREE_POOL_METABS` (same order) and every `_FREE_EQ_TOTAL_PANEL` entry is in
+`FREE_EQ_TOTAL_METABS`.

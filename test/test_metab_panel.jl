@@ -62,7 +62,8 @@ end
     @test [p[1] for p in m.below] == [2, 3, 4]               # tiny, zero and negative: floor
     @test [p[1] for p in m.above] == [6]                     # NaN draws nothing
     @test length(m.labels) == length(m.label_pos) == 4
-    @test m.labels[2] == "0.0"
+    @test m.labels[2] == "0.0e+00"
+    @test m.labels[1] == "1.0e-06"                           # 1e-6 entry, not rounded onto the floor
     @test all(p -> p[2] ≈ 1e-4 * 1.5, m.below) && all(p -> p[2] ≈ 1e5 / 1.5, m.above)
 end
 

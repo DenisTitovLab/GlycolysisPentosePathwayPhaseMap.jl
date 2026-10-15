@@ -83,7 +83,7 @@ function _offscale_marks(pools; lims = _METAB_YLIMS)
         end
         y = v < lo ? lo * 1.5 : hi / 1.5
         push!(v < lo ? below : above, Point2f(i, y))
-        push!(labels, string(round(v; sigdigits = 2))); push!(label_pos, Point2f(i + 0.12, y))
+        push!(labels, @sprintf("%.1e", v)); push!(label_pos, Point2f(i + 0.12, y))
     end
     return (; on, below, above, labels, label_pos)
 end

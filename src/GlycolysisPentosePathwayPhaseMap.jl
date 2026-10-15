@@ -1,6 +1,7 @@
 module GlycolysisPentosePathwayPhaseMap
 
 using Makie, CSV, DataFrames
+using Printf
 import GLMakie, CairoMakie   # backends activated per-entry; NOT `using` (avoids dual re-export clash)
 import TOML
 

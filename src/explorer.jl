@@ -23,8 +23,9 @@ end
 """
     build_explorer(df) -> (fig, selected, atp_level)
 
-Build the explorer over the 3-D grid `df` (must carry an `atpase_frac` column; `retcode` already
-Symbol-normalized). An ATP-demand slider re-slices the cached grid: the heatmap Z + cycle-index
+Build the explorer over the 3-D grid `df` (`retcode` already Symbol-normalized). The grid must carry
+an `atpase_frac` column and a `<sym>_uM` column for every metabolite in `_PANEL_METAB_ORDER`;
+otherwise it throws an `ArgumentError` saying to regenerate the grid. An ATP-demand slider re-slices the cached grid: the heatmap Z + cycle-index
 contour lift off the selected ATP level, and the network redraws on EITHER an ATP-level change or a
 cell click. Returns the Figure, the `selected` Observable (keyed `(i_nadph, i_r5p)`), and the
 `atp_level` Observable. Does NOT call `display` (offscreen-testable).
