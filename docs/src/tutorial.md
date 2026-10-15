@@ -40,7 +40,8 @@ Below the panels is an **ATP-demand slider** that varies ATP demand across log-s
 (1 %–25 % of maximal ATP supply, i.e. 0.02–0.5 × HK1 capacity). Moving it re-slices the cached
 3-D grid: the heatmap, its sign-flip contour, and the flux network all update instantly — again,
 with no ODE re-solve. The explorer opens at the 25 % level (ATP demand 0.5 × HK1 capacity) on the
-cell nearest **physiological demand**: PentosePhosphatePathway.jl's default NADPH and R5P sinks.
+cell nearest **physiological demand**: PentosePhosphatePathway.jl's default NADPH and R5P sinks,
+with the glycolytic activator F26BP at 5 µM (PentosePhosphatePathway.jl's own default is 0).
 
 ### The flux network
 
@@ -52,17 +53,28 @@ enzyme names.
 
 ### The metabolite panel
 
-Below the network sits a full-width **metabolite box-plot panel** covering 16 metabolites
-(`Glucose, G6P, F6P, F16BP, DHAP, GAP, ATP, NADP, NADPH, PGLn, PGA, Ru5P, R5P, X5P, S7P, E4P`).
-For the currently selected cell, each metabolite's steady-state pool (µM, log y-axis) is drawn as
-a **purple diamond** over a **static literature box-and-whisker** from cultured mammalian cells.
-Both are on the model's pool basis: µM of cytosolic water, with NADP⁺ and NADPH as **free**
-(unbound) concentrations and GAP/DHAP as the free aldehyde/ketone. The literature values were
-converted to that basis before shipping (see [Recompute](@ref)); the boxes include drug-treated
-and glucose-pulse measurements as well as basal ones. Free NADP⁺ has no direct measurement, so
-its box is **derived** — free NADPH divided by the measured free NADPH/NADP⁺ ratio — and PGLn
-has no measurements, so it has no box. The diamonds redraw on every click and slider move; the
-boxes are static. Diamonds sitting off their boxes flag known model discrepancies.
+Below the network sits a full-width **metabolite panel** of 20 metabolites, split in two. The
+model tracks each metabolite as its **free** (unbound) concentration, while most measurements
+extract the cell and count the **total** pool.
+
+- **Left, free ≈ total** (`Glucose, G6P, F6P, F16BP, DHAP, GAP, ATP, PGLn, PGA, Ru5P, R5P, X5P,
+  S7P, E4P`): metabolites whose free and total pools are about the same, so each one is
+  compared with a static **box-and-whisker of extraction metabolomics** from cultured mammalian
+  cells. The boxes include drug-treated and glucose-pulse measurements as well as basal ones.
+  PGLn has no measurements, so it has no box.
+- **Right, free pool** (`ADP, AMP, NAD, NADH, NADP, NADPH`): cofactors that are mostly
+  protein-bound, so they are compared with **free-pool measurements only**, one point per
+  value. Filled points are measured; open points are inferred, by us or by the original
+  authors. Circles are sensor-based; diamonds are equilibrium-based. Free NADP⁺ has no direct
+  measurement: its one point is HeLa free NADPH divided by the HeLa free NADPH:NADP⁺ ratio. The
+  other measured ratios come from cell lines with no free-NADPH measurement, so they cannot be
+  paired. AMP has no free-pool measurement, so its column reads "no data".
+
+For the selected cell, each metabolite's steady-state pool (µM of cytosolic water, log y-axis)
+is a **purple diamond**. A pool outside the axis range is a purple triangle at the bottom or top
+edge, labelled with its value. In ATP-collapsed cells many pools do this at once. The model
+marks redraw on every click and slider move; the literature marks are static. GAP and DHAP are
+on the free aldehyde/ketone basis on both sides.
 
 ## The static phase map
 

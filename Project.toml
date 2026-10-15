@@ -1,6 +1,6 @@
 name = "GlycolysisPentosePathwayPhaseMap"
 uuid = "375dfa41-524f-41be-aa55-8aa929d49439"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["James Mbata"]
 
 [deps]
