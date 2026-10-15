@@ -30,6 +30,10 @@ cell click. Returns the Figure, the `selected` Observable (keyed `(i_nadph, i_r5
 `atp_level` Observable. Does NOT call `display` (offscreen-testable).
 """
 function build_explorer(df)
+    _require_columns(df, ["atpase_frac"],
+                     "the explorer needs the 3-D ATP grid (atp_demand_grid.csv)")
+    _require_columns(df, ["$(s)_uM" for s in _PANEL_METAB_ORDER],
+                     "the grid predates the cofactor pool columns; regenerate it with regenerate_grid()")
     # ATP levels and demand axes come straight from the CSV-parsed df, so slider values and the
     # filter compare bit-identical Float64s (exact `==` is safe).
     atp_levels = sort(unique(df.atpase_frac))

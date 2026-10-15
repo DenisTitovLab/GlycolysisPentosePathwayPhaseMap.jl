@@ -1,4 +1,4 @@
-using Test, CairoMakie, GlycolysisPentosePathwayPhaseMap
+using Test, CSV, DataFrames, CairoMakie, GlycolysisPentosePathwayPhaseMap
 const G = GlycolysisPentosePathwayPhaseMap
 CairoMakie.activate!()
 
@@ -17,4 +17,11 @@ end
     @test reps[1][2:3] == G.physiological_cell(df)
     rev = only(eachrow(df[(df.i_nadph .== reps[2][2]) .& (df.i_r5p .== reps[2][3]), :]))
     @test rev.retcode == :Terminated && rev.mode == "reverse"
+end
+
+@testset "phasemap() renders a grid without pool columns" begin
+    df = CSV.read(G.default_demand_grid(), DataFrame)
+    p = tempname() * ".csv"
+    CSV.write(p, select(df, Not([:ADP_uM, :AMP_uM, :NAD_uM, :NADH_uM])))
+    @test phasemap(grid = p) isa Figure
 end

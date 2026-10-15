@@ -98,3 +98,35 @@ end
     row = only(eachrow(d2[(d2.i_nadph .== in_) .& (d2.i_r5p .== ir), :]))
     @test row.retcode == :Terminated && row.ATP_uM > 1000
 end
+
+@testset "panel tuples partition the panel order" begin
+    l, r = G._FREE_EQ_TOTAL_PANEL, G._FREE_POOL_PANEL
+    @test r == (:ADP, :AMP, :NAD, :NADH, :NADP, :NADPH)
+    @test length(l) == 14 && isempty(intersect(l, r))
+    @test G._PANEL_METAB_ORDER == (l..., r...)
+    for path in (G.default_atp_grid(), G.default_demand_grid())
+        cols = names(CSV.read(path, DataFrame; limit = 1))
+        @test all("$(s)_uM" in cols for s in G._PANEL_METAB_ORDER)
+    end
+end
+
+@testset "grid column checks" begin
+    df = CSV.read(G.default_atp_grid(), DataFrame)
+    p = tempname() * ".csv"
+    CSV.write(p, select(df, Not(:V_G6PD_uM_min)))
+    err = try G.load_grid(p); nothing catch e; e end
+    @test err isa ArgumentError && occursin("V_G6PD_uM_min", err.msg)
+
+    p2 = tempname() * ".csv"
+    CSV.write(p2, select(df, Not([:ADP_uM, :NADH_uM])))
+    old = G.load_grid(p2)                                   # load_grid does not need pools
+    err2 = try G.build_explorer(old); nothing catch e; e end
+    @test err2 isa ArgumentError
+    @test occursin("ADP_uM", err2.msg) && occursin("NADH_uM", err2.msg)
+    @test occursin("regenerate", err2.msg)
+
+    p3 = tempname() * ".csv"
+    CSV.write(p3, select(df, Not(:atpase_frac)))
+    err3 = try G.build_explorer(G.load_grid(p3)); nothing catch e; e end
+    @test err3 isa ArgumentError && occursin("atpase_frac", err3.msg)
+end

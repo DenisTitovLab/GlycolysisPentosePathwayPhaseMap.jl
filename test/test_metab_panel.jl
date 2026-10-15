@@ -9,7 +9,7 @@ CairoMakie.activate!()
     @test Set(keys(lit)) == Set(G._PANEL_METAB_ORDER)
     @test all(v -> v isa Vector{Float64}, values(lit))
     @test all(v -> all(x -> isfinite(x) && x > 0, v), values(lit))
-    @test all(s -> !isempty(lit[s]), filter(!=(:PGLn), collect(G._PANEL_METAB_ORDER)))
+    @test all(s -> !isempty(lit[s]), filter(!=(:PGLn), collect(G._FREE_EQ_TOTAL_PANEL)))
     raw = CSV.read(path, DataFrame)
     @test names(raw) == ["metabolite", "value_uM", "reference", "cell_type", "derived"]
     @test all(raw.derived[raw.metabolite .== "NADP"])
