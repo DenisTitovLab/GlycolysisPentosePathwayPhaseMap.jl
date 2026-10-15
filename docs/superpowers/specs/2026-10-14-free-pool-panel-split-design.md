@@ -173,7 +173,9 @@ The schema of `data/literature_pools.csv` becomes
   the row's `Method`, `Value × 1e6`). Then the `free_derived` rows for that metabolite
   (`derived = true`, the ratio's `Method`, `Value × 1e6`, the matched `Cell Type`). Their
   `reference` names both inputs:
-  `"derived: <ratio Reference> x median free <partner> (n=<n_partner_rows>)"`. `free_derived` is
+  `"derived: <Ratio> ratio from <Reference>; median <Partner> of n=<n_partner_rows> same-line rows"`.
+  For this, `derive_matched_free` gains two output columns, `Ratio` (the ratio's `Quantity`)
+  and `Partner` (the measured side). The change is additive; no test pins its columns. `free_derived` is
   the `free_pool_derived` global that `import_data.jl` already builds with
   `derive_matched_free`; the export does not re-derive. A free-pool metabolite with no rows
   (AMP) is not an error.
@@ -275,7 +277,8 @@ the left axis by it), with the new text.
 - `test_explorer.jl`: finds both metabolite axes, with interactions deregistered on both.
 - `test/manual/test_extension.jl`: re-pin the existing numeric expectations
   (`30 < V_R5Pase < 40`, ATP > 1000, etc.) to F26BP 5 µM values. Require finite, positive
-  ADP/AMP/NAD/NADH. Check that `f26bp_uM = 0` reproduces a cell of today's grids.
+  ADP/AMP/NAD/NADH. Check that `f26bp_uM = 0` gives exactly PPP.jl's initial state; the §2
+  drift check covers reproducing today's grids.
 
 **PPP_Experiments** (`scripts/phasemap_export/test_literature_export.jl`): replace the
 200-draw, seed and direct-NADP-guard tests (lines 34-56, 70-72). New tests cover:
