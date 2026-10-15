@@ -75,14 +75,15 @@ function build_explorer(df)
     colsize!(fig.layout, 3, Relative(0.60))
     rowsize!(fig.layout, 2, Relative(0.04))   # thin footer line
 
-    # Footer row 2, ATP slider row 3, NEW full-width metabolite panel row 4 (slider above it).
-    ax_metab = Axis(fig[4, 1:3])
+    # Footer row 2, ATP slider row 3, full-width metabolite panel row 4: two linked axes
+    # (free ≈ total | free pool) plus their legend, in a nested GridLayout.
+    metab_gl = GridLayout(fig[4, 1:3])
     rowsize!(fig.layout, 4, Relative(0.30))
     lit = load_metab_lit(metab_lit_path())
     metab_obs = Observable(fill(NaN, length(_PANEL_METAB_ORDER)))
-    draw_metab_panel!(ax_metab, lit, metab_obs)
-    for interaction in (:rectanglezoom, :dragpan, :scrollzoom)
-        deregister_interaction!(ax_metab, interaction)
+    metab_axes = draw_metab_split!(metab_gl, lit, metab_obs)
+    for ax in metab_axes, interaction in (:rectanglezoom, :dragpan, :scrollzoom)
+        deregister_interaction!(ax, interaction)
     end
 
     selected = Observable(physiological_cell(df))   # open on the physiological-demand cell
