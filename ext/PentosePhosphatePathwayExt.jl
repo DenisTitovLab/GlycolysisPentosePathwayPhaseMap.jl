@@ -35,12 +35,14 @@ include("respiration.jl")
 # Pools / fluxes cached per cell (mirrors the viewer's expected CSV columns).
 const _DEMAND_POOLS = (:R5P, :S7P, :NADPH, :NADP, :Ru5P, :X5P, :E4P, :F6P, :GAP, :G6P,
                        :Glucose, :F16BP, :DHAP, :PGLn, :PGA, :ATP, :ADP, :AMP, :NAD, :NADH,
-                       :Phosphate)
-# V_PKM2 is the glycolytic ATP production rate in Kober's comparison with V_ATPSynthase.
+                       :Phosphate, :Pyruvate)
+# V_PKM2 is the glycolytic ATP production rate in Kober's comparison with respiration;
+# V_ATPSynthase is per pyruvate (respiratory ATP = _RESP_ATP_YIELD × it). V_LDH closes the
+# NADH balance with it: V_GAPDH = V_LDH + V_ATPSynthase at steady state.
 const _DEMAND_FLUXK = (:V_G6PD, :V_PGLS, :V_PGD, :V_RPI, :V_RPE, :V_TKT_Rxn1, :V_TKT_Rxn2,
                        :V_TA, :V_R5Pase, :V_NADPHox,
                        :V_HK1, :V_GPI, :V_PFKP, :V_ALDO, :V_TPI, :V_GAPDH,
-                       :V_PKM2, :V_ATPase, :V_ATPSynthase)
+                       :V_PKM2, :V_LDH, :V_ATPase, :V_ATPSynthase)
 
 # Solve the integrated model (with the ATPSynthase reaction) to steady state with the
 # repo-standard solver settings.
@@ -199,7 +201,9 @@ function _grid_provenance(atp, demand; n_nadph, n_r5p, atp_fracs, atpase_frac, p
         "atpsynthase_km_atp"       => _ATPSYNTHASE_KM_ATP,
         "atpsynthase_km_adp"       => _ATPSYNTHASE_KM_ADP,
         "atpsynthase_km_phosphate" => _ATPSYNTHASE_KM_PHOSPHATE,
-        "atpsynthase_keq"          => _ATPSYNTHASE_KEQ,
+        "atpsynthase_k_pyruvate"   => _ATPSYNTHASE_K_PYRUVATE,
+        "atpsynthase_k_nadh"       => _ATPSYNTHASE_K_NADH,
+        "resp_atp_yield"           => _RESP_ATP_YIELD,
         "scaled_enzymes"           => [String(k) for k in _GLYCOLYTIC_CONC],
         "atp_grid_rows"            => nrow(atp),
         "demand_grid_rows"         => nrow(demand),

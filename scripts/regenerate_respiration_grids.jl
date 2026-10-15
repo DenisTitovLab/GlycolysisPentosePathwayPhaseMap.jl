@@ -14,8 +14,9 @@
 #   julia --project=/home/james/projects/PPP_Experiments scripts/regenerate_respiration_grids.jl
 
 using GlycolysisPentosePathwayPhaseMap, PentosePhosphatePathway
-using CSV, DataFrames, Printf
+using CSV, DataFrames, Printf, Statistics
 const G = GlycolysisPentosePathwayPhaseMap
+const ATP_YIELD = Base.get_extension(G, :PentosePhosphatePathwayExt)._RESP_ATP_YIELD
 
 const RESP_DIR   = joinpath(G.DATA_DIR, "respiration")
 const CONDITIONS = [(name = "r0.5_f26bp5uM", resp_frac = 0.5, f26bp_uM = 5.0),
@@ -71,17 +72,19 @@ end
 #                                     3. Summary                                         #
 ##########################################################################################
 
-# Physiological cell of each corner's 2-D grid (ATP demand 0.25 of 2·HK1_cap).
+# Physiological cell of each corner's 2-D grid (ATP demand 0.25 of 2·HK1_cap). Respiratory ATP
+# is ATP_YIELD × the per-pyruvate V_ATPSynthase.
 function summarize(label, atp_path, demand_path)
     atp = G.load_grid(atp_path); dem = G.load_grid(demand_path)
     in_, ir = G.physiological_cell(dem)
     row = only(dem[(dem.i_nadph .== in_) .& (dem.i_r5p .== ir), :])
-    resp = hasproperty(row, :V_ATPSynthase_uM_min) ? row.V_ATPSynthase_uM_min : 0.0
+    resp = hasproperty(row, :V_ATPSynthase_uM_min) ? ATP_YIELD * row.V_ATPSynthase_uM_min : 0.0
     glyc = hasproperty(row, :V_PKM2_uM_min) ? row.V_PKM2_uM_min : NaN
-    @printf("%-15s | nonconv 3-D %3d, 2-D %3d | undetermined 3-D %4d | glyc %7.1f resp %7.1f µM/min (resp %4.1f%%) | HK1 %6.1f | cycle %6.3f | ATP %6.0f ADP %6.1f µM\n",
+    @printf("%-15s | nonconv 3-D %3d, 2-D %3d | undetermined 3-D %4d | glyc %7.1f resp %7.1f µM/min (resp %4.1f%%) | HK1 %6.1f | cycle %6.3f | ATP %6.0f ADP %6.1f µM | high-NADPH (φ≥0.28) median ATP %6.0f µM\n",
             label, count(!=(:Terminated), atp.retcode), count(!=(:Terminated), dem.retcode),
             count(==("undetermined"), string.(atp.mode)), glyc, resp, 100 * resp / (glyc + resp),
-            row.V_HK1_uM_min, row.cycle_index, row.ATP_uM, row.ADP_uM)
+            row.V_HK1_uM_min, row.cycle_index, row.ATP_uM, row.ADP_uM,
+            median(atp.ATP_uM[atp.nadph_phi .>= 0.28]))
 end
 
 println()
