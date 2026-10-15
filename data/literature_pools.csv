@@ -1,1135 +1,150 @@
-metabolite,value_uM,reference,cell_type,derived
-Glucose,4384.75665748393,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,4T1,false
-Glucose,5785.123966942148,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HepG2,false
-Glucose,7093.663911845729,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SGC7901,false
-Glucose,8402.203856749311,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SMMC7721,false
-Glucose,6887.052341597795,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HeLa,false
-Glucose,3719.0082644628096,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,RKO,false
-Glucose,6726.354453627179,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,Bcap37,false
-Glucose,22222.22222222222,Zeng et al. bioRxiv 2024,4T1,false
-Glucose,21900.82644628099,Zeng et al. bioRxiv 2024,HeLa,false
-G6P,321.3957759412304,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,4T1,false
-G6P,505.050505050505,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HepG2,false
-G6P,505.050505050505,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SGC7901,false
-G6P,390.2662993572085,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SMMC7721,false
-G6P,413.22314049586777,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HeLa,false
-G6P,413.22314049586777,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,RKO,false
-G6P,459.1368227731864,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,Bcap37,false
-G6P,117.7685950413223,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false
-G6P,291.55188246097333,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false
-G6P,107.89715335169879,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false
-G6P,97.56657483930212,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false
-G6P,344.35261707988974,Chen et al. Cell. 2016 Aug 25;166(5):1324-1337.e11,HeLa,false
-G6P,187.06542699724517,This study,HeLa,false
-G6P,150.22291092745635,This study,293T,false
-G6P,370.6932966023875,This study,C2C12,false
-G6P,237.9040404040404,This study,NIH3T3,false
-G6P,603.7649219467401,Zeng et al. bioRxiv 2024,4T1,false
-G6P,918.2736455463728,Zeng et al. bioRxiv 2024,HeLa,false
-G6P,298.4595959595959,This study,C2C12_Oligomycin,false
-G6P,174.70913682277316,This study,HeLa_Oligomycin,false
-G6P,2984.389348025711,Marin-Hernandez et al. Biochim Biophys Acta. 2011;1807(6):755-767,HeLa,false
-G6P,1019.2837465564737,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false
-F6P,206.61157024793388,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,4T1,false
-F6P,344.35261707988974,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HepG2,false
-F6P,321.3957759412304,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SGC7901,false
-F6P,275.4820936639118,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SMMC7721,false
-F6P,367.30945821854914,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HeLa,false
-F6P,321.3957759412304,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,RKO,false
-F6P,390.2662993572085,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,Bcap37,false
-F6P,127.18089990817262,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false
-F6P,284.66483011937555,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false
-F6P,136.13406795224975,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false
-F6P,114.3250688705234,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false
-F6P,227.27272727272725,Chen et al. Cell. 2016 Aug 25;166(5):1324-1337.e11,HeLa,false
-F6P,164.28053259871436,This study,HeLa,false
-F6P,85.38337924701561,This study,293T,false
-F6P,280.2548209366391,This study,C2C12,false
-F6P,103.0615243342516,This study,NIH3T3,false
-F6P,254.82093663911843,Zeng et al. bioRxiv 2024,4T1,false
-F6P,312.2130394857667,Zeng et al. bioRxiv 2024,HeLa,false
-F6P,448.6891643709825,This study,C2C12_Oligomycin,false
-F6P,321.33838383838383,This study,HeLa_Oligomycin,false
-F6P,1147.842056932966,Marin-Hernandez et al. Biochim Biophys Acta. 2011;1807(6):755-767,HeLa,false
-F6P,369.6051423324151,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false
-F16BP,2272.7272727272725,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false
-F16BP,1469.2378328741966,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,4T1,false
-F16BP,1308.539944903581,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HepG2,false
-F16BP,1262.6262626262626,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SGC7901,false
-F16BP,826.4462809917355,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SMMC7721,false
-F16BP,1056.0146923783286,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HeLa,false
-F16BP,1101.9283746556473,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,RKO,false
-F16BP,1331.4967860422405,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,Bcap37,false
-F16BP,32.36914600550964,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false
-F16BP,362.7180899908172,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false
-F16BP,123.96694214876031,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false
-F16BP,42.24058769513315,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false
-F16BP,1859.5041322314048,Chen et al. Cell. 2016 Aug 25;166(5):1324-1337.e11,HeLa,false
-F16BP,2618.7052341597796,This study,HeLa,false
-F16BP,1220.1905417814507,This study,293T,false
-F16BP,2015.4820936639117,This study,C2C12,false
-F16BP,1771.721763085399,This study,NIH3T3,false
-F16BP,1501.3774104683193,Zeng et al. bioRxiv 2024,4T1,false
-F16BP,1797.5206611570245,Zeng et al. bioRxiv 2024,HeLa,false
-F16BP,3594.9862258953162,This study,C2C12_Oligomycin,false
-F16BP,4004.1712580348935,This study,HeLa_Oligomycin,false
-F16BP,872.3599632690541,Marin-Hernandez et al. Biochim Biophys Acta. 2011;1807(6):755-767,HeLa,false
-F16BP,4938.016528925619,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false
-DHAP,269.81373782720584,Chen et al. Cell. 2016 Aug 25;166(5):1324-1337.e11,HeLa,false
-DHAP,1007.8796948157216,This study,HeLa,false
-DHAP,441.42321078348016,This study,293T,false
-DHAP,1982.4008887981952,This study,C2C12,false
-DHAP,1916.75679352447,This study,NIH3T3,false
-DHAP,849.1197043385595,Zeng et al. bioRxiv 2024,4T1,false
-DHAP,855.4682628756703,Zeng et al. bioRxiv 2024,HeLa,false
-DHAP,3589.206770284211,This study,C2C12_Oligomycin,false
-DHAP,3134.586493441712,This study,HeLa_Oligomycin,false
-DHAP,1639.515242208845,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false
-GAP,6.148447915103251,This study,HeLa,false
-GAP,10.785400866978025,This study,293T,false
-GAP,7.634483123946075,This study,C2C12,false
-GAP,2.916820433135865,This study,NIH3T3,false
-GAP,4.436420140023131,Zeng et al. bioRxiv 2024,4T1,false
-GAP,5.231002851669064,Zeng et al. bioRxiv 2024,HeLa,false
-GAP,8.49614185950012,This study,C2C12_Oligomycin,false
-GAP,8.27538029611449,This study,HeLa_Oligomycin,false
-GAP,9.071485957957744,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false
-ATP,4700.0,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false
-ATP,3727.272727272727,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false
-ATP,3363.636363636364,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false
-ATP,1245.4545454545455,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false
-ATP,2075.7575757575755,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false
-ATP,6969.696969696969,Chen et al. Cell. 2016 Aug 25;166(5):1324-1337.e11,HeLa,false
-ATP,6224.793939393939,This study,HeLa,false
-ATP,6381.606060606061,This study,293T,false
-ATP,7874.957575757576,This study,C2C12,false
-ATP,8117.554545454545,This study,NIH3T3,false
-ATP,9090.90909090909,Zeng et al. bioRxiv 2024,4T1,false
-ATP,13742.424242424242,Zeng et al. bioRxiv 2024,HeLa,false
-ATP,5502.257575757575,This study,C2C12_Oligomycin,false
-ATP,4408.599999999999,This study,HeLa_Oligomycin,false
-ATP,13181.81818181818,Marin-Hernandez et al. Biochim Biophys Acta. 2011;1807(6):755-767,HeLa,false
-ATP,2613.6363636363635,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false
-NADP,0.06882943054742559,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03564156891020889,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07449099195632237,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.051086227336757335,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04323852194613377,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1275656153126264,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11412052976098662,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04102276396502167,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.3471660056362873,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04755230796221756,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.014394459791298516,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08600746411687989,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.026059754914044886,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04205614213671969,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0002587075230874558,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03270841496755084,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1353467700212577,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.041336333292974765,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0502244649016333,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06626319048604624,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.045619452942474215,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03695026429937182,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06790787392138997,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0351057284536861,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1182083651679449,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.025408369715528366,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10441836164938498,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.019086561715552078,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08657335913482352,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0613291923190041,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08271172426676912,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.051677317018877685,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.010179815185922406,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08239793499101776,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.036441921628373605,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09808593197190721,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10632133803998042,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.037529663710421816,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05174857822098636,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.21427740094831596,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0885228265858545,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09673924998373815,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.037359589331534354,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04802792449828808,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04194293707309667,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.058394638836804576,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.14812777392789256,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.15730016279229458,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07457435162090102,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03270614549567011,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.042289663103800446,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04052398260029932,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08087661267208855,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.27679360900728284,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1260644015138141,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01430504369099987,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08411648914115913,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02513330914800918,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.033483076657994854,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.061088564544472916,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05402947442158997,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0430967304620568,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.13870054916977445,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.007912329493364048,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0794802941412732,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06465756017819485,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.050581102241173966,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03003378098389105,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.12949303419416605,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.018385561860889868,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.021330809381587323,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03766939660726186,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05301524957878737,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10838748588043243,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05395280153843723,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.060667234986667706,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01877628932780405,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05688826214339606,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.008322526025035555,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08888231582190359,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.047194473464968134,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.028125247795028802,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.061125309874487666,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05224405732177087,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08296148681955741,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.019547028500509878,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09214569528618352,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03152484836970603,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.056676542105847764,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.13709281268020487,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04033192108865656,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.028727552221678915,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05945583513351843,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.025332123808016326,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.20235589462762066,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.021752178027500842,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06724890030652401,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06745203593664595,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05775260445340374,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02276385724694007,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05603791498626179,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01701145189166298,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03675320465139797,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.12350960797663066,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10751435646478708,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02595922412090062,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.22773163769523436,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04952760280615046,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09496928750432977,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.18080968490771138,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0015981015248347197,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07419699054111299,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.051037695124469505,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05314692834977146,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04022560023817788,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1311878354509414,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06972691818822571,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.018440667720917608,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07836064699850481,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.050134467246527585,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06478285470826949,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0697133339990903,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06914969444157414,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.037089405664661845,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03071364419103384,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06419114878067195,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.030162059707228364,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.061793506036576046,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.2386386727052429,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04757334533565562,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07237388625989204,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.4323700523072417,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0008400888130843354,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.050188731063423,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03610654567208066,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01880456484301951,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.034821032088183025,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09815455536313332,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03697242107280134,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10284856744771649,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.041959474870911784,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08777421355116245,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10759811697699838,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1424556792600768,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11272782117341397,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10688459511807598,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07679780180766513,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06444246991166129,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02924752593548547,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08028691060326193,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04902453951125492,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01126706873453639,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1311256693188872,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.6611937707874525,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05953801217191687,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07436224452375709,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.058936287270251624,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.3321997133035435,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07650421441487261,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.063311628510373,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.21461250155939157,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05297143613281968,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05724466203791027,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.021539418549442375,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02363277060128637,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.021671194360382885,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05056758659105228,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.18867483156451587,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11852884163088916,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0002177286304092265,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04920063943158643,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06707891221912454,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11920012364627222,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.061564645004309256,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05952090217819492,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.029357593935870382,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.012226356860306398,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05231441636138849,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03308037016112885,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04966197723748557,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0625040667401352,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.021157575015172497,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1213820941610462,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1374759713829472,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06492312505650875,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.00939783375407207,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11585125816306834,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05686183155286252,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07158218680565168,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.055970422660918284,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03400378978832406,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05787772428083665,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.14534522946991682,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.025242192034374715,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08708991490844076,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08312676789951605,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.026862171589463066,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.021706112954352135,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08797442802865227,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.012218519753814027,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.012323116941627835,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04115665563537704,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.056759892936407874,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11466035295520839,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.20471476087399187,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.032643973095639094,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.031674099209233524,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09824577405005444,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.025895357400477877,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1304145559268053,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.045135888072709796,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.012645794213731455,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06919991809879203,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07494881895894262,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07356247668177132,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07668933837992233,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06064085213822973,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.16309124245191406,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04604444366006799,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0592793237862157,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03150889803267261,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.041538325461421784,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.037024764141850075,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05574238698099453,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.059974770831413865,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0314012795306955,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.024185005557009448,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05430159933126544,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05215338846181758,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08561649180918934,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04654950891198882,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.060357392518928125,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.030874759348573318,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01466843234605577,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04606287418439992,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04472059210810464,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07971038189429244,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02222448867716737,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08781665154841492,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.058070209475460474,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.054098130239744614,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05615536654611116,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.025080169496144365,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.044817028983603104,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07335073284843403,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.046468444727057204,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04045659435619954,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07334259629323553,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05874547643187728,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06498810781116167,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.045061014199307525,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05401814259217925,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04738003643733328,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.39857547485860456,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04234657135374918,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09120263298591019,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.057169511498540174,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03405545052168088,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02339740344433603,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07243937292916866,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05355077326193307,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0228102283705464,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04377826469279485,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08255596388170089,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02822239040595466,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01740227989299476,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09804692305425494,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05268242286064977,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06949506183837474,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06552514582549665,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10716853049168079,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.12013457887126641,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0465827847034565,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05671202056460941,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.024640172019714468,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.017270446042355513,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06633785004163728,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.036784404446081664,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.17601474549815607,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0500177125720006,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.039634674079542506,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06086107277059433,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09191883258410395,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.655340457399911,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07068757214084546,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,1.1902287566546352,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.015271563908430404,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,1.0495767157361808,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08656135019591889,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.021285670757171783,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07232294424030551,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0657463463509864,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.022431429710010206,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.022574128697701104,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.030720610815733004,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.14585337188681957,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08095345192117616,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10917082627507009,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1901330083477734,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.007391651364114836,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.022521656415855282,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1293018533034875,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03730188046732392,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0812255329974988,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11678114723481758,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.016742233156048707,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05775847247238976,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03035913677823648,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.044450360965727534,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.030445624446641506,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06415928101022057,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.022266477722855723,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09523670978931073,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07456116946554868,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.037480679879921285,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04160888597715126,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.011310094553746522,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03398982831307611,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03476817222279336,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02725235981235575,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05580060911351388,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.025090424730631118,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.12890186275926313,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.054160705320117124,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03441549917353051,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.27473655841437084,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09974685951509263,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02620773372939732,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11472757690909385,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04218706750344461,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04962456148865841,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.054155459542294615,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07853920346220324,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.002732568662607371,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03329948889032748,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0547314258755336,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0462006770376065,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08042091563697795,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.018517350705810086,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04028593618307365,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08367091781246423,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04477106388807433,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06197905870300037,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1861120523448362,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06410150996574282,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.056835427518966704,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.018137219695576336,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06434202365782989,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11752868678202004,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.051910040427728225,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.028699545963757546,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1053783106393511,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06616401764960872,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0511652657752529,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.031897508921049506,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.027943235612783484,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06657021937784245,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.052613685394839155,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.029269952920795813,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01295363667798432,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.015354738185476691,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.062239296686383665,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.036443242086160225,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11494501975524911,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03651738530711481,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.036895886825932395,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.26076068133220787,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0691511412790925,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05399775401604052,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.16643813108941835,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08333153008266132,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02194251393599923,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03952805656440963,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.13177544899216478,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10998455685488406,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.6533077127357724,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.058010591974856994,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.3262104904028743,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.012199571529676203,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.22788371784165307,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0650129639246547,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04395413445709749,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.34997089947784293,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.016010489314345636,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.17316383698529986,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03178065697236362,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1489609500174212,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02304552390152761,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.038286568466019875,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06135856798078568,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05118234606304452,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11114676943316229,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10540852478511638,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04041493742196966,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06698276765758028,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06532998959936301,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05337970074772112,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0451975277001946,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04918322798727155,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03040851648995848,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0327661985450105,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.16093202284691813,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04152301151661509,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07548493633179913,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02634187572815734,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06837524215337423,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.30851316979810084,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04627901253071393,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.043016045655951615,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06394111261165798,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05841387866787201,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.010678422230066705,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03545256041518167,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.17281914430873532,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03564379290101303,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.058982230420260566,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.047517253542698895,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07397346005501042,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0336531962447195,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0053787788359849435,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.031473446751186615,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.4415670913494757,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.034398214780549614,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04260787905974609,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11690077355111579,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.16827208690874937,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0339292155500375,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.12654200935090607,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.044022703480698894,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10377980845072239,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.006294287513189075,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04557420416193371,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0836525064184085,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0560509976696675,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03833655134026942,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08801161082998224,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11227605652339119,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03051133982745758,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.021951966127824123,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.022446223404454176,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10517744695174965,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04744260511379146,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03830031151457286,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.12657490354328949,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06066942157960248,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06791901019569802,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0392338412899517,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.057301297019141134,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08682496403744239,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08753937493382585,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05144629282522028,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.12549799882633017,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.018448354710047445,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.6194466712415826,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04139362119994029,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1492022270564813,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.17057999446701763,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06149268620409774,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.00801696473320374,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.018834281353362167,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,1.234809004689399e-5,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.053861229919779666,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04263756762501052,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.011673040155681073,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.043379228274775666,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04461976015018951,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0870786026976609,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06773558025007224,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0926802276483856,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.041675781646552855,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07953752730848535,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0228675653712847,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.053250499831933064,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.029909508817541283,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.033924632109587065,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11074953193988987,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.013389073358237958,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07506517534453848,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08749003509357578,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.043023998781108325,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05240865107024655,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.037786988395274314,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.042681736195511924,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09591629824229764,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1812869856728499,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08961626021385038,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06404920923453511,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08980484799887843,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05518638939165077,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10426894256766693,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.053164037623722064,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0830543806685645,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09164727722351622,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1059178915222044,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02652740345436551,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.010681468632514799,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05527339209945504,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.060814627617461176,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03802849929487475,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03808627680310042,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06363360884230236,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09984299268230272,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.009417976065666585,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06591349686901109,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09104242984652142,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.035522477724935046,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.023761518111114262,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07415004753876488,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07302252165133387,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04906253274400981,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.013075156981672924,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0357813960537575,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.27371713819160925,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05372449133335429,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.19486973523441067,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08094991468894554,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.043653747526398445,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.012033757810432736,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.053446831733050135,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,8.531672880538578,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03700573569915616,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03842394159916078,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07680929525623723,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06538476912006395,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.026230553158452765,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03789879184388773,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09759203363696595,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.029392765610412385,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.12205548337029003,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.018021687093106965,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01890026290064456,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.020434322319964,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.15739558017933097,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03537440738219017,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0351903501167353,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.035565880250137016,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03620532574841601,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.18279734542593953,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.19382529267882365,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08081205417407271,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04924180023579033,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01888273126067544,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06519179075970793,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03849805360901104,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11600041829942855,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03968697594366545,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08624652578158673,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08053513396500234,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.16419168993756839,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.18322803134191964,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04385839725167451,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02801310187019914,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.013018153321835186,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.00012876442176986124,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.027142400809312264,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05542051221679395,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05339674801504012,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.024558027157280584,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10088640634060934,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.14329256782519656,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.147428304977076,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03133101568260752,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03605715105702119,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09040200076877386,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.019921503917763043,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.024442838843704573,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.005977543145128229,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03326342686196255,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0947825332537426,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02980605454800867,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0583922749800799,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08009159114851025,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06609503768020145,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05544984478096228,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.035688869341176294,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03244203679761772,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07695447720158244,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02597258417099384,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09878367759004252,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07811577123171522,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02453979699071716,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.016065165867572624,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0603232061331166,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.021002940605760082,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06142568401223134,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.057634553261611474,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04289342164888935,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08652154898089082,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03373149124049446,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.043633659748722034,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10015068250052231,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.041664989650602245,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.054822956682217504,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.2121334155870553,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0635715437796327,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.043066142271715825,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01824680633452014,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.055186504127211836,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07982714507491862,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.028163971483273622,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09153667234257698,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.18186990802453995,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.018697012310813662,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03873008204727377,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.027883975599944006,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04386176042806223,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.083280106700434,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03872639446224492,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02513507990159724,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10158841982033207,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.016317621345321495,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05482741023586403,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.045042031676066324,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.2077461433040118,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0012197922157132337,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.028851693317731977,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.022323907819463223,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.840379283503194,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.2212545267065407,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05489861316021303,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09936985090265357,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07147533245046285,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.36495606669142633,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.017074066891138183,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06763358555989682,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.025647116328077257,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.20108073653091385,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04752754106978812,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.28688572512312377,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02762319018067175,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08606372912317556,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.15290668407324384,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.13935497986505913,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06765346372575173,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0927200255512571,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08225676159127476,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.021694536509148578,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.045271044098306186,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0761169133276572,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11091667499225304,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.028649398190245076,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06445440560226166,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07165381212136687,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.16661620540212316,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05779032499505227,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11368122398771571,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03635632107872288,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.048841836309578814,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0309769697859959,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09161096722144338,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04143092375466681,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.037502352070997294,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0495825947025356,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.025928422788296962,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01409123734884135,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1359014031580843,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.13217410568160648,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03911347493125662,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.017132032090734134,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04555043405571575,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.12590214224337626,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04246998261312954,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.058251820053437174,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05986570174604704,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.006279324228663084,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.053726861976402515,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.028619033661219873,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.029925730066436996,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.015073943596340433,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07415941406719365,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.006494191293262183,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08091106221114334,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07625533445162257,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05175926299494132,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.6267495292100463,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1194024826224762,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.015541360417227892,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05101002418697828,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03539058200279319,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.022334806559704195,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.031734437201181735,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06406601907427702,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08470324219328486,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05502503758822977,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.13474683356270842,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.14384534144435435,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.044619492195673786,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03434970048793841,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07330121523205801,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08133733068374065,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.020484708024001066,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09380868749841294,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02197485832823284,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04753042808945152,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05474629271890001,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06054514667431216,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03731770279928998,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08220343148019713,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.022839399658931257,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01265215403264191,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.055255335148309416,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07032848142802711,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06096645728410255,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0432879215825267,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06439804013772148,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.057847497186417,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08723531199902361,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.022187278393672204,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.039180675974355754,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0340933935081526,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.24639879536142537,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05387655689360177,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06939302280985281,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07890904611460464,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03869822680385168,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03058017581785671,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.23091765139012857,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06323852438348337,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04288775714714145,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.062393176596237804,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04190587604653407,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01377369469825546,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.008330803586781536,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.022018919385671076,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08375549140767467,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0544275437328646,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03512084799759528,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07054518244177317,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.039259866066588954,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08006110524644669,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06985725109091304,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.047435627627553656,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05531440332215248,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.046283535540313045,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0325721368860155,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.17122430695561833,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11101348202407607,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04898120575797614,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.037501964647472255,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06164817232266308,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11396416183975236,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0476015139773791,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05375112923959103,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06456513176076593,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.030214115354381038,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.12082410691832134,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.030378916341885078,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.034826767910676466,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06693259051674981,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.017247695303902917,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,1.0511796293544744,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.022014486331095613,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05601316408458351,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.031468945124091756,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.4855538636641098,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.018497832642728907,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03802781705608854,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.010323948353487536,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02994124669410647,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.2718082263685435,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11095369743006872,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08888961582346268,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.20985506176666913,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05854606017438693,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.14181312796477982,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.034434778185765264,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.107565617981167,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06912668695546506,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01600541275704794,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.017262235012477947,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.059172547076184426,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.014610217833960078,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.15252873033473205,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08029340122104026,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01090202361264736,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1311860621356744,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07469522426535893,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06565405172886274,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06983194788054846,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.003476394194986178,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.041406537798529285,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11691684610833349,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08975515606713387,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11589979573477358,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03752904126262171,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.020149430208976426,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03777754165858297,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0411747719214155,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03670071791197245,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02342696793068917,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03825365335941856,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.39861882957601924,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.026557556523672584,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.024691102968889614,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03816122627462636,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10155837585768915,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08527918627043073,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02560590060583287,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09572947309315717,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0541319442096756,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.009028559481648048,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.041127230205504024,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05290962967682204,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05832864662130283,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.12858705858356884,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04444812445657405,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.12059887271227455,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.24267072270860665,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03528702681888049,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.056212256959042604,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.030249480618062555,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03158958687717962,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04574101087123668,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04239392501514271,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.020023271394721688,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.021140859104260248,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04386135801241434,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04233855863319298,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05377723247121109,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.041124838346799544,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.020804376312361105,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06789955735401536,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03868126274460384,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06970198019853881,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.019608256506045946,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10548933554902998,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05456726100074712,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.013359692155102446,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03676133128569316,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06596288199830992,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06657184135365492,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.7249611871636702,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.029196737703045053,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07813464865157647,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07519311511085566,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08980829001438313,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03180979849576224,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04761731929547537,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09112896448051068,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03799954995900946,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07802886022979777,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03861164656684293,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03900890289424566,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04143900902350875,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04711747108973632,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04218875889805271,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07335127773776261,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09980356079649064,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05367624925137682,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04304651395952506,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.16516849490505653,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03269859770893989,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.026149837811120482,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.008515592939823423,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.016087571966595555,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.048707502407501185,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.13899307341497474,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.010878040858979272,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0808189404510175,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03573845949920279,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0453126777575956,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.31193623434475204,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04258082025532015,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03281752705294861,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10256703552107056,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02608323117953172,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08044411309010203,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04706844826151916,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01926234548463531,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07259829726647707,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03320984307211323,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05629979840486389,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07095329734100794,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.042799639585031836,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.036431300835430266,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06681170348459121,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07637886639932748,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.060872137997774314,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11974733774707771,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.033374384476147434,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03210845099243466,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02834463858300892,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03878211432134859,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07647786631206584,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.029987946719261725,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.042716632824778264,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.039373667032800146,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03514002104503228,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04200531336532205,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.033203770123422266,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.20814351299686348,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10713315690744508,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.036597112216665575,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11019607579185736,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07572425023395572,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.030025889720676664,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06392200645753891,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09392169706625209,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.3241020067604631,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05129535530273908,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04467686470261979,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1084085313493974,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02887164129325722,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.015182310768135147,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08433524831107636,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03563971860746103,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.011712461967717362,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0500805798691584,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01821246523414795,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06286070215850242,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08658976711185999,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03661701354143814,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.021304364276728886,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0947129719615081,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.3075895748237984,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.021804796775273694,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06593773732869232,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.011843451905090336,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06473758016383105,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.18953428894609373,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0762392224979068,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09375086710655973,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.029191696003101758,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0920352917158669,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05867507766174522,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.040327289665475205,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03102776778514766,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0412588058398406,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.024062830791292907,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0365919625893162,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04668477932619945,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1109747735444735,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.13905526113499753,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04295636225861975,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0667437852067359,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02914359523625392,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07857665671255393,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02186340272738536,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10511843261539507,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04680329717026665,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.23112284369690528,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01846947113949961,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.034394101585976014,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.10183904032846952,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03150507018668523,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.1091142690290038,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11465902963595129,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06537659156871811,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08478229122169736,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.14918960235073456,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07135188178806696,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07623948425527755,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.39611139562786574,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.01482895255592386,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.050361086362977994,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06102797396387846,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.6079366040029859,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.061936148108380516,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.05067315039817038,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06678886088771607,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07808878621652514,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.07562999199142716,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.029491518260432528,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.20656151915172904,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.014472133894037778,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02961506001358694,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.024101327319037944,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.025651639788179657,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11394466744116963,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02092527227393305,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.13330951359151158,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03631850480319319,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.059774961392735054,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0901381802789069,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.18486313777173907,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11085499822625526,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.045273032055879715,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08738826697776855,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04425032685519657,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.056040221520527386,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04777763158862688,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03327128414160582,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.13899762542249583,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09595644753607199,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.09424983627744987,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0693891142406167,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.02864194852905108,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.13105204508472262,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.15984805394113613,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.025730603489589346,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.03357686713847519,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.032428146645544255,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.08181889668084166,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.38442706663576476,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.04904257293861881,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.044747031668536164,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.11275083112112873,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.058497934257057585,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.06576586596428416,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADP,0.0361063803628797,derived: free NADPH / R (docs/free_vs_total_measurements.md sec. 4),generic mammalian (derived),true
-NADPH,3.1,Tao et al. Nat Methods. 2017;14(7):720-728. doi:10.1038/nmeth.4306,HeLa,false
-NADPH,2.6,Moon et al. bioRxiv 2024.04.27.591477 (preprint),HeLa,false
-PGA,25.0,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false
-PGA,30.073461891643706,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false
-PGA,194.44444444444443,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false
-PGA,26.62993572084481,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false
-PGA,10.629017447199264,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false
-PGA,895.3168044077133,Marin-Hernandez et al. Biochim Biophys Acta. 2011;1807(6):755-767,HeLa,false
-PGA,803.4894398530762,Marin-Hernandez et al. Biochim Biophys Acta. 2011;1807(6):755-767,AS-30D,false
-PGA,234.15977961432503,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false
-Ru5P,7.984848484848484,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false
-R5P,118.63636363636363,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false
-R5P,48.89807162534434,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false
-R5P,46.602387511478426,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false
-R5P,30.532598714416896,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false
-R5P,17.378328741965106,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false
-X5P,47.72727272727273,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false
-S7P,22.878787878787875,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false
-S7P,55.55555555555554,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false
-S7P,270.89072543617993,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false
-S7P,18.985307621671254,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false
-S7P,12.0752984389348,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false
-E4P,15.606060606060609,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false
+metabolite,value_uM,reference,cell_type,derived,method
+Glucose,4384.75665748393,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,4T1,false,metabolomics
+Glucose,5785.123966942148,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HepG2,false,metabolomics
+Glucose,7093.663911845729,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SGC7901,false,metabolomics
+Glucose,8402.203856749311,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SMMC7721,false,metabolomics
+Glucose,6887.052341597795,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HeLa,false,metabolomics
+Glucose,3719.0082644628096,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,RKO,false,metabolomics
+Glucose,6726.354453627179,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,Bcap37,false,metabolomics
+Glucose,22222.22222222222,Zeng et al. bioRxiv 2024,4T1,false,metabolomics
+Glucose,21900.82644628099,Zeng et al. bioRxiv 2024,HeLa,false,metabolomics
+G6P,321.3957759412304,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,4T1,false,metabolomics
+G6P,505.050505050505,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HepG2,false,metabolomics
+G6P,505.050505050505,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SGC7901,false,metabolomics
+G6P,390.2662993572085,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SMMC7721,false,metabolomics
+G6P,413.22314049586777,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HeLa,false,metabolomics
+G6P,413.22314049586777,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,RKO,false,metabolomics
+G6P,459.1368227731864,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,Bcap37,false,metabolomics
+G6P,117.7685950413223,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false,metabolomics
+G6P,291.55188246097333,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false,metabolomics
+G6P,107.89715335169879,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false,metabolomics
+G6P,97.56657483930212,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false,metabolomics
+G6P,344.35261707988974,Chen et al. Cell. 2016 Aug 25;166(5):1324-1337.e11,HeLa,false,metabolomics
+G6P,187.06542699724517,This study,HeLa,false,metabolomics
+G6P,150.22291092745635,This study,293T,false,metabolomics
+G6P,370.6932966023875,This study,C2C12,false,metabolomics
+G6P,237.9040404040404,This study,NIH3T3,false,metabolomics
+G6P,603.7649219467401,Zeng et al. bioRxiv 2024,4T1,false,metabolomics
+G6P,918.2736455463728,Zeng et al. bioRxiv 2024,HeLa,false,metabolomics
+G6P,298.4595959595959,This study,C2C12_Oligomycin,false,metabolomics
+G6P,174.70913682277316,This study,HeLa_Oligomycin,false,metabolomics
+G6P,2984.389348025711,Marin-Hernandez et al. Biochim Biophys Acta. 2011;1807(6):755-767,HeLa,false,metabolomics
+G6P,1019.2837465564737,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false,metabolomics
+F6P,206.61157024793388,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,4T1,false,metabolomics
+F6P,344.35261707988974,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HepG2,false,metabolomics
+F6P,321.3957759412304,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SGC7901,false,metabolomics
+F6P,275.4820936639118,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SMMC7721,false,metabolomics
+F6P,367.30945821854914,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HeLa,false,metabolomics
+F6P,321.3957759412304,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,RKO,false,metabolomics
+F6P,390.2662993572085,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,Bcap37,false,metabolomics
+F6P,127.18089990817262,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false,metabolomics
+F6P,284.66483011937555,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false,metabolomics
+F6P,136.13406795224975,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false,metabolomics
+F6P,114.3250688705234,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false,metabolomics
+F6P,227.27272727272725,Chen et al. Cell. 2016 Aug 25;166(5):1324-1337.e11,HeLa,false,metabolomics
+F6P,164.28053259871436,This study,HeLa,false,metabolomics
+F6P,85.38337924701561,This study,293T,false,metabolomics
+F6P,280.2548209366391,This study,C2C12,false,metabolomics
+F6P,103.0615243342516,This study,NIH3T3,false,metabolomics
+F6P,254.82093663911843,Zeng et al. bioRxiv 2024,4T1,false,metabolomics
+F6P,312.2130394857667,Zeng et al. bioRxiv 2024,HeLa,false,metabolomics
+F6P,448.6891643709825,This study,C2C12_Oligomycin,false,metabolomics
+F6P,321.33838383838383,This study,HeLa_Oligomycin,false,metabolomics
+F6P,1147.842056932966,Marin-Hernandez et al. Biochim Biophys Acta. 2011;1807(6):755-767,HeLa,false,metabolomics
+F6P,369.6051423324151,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false,metabolomics
+F16BP,2272.7272727272725,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false,metabolomics
+F16BP,1469.2378328741966,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,4T1,false,metabolomics
+F16BP,1308.539944903581,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HepG2,false,metabolomics
+F16BP,1262.6262626262626,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SGC7901,false,metabolomics
+F16BP,826.4462809917355,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,SMMC7721,false,metabolomics
+F16BP,1056.0146923783286,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,HeLa,false,metabolomics
+F16BP,1101.9283746556473,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,RKO,false,metabolomics
+F16BP,1331.4967860422405,Xie et al. J Biol Chem. 2016 Apr 22;291(17):8987-8999,Bcap37,false,metabolomics
+F16BP,32.36914600550964,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false,metabolomics
+F16BP,362.7180899908172,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false,metabolomics
+F16BP,123.96694214876031,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false,metabolomics
+F16BP,42.24058769513315,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false,metabolomics
+F16BP,1859.5041322314048,Chen et al. Cell. 2016 Aug 25;166(5):1324-1337.e11,HeLa,false,metabolomics
+F16BP,2618.7052341597796,This study,HeLa,false,metabolomics
+F16BP,1220.1905417814507,This study,293T,false,metabolomics
+F16BP,2015.4820936639117,This study,C2C12,false,metabolomics
+F16BP,1771.721763085399,This study,NIH3T3,false,metabolomics
+F16BP,1501.3774104683193,Zeng et al. bioRxiv 2024,4T1,false,metabolomics
+F16BP,1797.5206611570245,Zeng et al. bioRxiv 2024,HeLa,false,metabolomics
+F16BP,3594.9862258953162,This study,C2C12_Oligomycin,false,metabolomics
+F16BP,4004.1712580348935,This study,HeLa_Oligomycin,false,metabolomics
+F16BP,872.3599632690541,Marin-Hernandez et al. Biochim Biophys Acta. 2011;1807(6):755-767,HeLa,false,metabolomics
+F16BP,4938.016528925619,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false,metabolomics
+DHAP,269.81373782720584,Chen et al. Cell. 2016 Aug 25;166(5):1324-1337.e11,HeLa,false,metabolomics
+DHAP,1007.8796948157216,This study,HeLa,false,metabolomics
+DHAP,441.42321078348016,This study,293T,false,metabolomics
+DHAP,1982.4008887981952,This study,C2C12,false,metabolomics
+DHAP,1916.75679352447,This study,NIH3T3,false,metabolomics
+DHAP,849.1197043385595,Zeng et al. bioRxiv 2024,4T1,false,metabolomics
+DHAP,855.4682628756703,Zeng et al. bioRxiv 2024,HeLa,false,metabolomics
+DHAP,3589.206770284211,This study,C2C12_Oligomycin,false,metabolomics
+DHAP,3134.586493441712,This study,HeLa_Oligomycin,false,metabolomics
+DHAP,1639.515242208845,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false,metabolomics
+GAP,6.148447915103251,This study,HeLa,false,metabolomics
+GAP,10.785400866978025,This study,293T,false,metabolomics
+GAP,7.634483123946075,This study,C2C12,false,metabolomics
+GAP,2.916820433135865,This study,NIH3T3,false,metabolomics
+GAP,4.436420140023131,Zeng et al. bioRxiv 2024,4T1,false,metabolomics
+GAP,5.231002851669064,Zeng et al. bioRxiv 2024,HeLa,false,metabolomics
+GAP,8.49614185950012,This study,C2C12_Oligomycin,false,metabolomics
+GAP,8.27538029611449,This study,HeLa_Oligomycin,false,metabolomics
+GAP,9.071485957957744,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false,metabolomics
+ATP,4700.0,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false,metabolomics
+ATP,3727.272727272727,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false,metabolomics
+ATP,3363.636363636364,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false,metabolomics
+ATP,1245.4545454545455,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false,metabolomics
+ATP,2075.7575757575755,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false,metabolomics
+ATP,6969.696969696969,Chen et al. Cell. 2016 Aug 25;166(5):1324-1337.e11,HeLa,false,metabolomics
+ATP,6224.793939393939,This study,HeLa,false,metabolomics
+ATP,6381.606060606061,This study,293T,false,metabolomics
+ATP,7874.957575757576,This study,C2C12,false,metabolomics
+ATP,8117.554545454545,This study,NIH3T3,false,metabolomics
+ATP,9090.90909090909,Zeng et al. bioRxiv 2024,4T1,false,metabolomics
+ATP,13742.424242424242,Zeng et al. bioRxiv 2024,HeLa,false,metabolomics
+ATP,5502.257575757575,This study,C2C12_Oligomycin,false,metabolomics
+ATP,4408.599999999999,This study,HeLa_Oligomycin,false,metabolomics
+ATP,13181.81818181818,Marin-Hernandez et al. Biochim Biophys Acta. 2011;1807(6):755-767,HeLa,false,metabolomics
+ATP,2613.6363636363635,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false,metabolomics
+PGA,25.0,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false,metabolomics
+PGA,30.073461891643706,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false,metabolomics
+PGA,194.44444444444443,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false,metabolomics
+PGA,26.62993572084481,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false,metabolomics
+PGA,10.629017447199264,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false,metabolomics
+PGA,895.3168044077133,Marin-Hernandez et al. Biochim Biophys Acta. 2011;1807(6):755-767,HeLa,false,metabolomics
+PGA,803.4894398530762,Marin-Hernandez et al. Biochim Biophys Acta. 2011;1807(6):755-767,AS-30D,false,metabolomics
+PGA,234.15977961432503,"Gumaa, McLean. Biochem J. 1969;115(5):1009-1029",Krebs ascites,false,metabolomics
+Ru5P,7.984848484848484,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false,metabolomics
+R5P,118.63636363636363,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false,metabolomics
+R5P,48.89807162534434,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false,metabolomics
+R5P,46.602387511478426,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false,metabolomics
+R5P,30.532598714416896,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false,metabolomics
+R5P,17.378328741965106,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false,metabolomics
+X5P,47.72727272727273,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false,metabolomics
+S7P,22.878787878787875,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false,metabolomics
+S7P,55.55555555555554,Rost et al. Metabolites.2020 Feb 19;10(2):74,Hek293,false,metabolomics
+S7P,270.89072543617993,Rost et al. Metabolites.2020 Feb 19;10(2):74,HeLaS3,false,metabolomics
+S7P,18.985307621671254,Rost et al. Metabolites.2020 Feb 19;10(2):74,NB4,false,metabolomics
+S7P,12.0752984389348,Rost et al. Metabolites.2020 Feb 19;10(2):74,MC/CAR,false,metabolomics
+E4P,15.606060606060609,Park et al. Nat Chem Biol. 2016 Jul;12(7):482-9,iBMK,false,metabolomics
+ADP,32.0,"Veech, Lawson, Cornell, Krebs. J Biol Chem. 1979;254:6538",rat brain,false,equilibrium
+ADP,37.0,"Veech, Lawson, Cornell, Krebs. J Biol Chem. 1979;254:6538",rat skeletal muscle,false,equilibrium
+ADP,46.0,"Veech, Lawson, Cornell, Krebs. J Biol Chem. 1979;254:6538",rat liver,false,equilibrium
+ADP,44.0,"Ghosh, Ronner, Cheong, Khalid, Matschinsky. J Biol Chem. 1991;266:22887",rat pancreatic islet beta-cell cores,false,equilibrium
+ADP,74.0,"Koretsky, Brosnan, Chen, Chen, Van Dyke. Proc Natl Acad Sci USA. 1990;87:3112. doi:10.1073/pnas.87.8.3112",mouse liver,false,equilibrium
+ADP,14.0,"Ronner, Naumann, Friel. Diabetes. 2001;50:291. doi:10.2337/diabetes.50.2.291",betaHC9,false,equilibrium
+NAD,63.6,Sallin et al. eLife. 2018;7:e32638. doi:10.7554/eLife.32638,HEK293T,false,sensor
+NAD,44.6,Sallin et al. eLife. 2018;7:e32638. doi:10.7554/eLife.32638,NIH/3T3,false,sensor
+NAD,73.9,Sallin et al. eLife. 2018;7:e32638. doi:10.7554/eLife.32638,U2OS,false,sensor
+NAD,49.8,Sallin et al. eLife. 2018;7:e32638. doi:10.7554/eLife.32638,HeLa,false,sensor
+NAD,106.0,Cambronne et al. Science. 2016;352(6292):1474-1477. doi:10.1126/science.aad5168,HEK293T,false,sensor
+NAD,100.0,Ryu et al. Science. 2018;360(6389):eaan5780. doi:10.1126/science.aan5780,3T3-L1,false,sensor
+NADH,0.13,Zhao et al. Cell Metab. 2011;14(4):555-566. doi:10.1016/j.cmet.2011.09.004,HEK293T,false,sensor
+NADH,0.34344827586206894,derived: NAD/NADH ratio from Sun et al. PLoS One. 2012;7(5):e34525. doi:10.1371/journal.pone.0034525; median NAD of n=1 same-line rows,HeLa,true,equilibrium
+NADP,0.038,derived: NADPH/NADP ratio from Sallin et al. eLife. 2018;7:e32638. doi:10.7554/eLife.32638; median NADPH of n=2 same-line rows,HeLa,true,sensor
+NADPH,3.1,Tao et al. Nat Methods. 2017;14(7):720-728. doi:10.1038/nmeth.4306,HeLa,false,sensor
+NADPH,2.6,Moon et al. bioRxiv 2024.04.27.591477 (preprint),HeLa,false,sensor

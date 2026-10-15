@@ -7,6 +7,9 @@
 "Metabolite-panel y-axis label; states the basis both the boxes and the diamonds are on."
 const _METAB_YLABEL = "[metabolite], µM (cytosolic water; NADP(H) free)"
 
+"Metabolite-panel y-limits, µM. 1e-4 keeps every non-collapsed grid cell's pools on scale."
+const _METAB_YLIMS = (1e-4, 1e5)
+
 """
     load_metab_lit(csv_path; order = _PANEL_METAB_ORDER) -> Dict{Symbol, Vector{Float64}}
 
@@ -38,7 +41,7 @@ function draw_metab_panel!(ax, lit, metab_obs; order = _PANEL_METAB_ORDER)
     labels = collect(string.(order))
     # set finite positive y-limits BEFORE switching to log10, so the yscale-change
     # validation never sees the default auto-limits (which include 0.0, invalid for log10)
-    ylims!(ax, 1e-3, 1e5)
+    ylims!(ax, _METAB_YLIMS...)
     ax.yscale = log10
     ax.ylabel = _METAB_YLABEL
     ax.title  = "Steady-state metabolites — selected cell vs literature"
