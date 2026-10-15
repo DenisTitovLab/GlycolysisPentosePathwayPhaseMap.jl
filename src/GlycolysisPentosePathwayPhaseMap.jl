@@ -29,7 +29,9 @@ const _REGEN_HOOK = Ref{Any}(nothing)
 Recompute the shipped grid CSVs by solving the kinetic ODE model, and record the model build
 that produced them in the `[grids]` table of `data/provenance.toml` (next to `atp_out` unless
 `provenance_out` is given). Only available when the recompute extension is active — load it
-first with `using PentosePhosphatePathway`.
+first with `using PentosePhosphatePathway`. `f26bp_uM` (default
+`_PHYSIOLOGICAL_DEMAND.f26bp_uM`, 5 µM) sets the F26BP initial and steady-state value, in µM of
+cytosolic water; `[grids]` records it.
 """
 function regenerate_grid(; kwargs...)
     hook = _REGEN_HOOK[]

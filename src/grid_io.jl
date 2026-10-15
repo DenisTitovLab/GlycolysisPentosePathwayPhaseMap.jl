@@ -10,10 +10,14 @@ const _PANEL_METAB_ORDER = (:Glucose, :G6P, :F6P, :F16BP, :DHAP, :GAP, :ATP, :NA
 # Default operating point: PPP.jl's default sink settings (src/model_parameters.jl:
 # NADPHox_Vmax = 0.059·(6·RPI_cap), R5Pase_Vmax = 0.1068·(1.5·RPI_cap)) as fractions φ of the
 # same supply ceilings the grids use, at an ATPase demand of 0.5·HK1_cap (= 0.25 of the
-# 2·HK1_cap ATP ceiling; PPP.jl's own default is 0.2·HK1_cap). The 2-D grid is solved at this
-# ATP level, and phasemap()/explore() open on the grid cell nearest it. The manual extension
-# test pins the two φ against PPP.jl.
-const _PHYSIOLOGICAL_DEMAND = (nadph_phi = 0.059, r5p_phi = 0.1068, atpase_frac = 0.25)
+# 2·HK1_cap ATP ceiling; PPP.jl's own default is 0.2·HK1_cap). F26BP is 5 µM (cytosolic water),
+# the physiological operating point of PPP_Experiments
+# notes/2026-09-23_metabolite-dynamics-physiological-operating-point.md and the value its basic
+# panels use; PPP.jl's own default is 0, at which upper glycolysis runs near its limit and ADP
+# builds up ~20-fold. The 2-D grid is solved at this ATP level, and phasemap()/explore() open
+# on the grid cell nearest it. The manual extension test pins the two φ against PPP.jl.
+const _PHYSIOLOGICAL_DEMAND = (nadph_phi = 0.059, r5p_phi = 0.1068, atpase_frac = 0.25,
+                               f26bp_uM = 5.0)
 
 """
     pentose_cycle_index(fluxes; tol = 1e-12) -> Float64
