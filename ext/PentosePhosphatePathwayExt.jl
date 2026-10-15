@@ -13,6 +13,11 @@
 # ATP-collapsed state down whole columns), and fluxes are cached as µM/min from the model's M/min
 # (×1e6; the port's extra ×60 assumed per-second rates). The pure diagnostics
 # pentose_cycle_index/classify_mode live in the core module's grid_io.jl.
+#
+# Every cell is solved on the coupled model plus an ATPSynthase respiration pseudo-enzyme
+# (respiration.jl). Its `resp_frac` knob moves that fraction of a fixed total ATP-supply capacity
+# from glycolysis to respiration; the default 0 gives ATPSynthase_Vmax = 0 and leaves every
+# glycolytic enzyme at its PPP.jl value, so it reproduces the respiration-free grids.
 
 module PentosePhosphatePathwayExt
 
@@ -25,24 +30,32 @@ import CellMetabolism, CellMetabolismBase
 const PPP  = PentosePhosphatePathway
 const GPPM = GlycolysisPentosePathwayPhaseMap
 
+include("respiration.jl")
+
 # Pools / fluxes cached per cell (mirrors the viewer's expected CSV columns).
 const _DEMAND_POOLS = (:R5P, :S7P, :NADPH, :NADP, :Ru5P, :X5P, :E4P, :F6P, :GAP, :G6P,
-                       :Glucose, :F16BP, :DHAP, :PGLn, :PGA, :ATP, :ADP, :AMP, :NAD, :NADH)
+                       :Glucose, :F16BP, :DHAP, :PGLn, :PGA, :ATP, :ADP, :AMP, :NAD, :NADH,
+                       :Phosphate)
+# V_PKM2 is the glycolytic ATP production rate in Kober's comparison with V_ATPSynthase.
 const _DEMAND_FLUXK = (:V_G6PD, :V_PGLS, :V_PGD, :V_RPI, :V_RPE, :V_TKT_Rxn1, :V_TKT_Rxn2,
                        :V_TA, :V_R5Pase, :V_NADPHox,
-                       :V_HK1, :V_GPI, :V_PFKP, :V_ALDO, :V_TPI, :V_GAPDH)
+                       :V_HK1, :V_GPI, :V_PFKP, :V_ALDO, :V_TPI, :V_GAPDH,
+                       :V_PKM2, :V_ATPase, :V_ATPSynthase)
 
-# Solve the integrated model to steady state with the repo-standard solver settings.
+# Solve the integrated model (with the ATPSynthase reaction) to steady state with the
+# repo-standard solver settings.
 function steady_state(params; u0)
-    prob = make_ODEProblem(glycolysis_ppp_pathway, u0, (0.0, 1e10), params)
+    prob = make_ODEProblem(_RESP_PATHWAY, u0, (0.0, 1e10), params)
     solve(prob, Rodas5P();
           callback = TerminateSteadyState(1e-13, 1e-8),
           abstol = 1e-14, reltol = 1e-9)
 end
 
 # Shared per-sweep state: base params/init, the NADPH/R5P supply ceilings, the demand-φ axes.
+# The ceilings and ATPase_Vmax come from the unscaled params, so a cell means the same absolute
+# demand at every resp_frac; the respiration split is applied after.
 function _demand_setup(atpase_frac, n_nadph, n_r5p, phi_lo, phi_hi;
-                       f26bp_uM = GPPM._PHYSIOLOGICAL_DEMAND.f26bp_uM)
+                       f26bp_uM = GPPM._PHYSIOLOGICAL_DEMAND.f26bp_uM, resp_frac = 0.0)
     params0 = PPP.merge_LArrays(PPP.PPP_params, CellMetabolism.glycolysis_params)
     # PPP.jl's canonical combined init: PPP_init_conc, then PPP_glycolysis_init_overrides
     # (FIX-15/16/22), then CellMetabolism's. A hand-merge skips the overrides. Copied: the
@@ -55,9 +68,10 @@ function _demand_setup(atpase_frac, n_nadph, n_r5p, phi_lo, phi_hi;
     S_NADPH = 6 * RPI_cap                  # 2·V_ox,max, V_ox,max = 3·RPI_cap (Ru5P-disposal limit)
     S_R5P   = 1.5 * RPI_cap                # RPI fwd + TKT_Rxn1-reverse bypass; 2/3 of R5P via RPI
     params0.ATPase_Vmax = atpase_frac * (params0.HK1_Vmax * params0.HK1_Conc * 2)  # φ·S_ATP
+    params0 = _with_respiration(params0, resp_frac)
     nadph_phis = 10 .^ range(log10(phi_lo), log10(phi_hi), length = n_nadph)
     r5p_phis   = 10 .^ range(log10(phi_lo), log10(phi_hi), length = n_r5p)
-    return (; params0, init0, S_NADPH, S_R5P, nadph_phis, r5p_phis)
+    return (; params0, init0, S_NADPH, S_R5P, nadph_phis, r5p_phis, resp_frac)
 end
 
 # Solve one R5P-demand column down the NADPH-demand axis. Every cell starts cold from init0, so
@@ -80,7 +94,7 @@ function _demand_column(setup, ir, rphi)
         u = converged ? sol.u[end] : (sol === nothing ? nothing : sol.u[end])
 
         if u !== nothing
-            f  = PPP.calc_all_fluxes(u, p)
+            f  = merge(PPP.calc_all_fluxes(u, p), (; V_ATPSynthase = _resp_flux(u, p)))
             ci = GPPM.pentose_cycle_index(f)
             md = GPPM.classify_mode(f)
             row = merge(
@@ -111,8 +125,8 @@ end
 function run_demand_grid(; n_nadph = 12, n_r5p = 12,
                            atpase_frac = GPPM._PHYSIOLOGICAL_DEMAND.atpase_frac,
                            phi_lo = 1e-3, phi_hi = 1.0,
-                           f26bp_uM = GPPM._PHYSIOLOGICAL_DEMAND.f26bp_uM)
-    setup = _demand_setup(atpase_frac, n_nadph, n_r5p, phi_lo, phi_hi; f26bp_uM)
+                           f26bp_uM = GPPM._PHYSIOLOGICAL_DEMAND.f26bp_uM, resp_frac = 0.0)
+    setup = _demand_setup(atpase_frac, n_nadph, n_r5p, phi_lo, phi_hi; f26bp_uM, resp_frac)
     rows = NamedTuple[]
     for (ir, rphi) in enumerate(setup.r5p_phis)
         append!(rows, _demand_column(setup, ir, rphi))
@@ -129,10 +143,10 @@ _default_atp_fracs() =
 # each block tagged with its `atpase_frac`. Serial (run-once, offline) — minutes for a full grid.
 function run_atp_grid(; n_nadph = 12, n_r5p = 12, atp_fracs = _default_atp_fracs(),
                         phi_lo = 1e-3, phi_hi = 1.0,
-                        f26bp_uM = GPPM._PHYSIOLOGICAL_DEMAND.f26bp_uM)
+                        f26bp_uM = GPPM._PHYSIOLOGICAL_DEMAND.f26bp_uM, resp_frac = 0.0)
     frames = DataFrame[]
     for f in atp_fracs
-        s = _demand_setup(f, n_nadph, n_r5p, phi_lo, phi_hi; f26bp_uM)
+        s = _demand_setup(f, n_nadph, n_r5p, phi_lo, phi_hi; f26bp_uM, resp_frac)
         for ir in 1:n_r5p
             sub = DataFrame(_demand_column(s, ir, s.r5p_phis[ir]))
             sub.atpase_frac .= f
@@ -152,15 +166,16 @@ function _regenerate_grid_impl(; atp_out = GPPM.default_atp_grid(),
                                  atp_fracs = _default_atp_fracs(),
                                  atpase_frac = GPPM._PHYSIOLOGICAL_DEMAND.atpase_frac,
                                  phi_lo = 1e-3, phi_hi = 1.0,
-                                 f26bp_uM = GPPM._PHYSIOLOGICAL_DEMAND.f26bp_uM)
+                                 f26bp_uM = GPPM._PHYSIOLOGICAL_DEMAND.f26bp_uM,
+                                 resp_frac = 0.0)
     mkpath(dirname(atp_out)); mkpath(dirname(demand_out))
-    atp = run_atp_grid(; n_nadph, n_r5p, atp_fracs, phi_lo, phi_hi, f26bp_uM)
+    atp = run_atp_grid(; n_nadph, n_r5p, atp_fracs, phi_lo, phi_hi, f26bp_uM, resp_frac)
     CSV.write(atp_out, atp)
-    demand = run_demand_grid(; n_nadph, n_r5p, atpase_frac, phi_lo, phi_hi, f26bp_uM)
+    demand = run_demand_grid(; n_nadph, n_r5p, atpase_frac, phi_lo, phi_hi, f26bp_uM, resp_frac)
     CSV.write(demand_out, demand)
     GPPM.update_provenance!(provenance_out, "grids",
         _grid_provenance(atp, demand; n_nadph, n_r5p, atp_fracs, atpase_frac, phi_lo, phi_hi,
-                         f26bp_uM))
+                         f26bp_uM, resp_frac))
     @info "Regenerated grids" atp_out demand_out provenance_out atp_rows=nrow(atp) demand_rows=nrow(demand)
     return (; atp_out, demand_out, provenance_out)
 end
@@ -169,7 +184,7 @@ end
 # many cells failed to reach steady state. A git checkout of PPP.jl records commit/branch/dirty;
 # a registry install records its version instead.
 function _grid_provenance(atp, demand; n_nadph, n_r5p, atp_fracs, atpase_frac, phi_lo, phi_hi,
-                          f26bp_uM)
+                          f26bp_uM, resp_frac)
     gs = GPPM.git_state(pkgdir(PPP))
     prov = Dict{String,Any}(
         "ppp_commit"               => gs === nothing ? "v" * string(pkgversion(PPP)) : gs.commit,
@@ -179,6 +194,13 @@ function _grid_provenance(atp, demand; n_nadph, n_r5p, atp_fracs, atpase_frac, p
         "atp_fracs" => collect(Float64, atp_fracs), "atpase_frac" => Float64(atpase_frac),
         "phi_lo" => Float64(phi_lo), "phi_hi" => Float64(phi_hi),
         "f26bp_uM" => Float64(f26bp_uM),
+        "resp_frac"                => Float64(resp_frac),
+        "resp_capacity_factor"     => _RESP_CAPACITY_FACTOR,
+        "atpsynthase_km_atp"       => _ATPSYNTHASE_KM_ATP,
+        "atpsynthase_km_adp"       => _ATPSYNTHASE_KM_ADP,
+        "atpsynthase_km_phosphate" => _ATPSYNTHASE_KM_PHOSPHATE,
+        "atpsynthase_keq"          => _ATPSYNTHASE_KEQ,
+        "scaled_enzymes"           => [String(k) for k in _GLYCOLYTIC_CONC],
         "atp_grid_rows"            => nrow(atp),
         "demand_grid_rows"         => nrow(demand),
         "atp_grid_nonconverged"    => count(!=(:Terminated), atp.retcode),

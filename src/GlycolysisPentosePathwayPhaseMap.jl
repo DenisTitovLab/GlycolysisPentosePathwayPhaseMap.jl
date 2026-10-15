@@ -32,7 +32,11 @@ that produced them in the `[grids]` table of `data/provenance.toml` (next to `at
 `provenance_out` is given). Only available when the recompute extension is active — load it
 first with `using PentosePhosphatePathway`. `f26bp_uM` (default
 `_PHYSIOLOGICAL_DEMAND.f26bp_uM`, 5 µM) sets the F26BP initial and steady-state value, in µM of
-cytosolic water; `[grids]` records it.
+cytosolic water; `[grids]` records it. `resp_frac` (default 0) solves the model with an
+ATPSynthase respiration pseudo-enzyme (ADP + Pi -> ATP, Kober et al. 2026) holding that fraction
+of a fixed total ATP-supply capacity, with every glycolytic enzyme concentration scaled by
+(1 − `resp_frac`); 0 is the respiration-free model. `[grids]` records it and the rate-law
+constants.
 """
 function regenerate_grid(; kwargs...)
     hook = _REGEN_HOOK[]
