@@ -59,6 +59,15 @@ PentosePhosphatePathway` to activate the recompute extension, then call `regener
 (solves the ODE model; takes minutes). See the
 [Recompute docs](https://DenisTitovLab.github.io/GlycolysisPentosePathwayPhaseMap.jl/stable/recompute/).
 
+## Respiration what-if (branch `feat/atp-synthase-respiration`)
+
+This branch adds respiration to the model as an ATP-producing pseudo-enzyme (ADP + Pi → ATP,
+following Kober et al. 2026). `regenerate_grid(; resp_frac = r)` moves a fraction `r` of a fixed
+total ATP-supply capacity from glycolysis to respiration. `r = 0`, the default, is the
+respiration-free model. Grids for a respiration × F26BP comparison are in
+[`data/respiration/`](data/respiration/README.md), which describes the construction, how to
+regenerate the grids and the results.
+
 ## Documentation
 
 Full documentation: <https://DenisTitovLab.github.io/GlycolysisPentosePathwayPhaseMap.jl/stable/>

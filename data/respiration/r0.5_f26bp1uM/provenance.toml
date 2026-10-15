@@ -1,0 +1,24 @@
+[grids]
+atp_fracs = [0.010000000000000002, 0.01379729661461215, 0.019036539387158782, 0.026265278044037672, 0.036238983183884785, 0.049999999999999996, 0.06898648307306074, 0.09518269693579394, 0.13132639022018835, 0.18119491591942388, 0.25]
+atp_grid_nonconverged = 0
+atp_grid_rows = 1584
+atpase_frac = 0.25
+atpsynthase_keq = 1.0e6
+atpsynthase_km_adp = 1.0e-5
+atpsynthase_km_atp = 1000.0
+atpsynthase_km_phosphate = 1.0e-5
+cellmetabolism_version = "0.3.0"
+demand_grid_nonconverged = 0
+demand_grid_rows = 144
+f26bp_uM = 1.0
+generated = "2026-10-15"
+n_nadph = 12
+n_r5p = 12
+phi_hi = 1.0
+phi_lo = 0.001
+ppp_branch = "main"
+ppp_commit = "fcccae8a196ce9cfba23fae91ca77c4be4540807"
+ppp_dirty = false
+resp_capacity_factor = 0.3
+resp_frac = 0.5
+scaled_enzymes = ["GLUT1_Conc", "HK1_Conc", "GPI_Conc", "PFKP_Conc", "ALDO_Conc", "TPI_Conc", "GAPDH_Conc", "PGK_Conc", "PGAM_Conc", "ENO_Conc", "PKM2_Conc", "LDH_Conc", "MCT_Conc"]
