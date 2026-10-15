@@ -61,6 +61,16 @@ end
     end
 end
 
+@testset "shipped grids carry the cofactor pools and the F26BP setting" begin
+    for path in (G.default_atp_grid(), G.default_demand_grid())
+        cols = names(CSV.read(path, DataFrame; limit = 1))
+        for s in (:ADP, :AMP, :NAD, :NADH)
+            @test "$(s)_uM" in cols
+        end
+    end
+    @test G.read_provenance()["grids"]["f26bp_uM"] == G._PHYSIOLOGICAL_DEMAND.f26bp_uM
+end
+
 @testset "shipped provenance matches shipped data" begin
     p = G.read_provenance()
     @test p["grids"]["ppp_commit"] == "fcccae8a196ce9cfba23fae91ca77c4be4540807"

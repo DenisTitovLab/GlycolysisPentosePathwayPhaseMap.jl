@@ -6,6 +6,7 @@ atpase_frac = 0.25
 cellmetabolism_version = "0.3.0"
 demand_grid_nonconverged = 0
 demand_grid_rows = 144
+f26bp_uM = 5.0
 generated = "2026-10-14"
 n_nadph = 12
 n_r5p = 12
