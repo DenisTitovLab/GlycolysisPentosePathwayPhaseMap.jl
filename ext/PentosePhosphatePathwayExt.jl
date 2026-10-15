@@ -27,7 +27,7 @@ const GPPM = GlycolysisPentosePathwayPhaseMap
 
 # Pools / fluxes cached per cell (mirrors the viewer's expected CSV columns).
 const _DEMAND_POOLS = (:R5P, :S7P, :NADPH, :NADP, :Ru5P, :X5P, :E4P, :F6P, :GAP, :G6P,
-                       :Glucose, :F16BP, :DHAP, :PGLn, :PGA, :ATP)
+                       :Glucose, :F16BP, :DHAP, :PGLn, :PGA, :ATP, :ADP, :AMP, :NAD, :NADH)
 const _DEMAND_FLUXK = (:V_G6PD, :V_PGLS, :V_PGD, :V_RPI, :V_RPE, :V_TKT_Rxn1, :V_TKT_Rxn2,
                        :V_TA, :V_R5Pase, :V_NADPHox,
                        :V_HK1, :V_GPI, :V_PFKP, :V_ALDO, :V_TPI, :V_GAPDH)
@@ -41,12 +41,16 @@ function steady_state(params; u0)
 end
 
 # Shared per-sweep state: base params/init, the NADPH/R5P supply ceilings, the demand-φ axes.
-function _demand_setup(atpase_frac, n_nadph, n_r5p, phi_lo, phi_hi)
+function _demand_setup(atpase_frac, n_nadph, n_r5p, phi_lo, phi_hi;
+                       f26bp_uM = GPPM._PHYSIOLOGICAL_DEMAND.f26bp_uM)
     params0 = PPP.merge_LArrays(PPP.PPP_params, CellMetabolism.glycolysis_params)
     # PPP.jl's canonical combined init: PPP_init_conc, then PPP_glycolysis_init_overrides
     # (FIX-15/16/22), then CellMetabolism's. A hand-merge skips the overrides. Copied: the
     # export is a package-level array that the sweep must never write into.
     init0   = copy(PPP.glycolysis_ppp_init_conc)
+    # F26BP is cytosolic water (no whole_cell_to_cytosolic), as in PPP_Experiments'
+    # Exp_basic_panel_v2.jl. It has no reactions, so it holds this value at steady state.
+    init0.F26BP = f26bp_uM * 1e-6
     RPI_cap = params0.RPI_Vmax * params0.RPI_Conc
     S_NADPH = 6 * RPI_cap                  # 2·V_ox,max, V_ox,max = 3·RPI_cap (Ru5P-disposal limit)
     S_R5P   = 1.5 * RPI_cap                # RPI fwd + TKT_Rxn1-reverse bypass; 2/3 of R5P via RPI
@@ -106,8 +110,9 @@ end
 # 2-D NADPH × R5P demand grid at a fixed ATP background.
 function run_demand_grid(; n_nadph = 12, n_r5p = 12,
                            atpase_frac = GPPM._PHYSIOLOGICAL_DEMAND.atpase_frac,
-                           phi_lo = 1e-3, phi_hi = 1.0)
-    setup = _demand_setup(atpase_frac, n_nadph, n_r5p, phi_lo, phi_hi)
+                           phi_lo = 1e-3, phi_hi = 1.0,
+                           f26bp_uM = GPPM._PHYSIOLOGICAL_DEMAND.f26bp_uM)
+    setup = _demand_setup(atpase_frac, n_nadph, n_r5p, phi_lo, phi_hi; f26bp_uM)
     rows = NamedTuple[]
     for (ir, rphi) in enumerate(setup.r5p_phis)
         append!(rows, _demand_column(setup, ir, rphi))
@@ -123,10 +128,11 @@ _default_atp_fracs() =
 # 3-D ATP × NADPH × R5P grid: the demand grid repeated across log-spaced ATP-demand levels,
 # each block tagged with its `atpase_frac`. Serial (run-once, offline) — minutes for a full grid.
 function run_atp_grid(; n_nadph = 12, n_r5p = 12, atp_fracs = _default_atp_fracs(),
-                        phi_lo = 1e-3, phi_hi = 1.0)
+                        phi_lo = 1e-3, phi_hi = 1.0,
+                        f26bp_uM = GPPM._PHYSIOLOGICAL_DEMAND.f26bp_uM)
     frames = DataFrame[]
     for f in atp_fracs
-        s = _demand_setup(f, n_nadph, n_r5p, phi_lo, phi_hi)
+        s = _demand_setup(f, n_nadph, n_r5p, phi_lo, phi_hi; f26bp_uM)
         for ir in 1:n_r5p
             sub = DataFrame(_demand_column(s, ir, s.r5p_phis[ir]))
             sub.atpase_frac .= f
@@ -145,14 +151,16 @@ function _regenerate_grid_impl(; atp_out = GPPM.default_atp_grid(),
                                  n_nadph = 12, n_r5p = 12,
                                  atp_fracs = _default_atp_fracs(),
                                  atpase_frac = GPPM._PHYSIOLOGICAL_DEMAND.atpase_frac,
-                                 phi_lo = 1e-3, phi_hi = 1.0)
+                                 phi_lo = 1e-3, phi_hi = 1.0,
+                                 f26bp_uM = GPPM._PHYSIOLOGICAL_DEMAND.f26bp_uM)
     mkpath(dirname(atp_out)); mkpath(dirname(demand_out))
-    atp = run_atp_grid(; n_nadph, n_r5p, atp_fracs, phi_lo, phi_hi)
+    atp = run_atp_grid(; n_nadph, n_r5p, atp_fracs, phi_lo, phi_hi, f26bp_uM)
     CSV.write(atp_out, atp)
-    demand = run_demand_grid(; n_nadph, n_r5p, atpase_frac, phi_lo, phi_hi)
+    demand = run_demand_grid(; n_nadph, n_r5p, atpase_frac, phi_lo, phi_hi, f26bp_uM)
     CSV.write(demand_out, demand)
     GPPM.update_provenance!(provenance_out, "grids",
-        _grid_provenance(atp, demand; n_nadph, n_r5p, atp_fracs, atpase_frac, phi_lo, phi_hi))
+        _grid_provenance(atp, demand; n_nadph, n_r5p, atp_fracs, atpase_frac, phi_lo, phi_hi,
+                         f26bp_uM))
     @info "Regenerated grids" atp_out demand_out provenance_out atp_rows=nrow(atp) demand_rows=nrow(demand)
     return (; atp_out, demand_out, provenance_out)
 end
@@ -160,7 +168,8 @@ end
 # The [grids] provenance table: which model build produced the grids, with what axes, and how
 # many cells failed to reach steady state. A git checkout of PPP.jl records commit/branch/dirty;
 # a registry install records its version instead.
-function _grid_provenance(atp, demand; n_nadph, n_r5p, atp_fracs, atpase_frac, phi_lo, phi_hi)
+function _grid_provenance(atp, demand; n_nadph, n_r5p, atp_fracs, atpase_frac, phi_lo, phi_hi,
+                          f26bp_uM)
     gs = GPPM.git_state(pkgdir(PPP))
     prov = Dict{String,Any}(
         "ppp_commit"               => gs === nothing ? "v" * string(pkgversion(PPP)) : gs.commit,
@@ -169,6 +178,7 @@ function _grid_provenance(atp, demand; n_nadph, n_r5p, atp_fracs, atpase_frac, p
         "n_nadph" => n_nadph, "n_r5p" => n_r5p,
         "atp_fracs" => collect(Float64, atp_fracs), "atpase_frac" => Float64(atpase_frac),
         "phi_lo" => Float64(phi_lo), "phi_hi" => Float64(phi_hi),
+        "f26bp_uM" => Float64(f26bp_uM),
         "atp_grid_rows"            => nrow(atp),
         "demand_grid_rows"         => nrow(demand),
         "atp_grid_nonconverged"    => count(!=(:Terminated), atp.retcode),

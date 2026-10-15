@@ -35,11 +35,16 @@ dependencies of the visualization package.
    regenerate_grid()   # writes data/*.csv and the [grids] table of data/provenance.toml
    ```
 
+`regenerate_grid(; f26bp_uM = 5.0)` sets the F26BP value (µM of cytosolic water); the default is the phase map's physiological 5 µM, not PentosePhosphatePathway.jl's default of 0.
+
+Grids written before 0.3.0 lack the cofactor pool columns. `explore()` rejects them with an error
+asking you to regenerate, while `phasemap()` still renders them.
+
 Every cell is solved from PentosePhosphatePathway.jl's initial state, so its steady state does
 not depend on the order the sweep visits cells. Fluxes are cached in µM/min and pools in µM.
 
 `[grids]` records the PentosePhosphatePathway.jl commit (with branch and a dirty flag when it is a
-git checkout; otherwise its version), the CellMetabolism version, the grid axes, and how many
+git checkout; otherwise its version), the CellMetabolism version, the grid axes, the F26BP value, and how many
 cells did not reach steady state (those render gray).
 
 If you call `regenerate_grid` **without** the extension loaded, it raises an error telling you
@@ -55,12 +60,16 @@ to `using PentosePhosphatePathway` first.
 `literature_pools.csv` is exported from the
 [PPP_Experiments](https://github.com/JamesMbata/PPP_Experiments) data repository, where the
 measurements and their basis conversion live (each row's reported basis → µM of cytosolic water
-by species distribution class; free-pool NADP(H); GAP/DHAP free-form corrections). From a
+by species distribution class; free-pool cofactors (ADP, AMP, NAD⁺, NADH, NADP⁺, NADPH: free-pool
+measurements and same-cell-line matched pairs only); GAP/DHAP free-form corrections). From a
 PPP_Experiments checkout next to this package:
 
 ```sh
 julia --project scripts/phasemap_export/export_literature_pools.jl
 ```
 
-This rewrites `data/literature_pools.csv` and the `[literature]` table (PPP_Experiments commit,
-source files, and the seed and draw count of the derived free-NADP⁺ values).
+This rewrites `data/literature_pools.csv` and the `[literature]` table (PPP_Experiments commit and
+source files). Each row's `method` column (`metabolomics`, `sensor` or `equilibrium`) sets its
+marker in the panel. The export refuses to run unless `_FREE_POOL_PANEL` equals PPP_Experiments'
+`FREE_POOL_METABS` (same order) and every `_FREE_EQ_TOTAL_PANEL` entry is in
+`FREE_EQ_TOTAL_METABS`.

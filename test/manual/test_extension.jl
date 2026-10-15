@@ -11,11 +11,18 @@ ext = Base.get_extension(G, :PentosePhosphatePathwayExt)
 @testset "recompute extension" begin
     @test ext !== nothing
 
-    # initial state = PPP.jl's canonical combined init (with PPP_glycolysis_init_overrides)
+    # initial state = PPP.jl's canonical combined init, except F26BP at the phase map's
+    # physiological 5 µM (cytosolic water; PPP.jl's own default is 0)
     s = ext._demand_setup(0.10, 2, 2, 1e-3, 1.0)
     @test keys(s.init0) == keys(PPP.glycolysis_ppp_init_conc)
-    @test collect(s.init0) == collect(PPP.glycolysis_ppp_init_conc)
+    @test s.init0.F26BP == G._PHYSIOLOGICAL_DEMAND.f26bp_uM * 1e-6
+    @test s.init0.F26BP ≈ 5e-6 rtol = 1e-12      # 5.0 * 1e-6 is one ulp below the literal 5e-6
+    same = [k for k in keys(s.init0) if k != :F26BP]
+    @test all(getproperty(s.init0, k) == getproperty(PPP.glycolysis_ppp_init_conc, k) for k in same)
     @test s.init0 !== PPP.glycolysis_ppp_init_conc          # a copy, never the package global
+    @test PPP.glycolysis_ppp_init_conc.F26BP == 0.0         # the package global is untouched
+    s0 = ext._demand_setup(0.10, 2, 2, 1e-3, 1.0; f26bp_uM = 0.0)
+    @test collect(s0.init0) == collect(PPP.glycolysis_ppp_init_conc)   # 0 reproduces PPP.jl
 
     # 2 x 2 smoke regenerate into scratch paths, with provenance
     dir = mktempdir()
@@ -36,6 +43,10 @@ ext = Base.get_extension(G, :PentosePhosphatePathwayExt)
     @test prov["atp_grid_nonconverged"] == count(!=(:Terminated), atp.retcode)
     @test prov["atp_fracs"] == [0.10]
     @test prov["atpase_frac"] == G._PHYSIOLOGICAL_DEMAND.atpase_frac   # default 2-D background
+    @test prov["f26bp_uM"] == G._PHYSIOLOGICAL_DEMAND.f26bp_uM
+    for s in (:ADP, :AMP, :NAD, :NADH)
+        @test "$(s)_uM" in names(atp)
+    end
     @test !haskey(G.read_provenance(out.provenance_out), "literature")
 end
 
@@ -60,5 +71,14 @@ end
     @test col[7].retcode == :Terminated && col[7].ATP_uM > 1000
     alone = ext._demand_setup(0.25, 1, 1, s12.nadph_phis[7], s12.nadph_phis[7])
     @test only(ext._demand_column(alone, 8, s12.r5p_phis[8])).ATP_uM ≈ col[7].ATP_uM rtol = 1e-6
+
+    # the four cofactor pools are cached, finite and positive at the physiological cell
+    # (AMP included: a vanished AMP is what the panel's below-floor arrow is for)
+    for k in (:ADP_uM, :AMP_uM, :NAD_uM, :NADH_uM)
+        v = getproperty(r, k)
+        @test isfinite(v) && v > 0
+    end
+    # F26BP sets the adenylate split (spec D7): 5 µM keeps ADP in the free-ADP data range
+    @test 10 < r.ADP_uM < 100
 end
 

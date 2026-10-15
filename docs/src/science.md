@@ -34,6 +34,10 @@ co-produced by the reverse route must return through RPE → Ru5P → RPI, so tw
 funnels through RPI and the sustainable R5P ceiling is `1.5 · RPI_cap`. ATP demand anchors on the
 glycolytic ceiling `2 · HK1_cap`.
 
+All grids are solved with fructose-2,6-bisphosphate (F26BP), the PFK activator, at 5 µM: the
+physiological operating point used across the project. Without it, upper glycolysis runs near
+its limit at physiological ATP demand, and ADP builds up about 20-fold.
+
 The reversible non-oxidative reactions (RPI, RPE, the two transketolase reactions, and
 transaldolase) **change sign** between regimes; their net direction is the physical readout of
 linear ↔ pentose-cycle ↔ reverse PPP operation.

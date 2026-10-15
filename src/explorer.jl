@@ -23,13 +23,18 @@ end
 """
     build_explorer(df) -> (fig, selected, atp_level)
 
-Build the explorer over the 3-D grid `df` (must carry an `atpase_frac` column; `retcode` already
-Symbol-normalized). An ATP-demand slider re-slices the cached grid: the heatmap Z + cycle-index
+Build the explorer over the 3-D grid `df` (`retcode` already Symbol-normalized). The grid must carry
+an `atpase_frac` column and a `<sym>_uM` column for every metabolite in `_PANEL_METAB_ORDER`;
+otherwise it throws an `ArgumentError` saying to regenerate the grid. An ATP-demand slider re-slices the cached grid: the heatmap Z + cycle-index
 contour lift off the selected ATP level, and the network redraws on EITHER an ATP-level change or a
 cell click. Returns the Figure, the `selected` Observable (keyed `(i_nadph, i_r5p)`), and the
 `atp_level` Observable. Does NOT call `display` (offscreen-testable).
 """
 function build_explorer(df)
+    _require_columns(df, ["atpase_frac"],
+                     "the explorer needs the 3-D ATP grid (atp_demand_grid.csv)")
+    _require_columns(df, ["$(s)_uM" for s in _PANEL_METAB_ORDER],
+                     "the grid predates the cofactor pool columns; regenerate it with regenerate_grid()")
     # ATP levels and demand axes come straight from the CSV-parsed df, so slider values and the
     # filter compare bit-identical Float64s (exact `==` is safe).
     atp_levels = sort(unique(df.atpase_frac))
@@ -71,14 +76,15 @@ function build_explorer(df)
     colsize!(fig.layout, 3, Relative(0.60))
     rowsize!(fig.layout, 2, Relative(0.04))   # thin footer line
 
-    # Footer row 2, ATP slider row 3, NEW full-width metabolite panel row 4 (slider above it).
-    ax_metab = Axis(fig[4, 1:3])
+    # Footer row 2, ATP slider row 3, full-width metabolite panel row 4: two linked axes
+    # (free ≈ total | free pool) plus their legend, in a nested GridLayout.
+    metab_gl = GridLayout(fig[4, 1:3])
     rowsize!(fig.layout, 4, Relative(0.30))
     lit = load_metab_lit(metab_lit_path())
     metab_obs = Observable(fill(NaN, length(_PANEL_METAB_ORDER)))
-    draw_metab_panel!(ax_metab, lit, metab_obs)
-    for interaction in (:rectanglezoom, :dragpan, :scrollzoom)
-        deregister_interaction!(ax_metab, interaction)
+    metab_axes = draw_metab_split!(metab_gl, lit, metab_obs)
+    for ax in metab_axes, interaction in (:rectanglezoom, :dragpan, :scrollzoom)
+        deregister_interaction!(ax, interaction)
     end
 
     selected = Observable(physiological_cell(df))   # open on the physiological-demand cell
