@@ -13,7 +13,7 @@ ext = Base.get_extension(G, :PentosePhosphatePathwayExt)
 
     # initial state = PPP.jl's canonical combined init, except F26BP at the phase map's
     # physiological 5 µM (cytosolic water; PPP.jl's own default is 0)
-    s = ext._demand_setup(0.10, 2, 2, 1e-3, 1.0)
+    s = ext._demand_setup(0.10, [0.05, 1.0], [0.05, 1.0])
     @test keys(s.init0) == keys(PPP.glycolysis_ppp_init_conc)
     @test s.init0.F26BP == G._PHYSIOLOGICAL_DEMAND.f26bp_uM * 1e-6
     @test s.init0.F26BP ≈ 5e-6 rtol = 1e-12      # 5.0 * 1e-6 is one ulp below the literal 5e-6
@@ -21,14 +21,22 @@ ext = Base.get_extension(G, :PentosePhosphatePathwayExt)
     @test all(getproperty(s.init0, k) == getproperty(PPP.glycolysis_ppp_init_conc, k) for k in same)
     @test s.init0 !== PPP.glycolysis_ppp_init_conc          # a copy, never the package global
     @test PPP.glycolysis_ppp_init_conc.F26BP == 0.0         # the package global is untouched
-    s0 = ext._demand_setup(0.10, 2, 2, 1e-3, 1.0; f26bp_uM = 0.0)
+    s0 = ext._demand_setup(0.10, [0.05, 1.0], [0.05, 1.0]; f26bp_uM = 0.0)
     @test collect(s0.init0) == collect(PPP.glycolysis_ppp_init_conc)   # 0 reproduces PPP.jl
+
+    # default axes are the core's lists; unsorted or repeated axes are refused
+    sd = ext._demand_setup(0.10, G._DEFAULT_NADPH_PHIS, G._DEFAULT_R5P_PHIS)
+    @test sd.nadph_phis == G._DEFAULT_NADPH_PHIS && sd.r5p_phis == G._DEFAULT_R5P_PHIS
+    @test_throws ArgumentError ext._demand_setup(0.10, [0.2, 0.1], [0.1])
+    @test_throws ArgumentError ext._demand_setup(0.10, [0.1], [0.1, 0.1])
+    @test_throws ArgumentError ext._demand_setup(0.10, Float64[], [0.1])
 
     # 2 x 2 smoke regenerate into scratch paths, with provenance
     dir = mktempdir()
     out = regenerate_grid(; atp_out = joinpath(dir, "atp.csv"),
                             demand_out = joinpath(dir, "demand.csv"),
-                            n_nadph = 2, n_r5p = 2, atp_fracs = [0.10])
+                            nadph_phis = [0.05, 0.5], r5p_phis = [0.1, 0.5],
+                            atp_fracs = [0.10])
     @test out.provenance_out == joinpath(dir, "provenance.toml")
     atp = G.load_grid(out.atp_out)
     @test nrow(atp) == 4
@@ -42,6 +50,8 @@ ext = Base.get_extension(G, :PentosePhosphatePathwayExt)
     @test prov["demand_grid_rows"] == 4
     @test prov["atp_grid_nonconverged"] == count(!=(:Terminated), atp.retcode)
     @test prov["atp_fracs"] == [0.10]
+    @test prov["nadph_phis"] == [0.05, 0.5] && prov["r5p_phis"] == [0.1, 0.5]
+    @test sort(unique(atp.nadph_phi)) == [0.05, 0.5]
     @test prov["atpase_frac"] == G._PHYSIOLOGICAL_DEMAND.atpase_frac   # default 2-D background
     @test prov["f26bp_uM"] == G._PHYSIOLOGICAL_DEMAND.f26bp_uM
     for s in (:ADP, :AMP, :NAD, :NADH)
@@ -53,24 +63,25 @@ end
 @testset "cold start, flux units, physiological defaults" begin
     # PhaseMap's physiological demand constants are PPP.jl's default sink settings, as fractions
     # of the same supply ceilings the grids use
-    s1 = ext._demand_setup(0.25, 2, 2, 1e-3, 1.0)
+    s1 = ext._demand_setup(0.25, [0.05, 1.0], [0.05, 1.0])
     @test G._PHYSIOLOGICAL_DEMAND.nadph_phi ≈ PPP.PPP_params.NADPHox_Vmax / s1.S_NADPH rtol = 1e-6
     @test G._PHYSIOLOGICAL_DEMAND.r5p_phi ≈ PPP.PPP_params.R5Pase_Vmax / s1.S_R5P rtol = 1e-6
 
     # cached fluxes are µM/min (model rates are M/min): the R5P sink at PPP.jl's default φ
     # delivers ≈ its 38 µM/min anchor (Fan 2014), not 60× that
-    s = ext._demand_setup(0.25, 1, 1, 0.059, 0.059)
+    s = ext._demand_setup(0.25, [0.059], [0.1068])
     r = only(ext._demand_column(s, 1, 0.1068))
     @test r.retcode == :Terminated
     @test 30 < r.V_R5Pase_uM_min < 40
 
     # cold start: a cell's steady state does not depend on the cells solved before it in its
-    # column (a warm-started sweep dragged this whole column into ATP collapse at 0.5·HK1_cap)
-    s12 = ext._demand_setup(0.25, 12, 12, 1e-3, 1.0)
-    col = ext._demand_column(s12, 8, s12.r5p_phis[8])
-    @test col[7].retcode == :Terminated && col[7].ATP_uM > 1000
-    alone = ext._demand_setup(0.25, 1, 1, s12.nadph_phis[7], s12.nadph_phis[7])
-    @test only(ext._demand_column(alone, 8, s12.r5p_phis[8])).ATP_uM ≈ col[7].ATP_uM rtol = 1e-6
+    # column (a warm-started sweep dragged whole columns into ATP collapse at 0.5·HK1_cap).
+    # Cell 8 of R5P column 10 (the physiological cell) is solved after seven others.
+    sg = ext._demand_setup(0.25, G._DEFAULT_NADPH_PHIS, G._DEFAULT_R5P_PHIS)
+    col = ext._demand_column(sg, 10, sg.r5p_phis[10])
+    @test col[8].retcode == :Terminated && col[8].ATP_uM > 1000
+    alone = ext._demand_setup(0.25, [sg.nadph_phis[8]], [sg.r5p_phis[10]])
+    @test only(ext._demand_column(alone, 10, sg.r5p_phis[10])).ATP_uM ≈ col[8].ATP_uM rtol = 1e-6
 
     # the four cofactor pools are cached, finite and positive at the physiological cell
     # (AMP included: a vanished AMP is what the panel's below-floor arrow is for)

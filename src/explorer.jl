@@ -1,9 +1,9 @@
 # explorer.jl — interactive demand-grid flux explorer (GLMakie window) + offscreen builder
 
-# `mouseposition` on a log10-scaled axis returns coordinates in the axis's *transformed*
-# (log10) space, not raw demand values. Convert back to data space before `nearest_cell`
-# (which applies log10 itself). Returns (i_r5p, i_nadph).
-logclick_to_cell(xs, ys, pos) = nearest_cell(xs, ys, 10.0^pos[1], 10.0^pos[2])
+# The heatmap draws cell (i_r5p, i_nadph) centred at that index pair, so a click snaps to the
+# nearest integer position, clamped onto the grid. Returns (i_r5p, i_nadph).
+click_to_cell(nx, ny, pos) =
+    (clamp(round(Int, pos[1]), 1, nx), clamp(round(Int, pos[2]), 1, ny))
 
 # O(1) row lookup keyed (atpase_frac, i_nadph, i_r5p), built once. Exact == on the CSV-parsed
 # Float64 atpase_frac is safe: the slider values come from the same parsed column.
@@ -45,9 +45,7 @@ function build_explorer(df)
     zdict = _build_zdict(df, nx, ny)
 
     fig = Figure(size = (1500, 1200))
-    ax_heat = Axis(fig[1, 1]; xscale = log10, yscale = log10,
-                   xlabel = "R5P demand (fraction of R5P supply, 1.5·RPI_cap)",
-                   ylabel = "NADPH demand (fraction of NADPH supply, 6·RPI_cap)",
+    ax_heat = Axis(fig[1, 1]; _demand_axis_kwargs(xs, ys)...,
                    title = "Pentose-cycle index — click a cell")
 
     # ATP-demand slider (log-spaced levels straight from the data); default = the level nearest
@@ -61,11 +59,11 @@ function build_explorer(df)
     atp_level = sg.sliders[1].value
 
     Z_obs = lift(atp -> zdict[atp], atp_level)
-    # log-space cell edges (not the length-n centers) so cells render equal-sized on the log axis
-    hm = heatmap!(ax_heat, log_cell_edges(xs), log_cell_edges(ys), Z_obs; colormap = :RdBu,
+    # one equal-sized cell per demand level, centred on its index (see _demand_axis_kwargs)
+    hm = heatmap!(ax_heat, 1:nx, 1:ny, Z_obs; colormap = :RdBu,
                   colorrange = (-1, 1), nan_color = :gray80)
     Colorbar(fig[1, 2], hm; label = "recycled fraction (1=cycle, 0=linear, <0=reverse)")
-    contour!(ax_heat, xs, ys, Z_obs; levels = [0.0], color = :black, linewidth = 2)
+    contour!(ax_heat, 1:nx, 1:ny, Z_obs; levels = [0.0], color = :black, linewidth = 2)
     for interaction in (:rectanglezoom, :dragpan, :scrollzoom)
         deregister_interaction!(ax_heat, interaction)
     end
@@ -89,10 +87,15 @@ function build_explorer(df)
 
     selected = Observable(physiological_cell(df))   # open on the physiological-demand cell
     marker_pos = lift(selected) do (in_, ir)
-        Point2f(xs[ir], ys[in_])
+        Point2f(ir, in_)
     end
     scatter!(ax_heat, marker_pos; marker = :rect, markersize = 18,
              color = :transparent, strokecolor = :black, strokewidth = 3)
+    # the exact physiological demand, which falls between grid cells; stays put while you explore
+    scatter!(ax_heat, [index_position(xs, _PHYSIOLOGICAL_DEMAND.r5p_phi)],
+             [index_position(ys, _PHYSIOLOGICAL_DEMAND.nadph_phi)];
+             marker = :circle, markersize = 7, color = :black, strokecolor = :white,
+             strokewidth = 1)
 
     # build the network ONCE against Observables; reselect just pushes new values (no rebuild)
     fluxes_obs = Observable(row_to_fluxes(row_index[(atp_level[], selected[][1], selected[][2])]))
@@ -121,7 +124,7 @@ function build_explorer(df)
 
     on(events(fig.scene).mousebutton) do ev
         if ev.button == Mouse.left && ev.action == Mouse.press && is_mouseinside(ax_heat.scene)
-            ir, in_ = logclick_to_cell(xs, ys, mouseposition(ax_heat.scene))
+            ir, in_ = click_to_cell(nx, ny, mouseposition(ax_heat.scene))
             selected[] = (in_, ir)
         end
     end

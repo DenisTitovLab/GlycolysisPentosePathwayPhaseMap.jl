@@ -2,10 +2,11 @@ using Test, CairoMakie, DataFrames, GlycolysisPentosePathwayPhaseMap
 const G = GlycolysisPentosePathwayPhaseMap
 CairoMakie.activate!()
 
-@testset "log-space click → cell" begin
-    xs = 10.0 .^ range(-3, 0, length = 4); ys = copy(xs)
-    @test G.logclick_to_cell(xs, ys, (log10(xs[2]), log10(ys[3]))) == (2, 3)
-    @test G.logclick_to_cell(xs, ys, (-1.4, -3.0))[1] == 3
+@testset "click → cell (equal-sized index cells)" begin
+    @test G.click_to_cell(15, 18, (2.0, 3.0)) == (2, 3)
+    @test G.click_to_cell(15, 18, (2.4, 3.6)) == (2, 4)
+    @test G.click_to_cell(15, 18, (0.6, 18.4)) == (1, 18)     # edge clicks stay on the grid
+    @test G.click_to_cell(15, 18, (-3.0, 40.0)) == (1, 18)
 end
 
 @testset "build_explorer offscreen" begin
@@ -16,6 +17,12 @@ end
     @test length(atp_levels) == 11
     @test atp_level[] == atp_levels[argmin(abs.(log10.(atp_levels) .-
                                                 log10(G._PHYSIOLOGICAL_DEMAND.atpase_frac)))]
+    ax_heat = only(filter(x -> x isa Axis && occursin("Pentose-cycle", x.title[]), fig.content))
+    # equal-sized cells: index positions, one percent-labelled tick per demand level
+    @test ax_heat.xscale[] === identity && ax_heat.yscale[] === identity
+    xs = sort(unique(df.r5p_phi)); ys = sort(unique(df.nadph_phi))
+    @test ax_heat.xticks[] == (eachindex(xs), G.pct_label.(xs))
+    @test ax_heat.yticks[] == (eachindex(ys), G.pct_label.(ys))
     out = joinpath(tempdir(), "explorer_smoke.png"); @test_nowarn save(out, fig); @test isfile(out)
     conv = first(filter(r -> r.retcode == :Terminated, eachrow(df)))
     ax_net = only(filter(x -> x isa Axis && occursin("ATP", x.title[]), fig.content))

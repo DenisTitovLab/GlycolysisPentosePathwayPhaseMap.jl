@@ -26,6 +26,14 @@ const _PANEL_METAB_ORDER   = (_FREE_EQ_TOTAL_PANEL..., _FREE_POOL_PANEL...)
 const _PHYSIOLOGICAL_DEMAND = (nadph_phi = 0.059, r5p_phi = 0.1068, atpase_frac = 0.25,
                                f26bp_uM = 5.0)
 
+# Default NADPH × R5P demand axes (fractions φ of each supply ceiling), round percentages drawn on
+# log axes. Dense (0.1-0.18 decade steps) over 1-20 %, where physiological demand sits; only two
+# points below 1 %, where the cycle index depends on the NADPH:R5P ratio alone and the map repeats
+# itself. NADPH adds 0.6, 0.7 and 0.8, where high NADPH demand collapses the model (wall near 0.6).
+const _DEFAULT_R5P_PHIS   = [0.001, 0.003, 0.01, 0.015, 0.02, 0.03, 0.04, 0.05, 0.07, 0.10,
+                             0.15, 0.20, 0.30, 0.50, 1.0]
+const _DEFAULT_NADPH_PHIS = sort([_DEFAULT_R5P_PHIS; 0.6; 0.7; 0.8])
+
 """
     pentose_cycle_index(fluxes; tol = 1e-12) -> Float64
 
@@ -85,9 +93,9 @@ row_to_pools(row; order = _PANEL_METAB_ORDER) =
 """
     nearest_cell(xs, ys, xc, yc) -> (i_r5p, i_nadph)
 
-Snap a click at data coords `(xc, yc)` to the nearest grid cell on the log-spaced demand
-axes `xs` (sorted unique `r5p_phi`) and `ys` (sorted unique `nadph_phi`). Distance is
-measured in log10 space (the heatmap axes are log10-scaled).
+The grid cell nearest to demand `(xc, yc)` on the demand axes `xs` (sorted unique `r5p_phi`)
+and `ys` (sorted unique `nadph_phi`). Distance is measured in log10 space, the scale the demand
+levels are chosen on.
 """
 nearest_cell(xs, ys, xc, yc) =
     (argmin(abs.(log10.(xs) .- log10(xc))), argmin(abs.(log10.(ys) .- log10(yc))))
@@ -104,18 +112,36 @@ function physiological_cell(df)
     return (in_, ir)
 end
 
-"""
-    log_cell_edges(centers) -> Vector  (length = length(centers) + 1)
+# The heatmaps draw one equal-sized cell per demand level: cell i is centred at position i on
+# its axis and labelled with its demand as a percentage. Axis distance is therefore NOT
+# proportional to demand; a demand between two levels is placed by log interpolation.
 
-Cell boundaries for a `heatmap!` whose axis is log10-scaled. Given the log-evenly-spaced cell
-centers, return the n+1 edges sitting midway between centers IN LOG SPACE, outer two
-extrapolated by half a log-step. Keeps cells equal-sized on the log axis.
 """
-function log_cell_edges(centers)
-    lc = log10.(centers)
-    d  = length(lc) > 1 ? (lc[end] - lc[1]) / (length(lc) - 1) : 1.0
-    return 10 .^ vcat(lc .- d / 2, lc[end] + d / 2)
+    index_position(levels, x) -> Float64
+
+Position of demand `x` on an equal-cell axis whose cell `i` holds `levels[i]` (sorted): `i` at a
+level, log-interpolated between neighbouring levels, clamped to the end cells outside the range.
+"""
+function index_position(levels, x)
+    x <= levels[1]   && return 1.0
+    x >= levels[end] && return Float64(length(levels))
+    i = findlast(<=(x), levels)
+    return i + (log10(x) - log10(levels[i])) / (log10(levels[i+1]) - log10(levels[i]))
 end
+
+"`φ` as a percentage tick label, at most three significant digits: 0.015 → \"1.5%\", 0.1 → \"10%\"."
+function pct_label(phi)
+    v = round(phi * 100; sigdigits = 3)
+    return (isinteger(v) ? string(Int(v)) : string(v)) * "%"
+end
+
+# Axis keywords shared by the phasemap and explorer heatmaps: one tick per demand level, labelled
+# in percent, limits snug on the outer cells.
+_demand_axis_kwargs(xs, ys) =
+    (; xticks = (eachindex(xs), pct_label.(xs)), yticks = (eachindex(ys), pct_label.(ys)),
+       limits = (0.5, length(xs) + 0.5, 0.5, length(ys) + 0.5), xticklabelrotation = π / 4,
+       xlabel = "R5P demand (% of R5P supply, 1.5·RPI_cap)",
+       ylabel = "NADPH demand (% of NADPH supply, 6·RPI_cap)")
 
 # Columns every renderer reads (phasemap and explore). Flux columns come from _PPP_FLUX_KEYS
 # (flux_map.jl, included after this file; resolved at call time).

@@ -37,6 +37,12 @@ dependencies of the visualization package.
 
 `regenerate_grid(; f26bp_uM = 5.0)` sets the F26BP value (µM of cytosolic water); the default is the phase map's physiological 5 µM, not PentosePhosphatePathway.jl's default of 0.
 
+`nadph_phis` and `r5p_phis` set the demand axes as strictly increasing fractions of each supply
+ceiling, for example `regenerate_grid(; nadph_phis = [0.01, 0.1, 0.5, 1.0])`; the viewer draws one
+equal-sized cell per level. The defaults are the axes described in [The science](@ref). Grids
+written before 0.4.0 sit on 12 evenly log-spaced levels (φ = 10⁻³ to 1) and record their axes as
+`phi_lo`/`phi_hi`/`n_nadph`/`n_r5p` in `[grids]`; they still render.
+
 Grids written before 0.3.0 lack the cofactor pool columns. `explore()` rejects them with an error
 asking you to regenerate, while `phasemap()` still renders them.
 
