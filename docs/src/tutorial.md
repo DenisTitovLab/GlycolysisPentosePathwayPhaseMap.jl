@@ -26,7 +26,11 @@ The left panel is a heatmap of the **pentose-cycle index** over the NADPH × R5P
 - **gray** cells = operating points with no meaningful index: non-converged, oxidative flux ≈ 0,
   or the R5P sink running backward after ATP has collapsed (masked, never silently dropped).
 
-A black contour marks the sign-flip boundary between the cycle and reverse regions.
+A black contour marks the sign-flip boundary between the cycle and reverse regions. Every demand
+level is an equal-sized cell labelled with its percentage of supply, so the axes are not to scale.
+Most levels lie between 1 % and 20 %, and extra NADPH rows at 60, 70 and 80 % resolve the approach
+to the high-NADPH collapse. A small black dot marks the exact physiological demand, which falls between
+grid cells.
 
 ### Clicking cells
 

@@ -32,7 +32,8 @@ that produced them in the `[grids]` table of `data/provenance.toml` (next to `at
 `provenance_out` is given). Only available when the recompute extension is active — load it
 first with `using PentosePhosphatePathway`. `f26bp_uM` (default
 `_PHYSIOLOGICAL_DEMAND.f26bp_uM`, 5 µM) sets the F26BP initial and steady-state value, in µM of
-cytosolic water; `[grids]` records it.
+cytosolic water; `[grids]` records it. `nadph_phis` / `r5p_phis` (strictly increasing demand
+fractions; defaults `_DEFAULT_NADPH_PHIS` / `_DEFAULT_R5P_PHIS`) set the NADPH and R5P axes.
 """
 function regenerate_grid(; kwargs...)
     hook = _REGEN_HOOK[]

@@ -11,17 +11,42 @@ const G = GlycolysisPentosePathwayPhaseMap
     @test G.classify_mode((; V_G6PD = 0.0, V_R5Pase = 0.1)) == :undetermined
 end
 
+@testset "default demand axes" begin
+    @test G._DEFAULT_R5P_PHIS == [0.001, 0.003, 0.01, 0.015, 0.02, 0.03, 0.04, 0.05, 0.07, 0.10,
+                                  0.15, 0.20, 0.30, 0.50, 1.0]
+    @test G._DEFAULT_NADPH_PHIS == sort([G._DEFAULT_R5P_PHIS; 0.6; 0.7; 0.8])
+    @test length(G._DEFAULT_NADPH_PHIS) == 18
+    for phis in (G._DEFAULT_R5P_PHIS, G._DEFAULT_NADPH_PHIS)
+        @test issorted(phis) && allunique(phis)
+        @test count(<(0.01), phis) == 2                  # sparse below 1 %
+        @test count(x -> 0.01 <= x <= 0.2, phis) == 10   # dense over 1-20 %
+    end
+end
+
 @testset "nearest_cell (log-spaced)" begin
     xs = 10.0 .^ range(-3, 0, length = 4); ys = copy(xs)
     @test G.nearest_cell(xs, ys, 1e-3, 1e0) == (1, 4)
     @test G.nearest_cell(xs, ys, 10^(-1.6), 1e-3)[1] == 2
     @test G.nearest_cell(xs, ys, 10^(-1.4), 1e-3)[1] == 3
+    ys = G._DEFAULT_NADPH_PHIS                       # snaps onto the added high-NADPH rows
+    @test G.nearest_cell(xs, ys, 1e-3, 0.68)[2] == 16
 end
 
-@testset "log_cell_edges" begin
-    e = G.log_cell_edges(10.0 .^ range(-3, 0, length = 4))
-    @test length(e) == 5
-    @test issorted(e)
+@testset "index_position" begin
+    lv = [0.01, 0.1, 1.0]
+    @test G.index_position(lv, 0.1) == 2.0
+    @test G.index_position(lv, sqrt(0.1)) ≈ 2.5            # log interpolation, not linear
+    @test G.index_position(lv, 1e-4) == 1.0 && G.index_position(lv, 5.0) == 3.0   # clamped
+    # physiological demand lands just past its nearest cell (0.05, 0.10) on the default axes
+    @test 8 < G.index_position(G._DEFAULT_NADPH_PHIS, G._PHYSIOLOGICAL_DEMAND.nadph_phi) < 8.5
+    @test 10 < G.index_position(G._DEFAULT_R5P_PHIS, G._PHYSIOLOGICAL_DEMAND.r5p_phi) < 10.5
+end
+
+@testset "pct_label" begin
+    @test G.pct_label.(G._DEFAULT_R5P_PHIS) ==
+          ["0.1%", "0.3%", "1%", "1.5%", "2%", "3%", "4%", "5%", "7%", "10%", "15%", "20%",
+           "30%", "50%", "100%"]
+    @test G.pct_label(0.0123) == "1.23%"
 end
 
 @testset "row_to_pools ordering + NaN passthrough" begin
@@ -41,11 +66,14 @@ end
 end
 
 @testset "physiological_cell" begin
-    phis = 10.0 .^ range(-3, 0, length = 12)
-    df = DataFrame(i_nadph = repeat(1:12, outer = 12), i_r5p = repeat(1:12, inner = 12),
-                   nadph_phi = repeat(phis, outer = 12), r5p_phi = repeat(phis, inner = 12))
-    # nearest (log space) to NADPH φ 0.059, R5P φ 0.1068
-    @test G.physiological_cell(df) == (7, 8)
+    xs = G._DEFAULT_R5P_PHIS; ys = G._DEFAULT_NADPH_PHIS
+    df = DataFrame(i_nadph = repeat(eachindex(ys), outer = length(xs)),
+                   i_r5p = repeat(eachindex(xs), inner = length(ys)),
+                   nadph_phi = repeat(ys, outer = length(xs)),
+                   r5p_phi = repeat(xs, inner = length(ys)))
+    # nearest (log space) to NADPH φ 0.059, R5P φ 0.1068: the (0.05, 0.10) cell
+    @test G.physiological_cell(df) == (8, 10)
+    @test (ys[8], xs[10]) == (0.05, 0.10)
 end
 
 @testset "shipped grids carry the viewer's columns" begin
@@ -82,6 +110,14 @@ end
     @test p["grids"]["atpase_frac"] == G._PHYSIOLOGICAL_DEMAND.atpase_frac
     @test p["grids"]["atp_fracs"][end] ≈ G._PHYSIOLOGICAL_DEMAND.atpase_frac
     @test !isempty(p["literature"]["ppp_experiments_commit"])
+    # the shipped grids sit on the default linear demand axes
+    @test p["grids"]["nadph_phis"] == G._DEFAULT_NADPH_PHIS
+    @test p["grids"]["r5p_phis"] == G._DEFAULT_R5P_PHIS
+    for path in (G.default_atp_grid(), G.default_demand_grid())
+        df = G.load_grid(path)
+        @test sort(unique(df.nadph_phi)) == G._DEFAULT_NADPH_PHIS
+        @test sort(unique(df.r5p_phi)) == G._DEFAULT_R5P_PHIS
+    end
 end
 
 @testset "shipped grids: sinks within capacity, no index > 1, physiological cell alive" begin

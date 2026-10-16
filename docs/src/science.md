@@ -34,6 +34,16 @@ co-produced by the reverse route must return through RPE → Ru5P → RPI, so tw
 funnels through RPI and the sustainable R5P ceiling is `1.5 · RPI_cap`. ATP demand anchors on the
 glycolytic ceiling `2 · HK1_cap`.
 
+The NADPH and R5P axes use round percentages of each ceiling: 0.1 %,
+0.3 %, then 1, 1.5, 2, 3, 4, 5, 7, 10, 15 and 20 % (the band holding physiological demand,
+NADPH ≈ 6 %, R5P ≈ 11 %), then 30, 50 and 100 %. Below 1 % the cycle index depends on the
+NADPH:R5P ratio alone, so the map only repeats itself there and two levels suffice. High NADPH
+demand collapses the model between 60 % and 70 %, so the NADPH axis adds 60, 70 and 80 % to resolve
+the cells just before the collapse. ATP demand takes 11 log-spaced levels from 1 % to 25 % of its
+ceiling. The heatmaps draw every level as an equal-sized cell, so distance along an axis is not
+proportional to demand: the cycle/reverse boundary, set by the NADPH:R5P ratio, bends where the
+level spacing changes.
+
 All grids are solved with fructose-2,6-bisphosphate (F26BP), the PFK activator, at 5 µM: the
 physiological operating point used across the project. Without it, upper glycolysis runs near
 its limit at physiological ATP demand, and ADP builds up about 20-fold.

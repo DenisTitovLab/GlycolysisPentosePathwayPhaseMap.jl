@@ -19,16 +19,14 @@ function render_phase_map!(fig, df; reps)
     xs = sort(unique(df.r5p_phi)); ys = sort(unique(df.nadph_phi))
 
     # span all schematic rows so the heatmap stays full-height alongside the stacked panels
-    ax = Axis(fig[1:length(reps), 1]; xscale = log10, yscale = log10,
-              xlabel = "R5P demand (fraction of R5P supply, 1.5·RPI_cap)",
-              ylabel = "NADPH demand (fraction of NADPH supply, 6·RPI_cap)",
+    ax = Axis(fig[1:length(reps), 1]; _demand_axis_kwargs(xs, ys)...,
               title = "Pentose-cycle index")
-    hm = heatmap!(ax, log_cell_edges(xs), log_cell_edges(ys), Z; colormap = :RdBu,
+    hm = heatmap!(ax, 1:nx, 1:ny, Z; colormap = :RdBu,
                   colorrange = (-1, 1), nan_color = :gray80)
     Colorbar(fig[1:length(reps), 2], hm;
              label = "recycled fraction (1=cycle, 0=linear, <0=reverse)")
     # sign-flip contour (mode boundary) where cycle_index crosses 0
-    contour!(ax, xs, ys, Z; levels = [0.0], color = :black, linewidth = 2)
+    contour!(ax, 1:nx, 1:ny, Z; levels = [0.0], color = :black, linewidth = 2)
 
     # collect each rep's fluxes first so all panels share ONE width scale: maxflux = the
     # largest |flux| over every edge of every rep.
@@ -46,9 +44,9 @@ function render_phase_map!(fig, df; reps)
     maxflux = (maxflux == 0 || isnan(maxflux)) ? 1.0 : maxflux
 
     for (k, (label, i_n, i_r, fluxes)) in enumerate(reps_fluxes)
-        scatter!(ax, [xs[i_r]], [ys[i_n]]; marker = :rect, markersize = 14,
+        scatter!(ax, [i_r], [i_n]; marker = :rect, markersize = 14,
                  color = :transparent, strokecolor = :black, strokewidth = 2)
-        text!(ax, xs[i_r], ys[i_n]; text = string(k), align = (:center, :center),
+        text!(ax, i_r, i_n; text = string(k), align = (:center, :center),
               fontsize = 18, font = :bold)
         axk = Axis(fig[k, 3])
         draw_ppp_flux_map!(axk, fluxes; title = "$(k): $(label)", maxflux = maxflux)
