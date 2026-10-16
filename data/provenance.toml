@@ -1,20 +1,18 @@
 [grids]
 atp_fracs = [0.010000000000000002, 0.01379729661461215, 0.019036539387158782, 0.026265278044037672, 0.036238983183884785, 0.049999999999999996, 0.06898648307306074, 0.09518269693579394, 0.13132639022018835, 0.18119491591942388, 0.25]
 atp_grid_nonconverged = 0
-atp_grid_rows = 1584
+atp_grid_rows = 2970
 atpase_frac = 0.25
 cellmetabolism_version = "0.3.0"
 demand_grid_nonconverged = 0
-demand_grid_rows = 144
+demand_grid_rows = 270
 f26bp_uM = 5.0
-generated = "2026-10-14"
-n_nadph = 12
-n_r5p = 12
-phi_hi = 1.0
-phi_lo = 0.001
+generated = "2026-10-15"
+nadph_phis = [0.001, 0.003, 0.01, 0.015, 0.02, 0.03, 0.04, 0.05, 0.07, 0.1, 0.15, 0.2, 0.3, 0.5, 0.6, 0.7, 0.8, 1.0]
 ppp_branch = "main"
 ppp_commit = "fcccae8a196ce9cfba23fae91ca77c4be4540807"
 ppp_dirty = false
+r5p_phis = [0.001, 0.003, 0.01, 0.015, 0.02, 0.03, 0.04, 0.05, 0.07, 0.1, 0.15, 0.2, 0.3, 0.5, 1.0]
 
 [literature]
 generated = "2026-10-14"
